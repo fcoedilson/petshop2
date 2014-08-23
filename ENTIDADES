@@ -14,3 +14,38 @@ Animal:
 
 ==> Nome, raça, cor, dono, especie, data nascimento, descrição do animal
 
+
+Serviço:
+
+==> Descrição, tipo, valor, duração, animal(mm)
+
+
+Produto:
+
+==> Descrição, preço, referência
+
+
+Estoque
+
+==> Produto, quantidade
+
+
+Agenda
+
+==> Funcionário, serviço, data, hora
+
+
+Atendimento
+
+==> Usuário, cliente, serviços(mm), produtos(mm), status
+
+
+Status
+
+==> Em Aberto, Pago, Finalizado
+
+
+Cargo
+
+==> Descrição, tipo serviço
+
