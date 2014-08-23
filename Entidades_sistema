@@ -1,3 +1,16 @@
 Especificação das Entidades do Sistema
+==============================================================
 
+Cliente:
+==> Nome, CPF, telefone fixo, celular, Endereço completo, email
+
+
+Funcionário:
+
+==> Nome, CPF, telefone, celular, email, Endereco Completo, Cargo, Salario, Sexo, data de admissão
+
+
+Animal:
+
+==> Nome, raça, cor, dono, especie, data nascimento, descrição do animal
 
