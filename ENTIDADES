@@ -1,51 +1,90 @@
 Especificação das Entidades do Sistema
 ==============================================================
 
-Cliente:
-==> Nome, CPF, telefone fixo, celular, Endereço completo, email
+Pessoa:
+	id: int
+	nome: string
+	sexo: String
+	cpf: string 
+	telefone: string, 
+	celular: string, 
+	email: string
+	dataNascimento: Date
+	estadoCivil:  String
+	endereco:Endereco
+	dataCadastro: Date
+	
+
+Cliente extends Pessoa:
+
+	
+ 
+Funcionario extends Pessoa:
+	matricul: int
+	cargo: Cargo, 
+	salario: float,
+	alocacao: string 
+	dataAdmissao: date
+	status: string
+	foto: byte[]
 
 
-Funcionário:
-
-==> Nome, CPF, telefone, celular, email, Endereco Completo, Cargo, Salario, Sexo, data de admissão
-
+Cargo:
+	id: int
+	nome: string
+	descricao: string
+	atribuicao: string
 
 Animal:
+	id: int
+	nome: string
+	descricao: string
+	observacoes: string
+	raca: string 
+	especie: string
+	cor: string
+	cliente: Cliente 
+	dataNascimento: date 
+	
 
-==> Nome, raça, cor, dono, especie, data nascimento, descrição do animal
-
-
-Serviço:
-
-==> Descrição, tipo, valor, duração, animal(mm)
-
+Servico:
+	id: int
+	nome: string
+	descricao: string
+	tipo: string
+	valor: float 
+	duracao: string
+	
 
 Produto:
+	id: int
+	nome: string
+	descricao: string
+	preco: float
+	estoque: int
+    referencia: string
 
-==> Descrição, preço, referência
+Agenda:
+	id: int
+	medico: Funcionario
+	cliente: Cliente
+	servico: Servico
+	quantidade: int
+	data: date
+	horario: datatime
+	status: string
+	
+
+Atendimento:
+
+	id: int
+	cliente: Cliente
+	agenda: Agenda
+	tipo: string (Consulta, Retorno)
+	status: string
 
 
-Estoque
-
-==> Produto, quantidade
-
-
-Agenda
-
-==> Funcionário, serviço, data, hora
-
-
-Atendimento
-
-==> Usuário, cliente, serviços(mm), produtos(mm), status
-
-
-Status
-
-==> Em Aberto, Pago, Finalizado
-
-
-Cargo
-
-==> Descrição, tipo serviço
-
+StatusAtendimento: ABERTO, FINALIZADO
+StatusAgenda: AGENDADO, CONFIRMADO
+StatusFuncionario: ATIVO, INATIVO, FERIAS, LICENCA
+StatusAtendimento: ESPERA, ATENDIMENTO, SUSPENSO,  FINALIZADO
