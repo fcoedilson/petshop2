@@ -1,0 +1,34 @@
+
+Sugestão de nome do sistema:
+
+Sistema de Controle de PetShop - sispet
+==============================================================================================
+
+1- Definição dos requisitos funcionais e não-funcionais
+
+2- Especificação das entidades do sistema
+
+3- Definição do casos de uso do sistema
+
+4- Criação de protótipos de telas do sistema
+
+5- Especificação dos casos de uso
+   Cenários: principal, alternativo, exceção
+
+6- Desenho do digrama de classe
+
+7- Especificação das tabelas do bando de dados do sistema
+
+8- Desenho do diagrama de entidade relacionamento
+
+9- Definição da arquitetura do sistema: 
+	SO, Servidor de aplicação, linguagem de programação, frameworks, bibliotecas,
+	Sistema gerenciador de bando de dados
+	
+10- Criação do projeto do sistema: projeto, IDE, controle de versão	
+
+
+próximos passos: de acordo com o que for definido no item 10
+
+	
+	
