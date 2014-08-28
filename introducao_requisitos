@@ -1,0 +1,9 @@
+A complexidade de um sistema é determinada pelos Requisitos Funcionais e Requisitos Não-Funcionais.
+
+
+Os Requisitos Funcionais define o que o sistema faz enquanto que os Requisitos Não-Funcionais, 
+define as restrições do sistema, qualidade e comportamento externo.
+
+
+Custo, performance,confiabilidade, manutenibilidade, portabilidade,custos operacionais entre outros, fazem
+parte dos Requisitos Não-Funcionais.
