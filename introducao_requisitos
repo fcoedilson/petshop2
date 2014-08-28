@@ -1,9 +1,25 @@
 A complexidade de um sistema é determinada pelos Requisitos Funcionais e Requisitos Não-Funcionais.
 
 
-Os Requisitos Funcionais define o que o sistema faz enquanto que os Requisitos Não-Funcionais, 
-define as restrições do sistema, qualidade e comportamento externo.
+Os Requisitos Funcionais definem o que o sistema faz, enquanto que os Requisitos Não-Funcionais, 
+definem restrições ao sistema ou às funcionalidades, qualidade e comportamento externo.
 
 
-Custo, performance,confiabilidade, manutenibilidade, portabilidade,custos operacionais entre outros, fazem
+Custo, performance, segurança, confiabilidade, manutenibilidade, portabilidade, custos operacionais entre outros, fazem
 parte dos Requisitos Não-Funcionais.
+
+
+
+Um Exemplo
+
+Suponha uma clinica médica: um requisito funcional do sistema sistema seria:
+  
+  "O sistema deve fornecer uma entrada de dados que possibilite a designação 
+   de resultados a exames admitidos para um paciente por técnicos, 
+   supervisores e chefes". 
+   
+   Este mesmo requisito funcional poderá ter associado a ele o seguinte não-uncional:
+   
+   "Alguns exames deverão ter tratamento especial para a entrada deresultados. 
+    Para estes exames, valores acima ou abaixo de uma lista pré-determinada, 
+    só poderão ser digitados por chefes de seção!"
