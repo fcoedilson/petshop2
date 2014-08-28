@@ -1,6 +1,7 @@
 Especificação das Entidades do Sistema
 ==============================================================
 
+
 Pessoa:
 	id: int
 	nome: string
@@ -13,11 +14,29 @@ Pessoa:
 	estadoCivil:  String
 	endereco:Endereco
 	dataCadastro: Date
-	
 
 Cliente extends Pessoa:
-
 	
+	login: string
+    senha: string
+	
+	
+Usuario extends Funcioario:
+
+	login: string
+	senha: string(md5)
+	status: string
+	
+	
+Perfil:
+	id: int
+	nome: string
+	
+Permissao
+    id: int
+    nome: string
+	
+
  
 Funcionario extends Pessoa:
 	matricul: int
@@ -82,9 +101,12 @@ Atendimento:
 	agenda: Agenda
 	tipo: string (Consulta, Retorno)
 	status: string
-
+	
+	
+-- definições de status
 
 StatusAtendimento: ABERTO, FINALIZADO
 StatusAgenda: AGENDADO, CONFIRMADO
 StatusFuncionario: ATIVO, INATIVO, FERIAS, LICENCA
 StatusAtendimento: ESPERA, ATENDIMENTO, SUSPENSO,  FINALIZADO
+StatusUsuario: ATIVO, INATIVO, FERIAS, LICENCA
