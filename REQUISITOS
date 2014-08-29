@@ -6,7 +6,8 @@ REQUISITOS FUNCIONAIS
 
 Módulo de AUTENTICAÇÃO:
 
-1) O sistema deverá diferenciar o acesso  pelos seguintes perfis: administrador, atendente e cliente.
+1) O sistema deverá diferenciar o acesso  pelos seguintes perfis: 
+	administrador, atendente e cliente.
 
 - O administrador terá acesso a todas as funcionalidades do sistema;
 - O atendente terá acesso ao cadastro de clientes, funcionários, agendamentos, cadastro de animal, poderá fazer abrir e fechar orçamento
