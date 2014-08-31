@@ -1,0 +1,31 @@
+Arquitetura do Syspet(nome sugerido do sistema)
+==========================================================================================
+
+## Configuração do Servidor: 
+
+
+Aplication server: Apache tomcat 7
+SO: linux centos/ windows server
+Banco de dados: Postgresql 9.3
+Memória RAM: 4 GB
+Espaço em disco: 30 GB
+Processadores: 2
+
+## Configuração do Sistema:
+
+Sistema WEB
+Linguagem de programação: Java EE
+Frameworks: Hibernate, JSF 2, Primefaces 4, JPA2
+
+
+## Ferramentas de desenvolvimento:
+
+Eclipse JEE: para o projeto do sistema
+GIT: versionamento dos artefatos do sistema (documentos, código, protótipos)
+Trello: registro e monitoramento das atividades
+Balsamiq: protipagem de telas
+Astah: modelagem uml (casos de uso, digrama de classes e )
+
+
+
+

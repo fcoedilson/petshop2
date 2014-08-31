@@ -1,0 +1,112 @@
+Especificação das Entidades do Sistema
+==============================================================
+
+
+Pessoa:
+	id: int
+	nome: string
+	sexo: String
+	cpf: string 
+	telefone: string, 
+	celular: string, 
+	email: string
+	dataNascimento: Date
+	estadoCivil:  String
+	endereco:Endereco
+	dataCadastro: Date
+
+Cliente extends Pessoa:
+	
+	login: string
+    senha: string
+	
+	
+Usuario extends Funcioario:
+
+	login: string
+	senha: string(md5)
+	status: string
+	
+	
+Perfil:
+	id: int
+	nome: string
+	
+Permissao
+    id: int
+    nome: string
+	
+
+ 
+Funcionario extends Pessoa:
+	matricul: int
+	cargo: Cargo, 
+	salario: float,
+	alocacao: string 
+	dataAdmissao: date
+	status: string
+	foto: byte[]
+
+
+Cargo:
+	id: int
+	nome: string
+	descricao: string
+	atribuicao: string
+
+Animal:
+	id: int
+	nome: string
+	descricao: string
+	observacoes: string
+	raca: string 
+	especie: string
+	cor: string
+	cliente: Cliente 
+	dataNascimento: date 
+	
+
+Servico:
+	id: int
+	nome: string
+	descricao: string
+	tipo: string
+	valor: float 
+	duracao: string
+	
+
+Produto:
+	id: int
+	nome: string
+	descricao: string
+	preco: float
+	estoque: int
+    referencia: string
+
+Agenda:
+	id: int
+	medico: Funcionario
+	cliente: Cliente
+	servico: Servico
+	quantidade: int
+	data: date
+	horario: datatime
+	status: string
+	
+
+Atendimento:
+
+	id: int
+	cliente: Cliente
+	agenda: Agenda
+	tipo: string (Consulta, Retorno)
+	status: string
+	
+	
+-- definições de status
+
+StatusAtendimento: ABERTO, FINALIZADO
+StatusAgenda: AGENDADO, CONFIRMADO
+StatusFuncionario: ATIVO, INATIVO, FERIAS, LICENCA
+StatusAtendimento: ESPERA, ATENDIMENTO, SUSPENSO,  FINALIZADO
+StatusUsuario: ATIVO, INATIVO, FERIAS, LICENCA
