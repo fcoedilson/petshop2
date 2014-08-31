@@ -4,58 +4,91 @@ Sistema de Gestão de Clínica Veterinária
 
 REQUISITOS FUNCIONAIS
 
-Módulo de AUTENTICAÇÃO:
 
-1) O sistema deverá diferenciar o acesso  pelos seguintes perfis: 
-	administrador, atendente e cliente.
+1) O sistema deve possibilitar os cadastros de: 
+	Clientes
+	Médico Veterinário 
+	Funcionários 
+	Cargos 
+	Animais 
+	Produtos 
+	Pedidos 
+	Serviços
 
-- O administrador terá acesso a todas as funcionalidades do sistema;
-- O atendente terá acesso ao cadastro de clientes, funcionários, agendamentos, cadastro de animal, poderá fazer abrir e fechar orçamento
-- O cliente poderá visualizar/editar seu próprio cadastro e de seus animais;
-- O cliente não-poderá cadastrar um animal;
+2) O sistema deve possibilitar o Agendamento de Consultas e Serviços - via WEB ou presencial;
 
-Módulo de ATENDIMENTO:
+3) Um Pedido ao ser finalizado, deverá ter seu valor informado na conta Caixa após recebimento.
 
-2) O sistema deve possibilitar o cadastro de Clientes, Funcionários, Animais consultados ou hospedados, 
-Produtos e Serviços;
+4) O sistema deve Contabilizar os produtos vendidos e serviços atendidos pela clínica;
 
-3) O sistema deve possibilitar o Agendamento de Consultas e Serviços - via WEB ou presencial;
+5) O sistema deve manter um controle de estoque de produtos;
 
-4) O sistema deve possibilitar a realização de Orçamentos, devendo conter os dados do cliente e a lista 
-   de serviços requisitados, mantendo o status da solicitação.
+6) O sistema deve possibilitar a geração relatórios financeiros (semanal ou mensal) contendo o balanço financeiro:
+   Se mensal:  desde o inicio do mês corrente, até o último dia útil do mês
+   Se semanal: selecionar a semana do mês (1ª, 2ª,3ª, 4ª, 5ª)
 
-5) Um Orçamento ao ser finalizado, deverá ter seu valor informado ao Controle Financeiro (Conta Caixa).
+7) O sistema deverá informar o cargo, o salário, a carga horário de trabalho, a CTPS do trabalhador
+	além do número de dependentes
+	
+8)  O sistema deve possibilitar o cadastro de Médico, incluindo sua especialidade, instuição de formação, número da CRMV
 
+9) O sistema devera ter o prodimento de fechar a folha de pagamento, sempre no último dia útil do mês, para fins contábeis
+    O fechamento da folha de pagamento deverá gerar um débito na conta BalancoCaixa
 
-Módulo FINANCEIRO:
-
-6) O sistema deve Contabilizar os produtos e serviços transacionados pela clinica;
-
-7) O sistema deve manter um controle de estoque de produtos disponibilidados;
-
-8) O sistema deve possibilitar a geração de um relatório financeiro semanal ou mensal, contendo o balanço financeiro
-   no mês inicio do mês corrente, até o último dia útil, antes da data de geração;
-
-
-Módulo de RH:
-
-9) O sistema deverá fazer o controle de funcionários, especificando a função, o salário, o horário/dias de trabalho
-
-10) O sistema devera contabilizar mensalmente os pagamentos efetuados aos funcionários
+10) O sistema deverá abrir/fechar a conta Caixa diamente, para fins de controle contábil.
+    O fechamento da conta Caixa deverá gerar um crédio na BalancoCaixa
 
 
+??? acho que ainda falta requisitos!
 
 
 REQUISITOS NÃO-FUNCIONAIS
 
-1) O sistema deve permitir acesso via web, inclusive por dispositivos móveis
-2) Será desenvolvido em linguagem java
-3) O sistema deve possuir interface de fácil compreensão
+1) O sistema deverá diferenciar o acesso  pelos seguintes perfis: 
+	gerente
+	atendente
+	assistente
+	medico
+	cliente
+
+- O gerente terá as seguintes as atribuições: 
+	Cadastrar usuário
+	Cadastrar médico
+	Cadastrar produto 
+	Cadastrar cargos 
+	
+- O atendente terá as seguintes as atribuições: 
+	Cadastrar clientes
+	Cadastrar animais 
+	Atender pedidos 
+	Agendar serviços
+	Cadastrar consultas 
+	Receber de pagamentos (consultas,serviços, pedidos)
+	Abrir caixa
+	Fechar caixa
+
+- O assistente terá seguintes as atribuições: 
+	Atender serviços(inclusive os não-agendados)
+	Finalizar serviço
+
+- O cliente poderá realizar as seguintes ações: 
+
+	Fazer login usando cpf
+	Visualizar dados pessoais
+	Visualizar dados de animal cadastrado
+	Visualizar consultas realizadas
+	Fazer Agendadamento
+	
+
+2- O sistema deverá ser desenvolvido em plataforma web, compatível com todos os browser de mercado
+
+3- O sistema deverá ser acessibilidade por dispositivos móveis
+
+4- O sistema deverá fornecer navegação intuitiva e de fácil compreenção pelo usuários
 
 
 
-
-
+??? acho que ainda falta requisitos!
 
 
 
