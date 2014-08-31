@@ -2,6 +2,14 @@ Especificação das Entidades do Sistema
 ==============================================================
 
 
+## Lista de Entidades:
+
+	Cliente, Animal, Médico, Funcionário, Usuário, Perfil, Consulta, Servico, 
+	Produto, Pedido, 
+	
+	
+## Especificação de Atributos das Entidades:	
+
 Pessoa:
 	id: int
 	nome: string
@@ -14,20 +22,32 @@ Pessoa:
 	estadoCivil:  String
 	endereco:Endereco
 	dataCadastro: Date
+	
+Endereco:
+	pessoa: pessoa
+	logradouro: string
+	tipoLogradouro: string
+	numero: string
+	complemento: string
+	bairro: string
+	uf: string
+	cidade: string
 
 Cliente extends Pessoa:
 	
 	login: string
     senha: string
-	
+    consultas: List<Consulta>
+	animais: List<Animal>
+	pedidos: List<Pedido>
 	
 Usuario extends Funcioario:
 
 	login: string
 	senha: string(md5)
+	perfil: Perfil
 	status: string
-	
-	
+		
 Perfil:
 	id: int
 	nome: string
@@ -35,36 +55,40 @@ Perfil:
 Permissao
     id: int
     nome: string
-	
-
  
 Funcionario extends Pessoa:
-	matricul: int
-	cargo: Cargo, 
-	salario: float,
+	matricula: int
+	cargo: Cargo
+	salario: float
 	alocacao: string 
+	ctps: string
+	dependentes: int
 	dataAdmissao: date
 	status: string
 	foto: byte[]
 
+Medico extends Pessoa:
+	crmv: string
+	especialidade: string
+	formacao: string
+	instituicaoFormacao: string
+	consulta: List<Consulta>
 
 Cargo:
 	id: int
 	nome: string
 	descricao: string
-	atribuicao: string
 
 Animal:
 	id: int
+	cliente: Cliente 
 	nome: string
 	descricao: string
-	observacoes: string
-	raca: string 
 	especie: string
+	raca: string 
 	cor: string
-	cliente: Cliente 
+	observacoes: string
 	dataNascimento: date 
-	
 
 Servico:
 	id: int
@@ -92,7 +116,13 @@ Agenda:
 	data: date
 	horario: datatime
 	status: string
-	
+
+Servico:
+
+	id: int
+	nome: string
+	descricao: string
+	valor: float
 
 Atendimento:
 
@@ -101,6 +131,23 @@ Atendimento:
 	agenda: Agenda
 	tipo: string (Consulta, Retorno)
 	status: string
+	
+Produto:
+	id: int
+	nome: string
+	descricao: string
+	
+Pedido:	
+	id: int
+	itens: ItemProduto
+	valorPedido: flot
+
+ItemProduto:
+	pedido: Pedido
+	produto: Produto
+	quantidade: int
+	valorItem: float
+	
 	
 	
 -- definições de status
