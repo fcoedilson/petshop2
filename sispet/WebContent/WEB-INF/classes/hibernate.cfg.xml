@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+
+ <session-factory name="">
+
+  <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+  <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/petshop</property>
+  <property name="hibernate.connection.username">petshop</property>
+  <property name="hibernate.connection.password">petshop</property>
+  <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+  <property name="hibernate.format_sql">true</property>
+  <property name="hibernate.show_sql">true</property>
+  <property name="hibernate.hbm2ddl.auto">create-drop</property>  
+
+		<mapping class="br.com.clinipet.entity.Pessoa"/>
+		<mapping class="br.com.clinipet.entity.Endereco"/>
+		<mapping class="br.com.clinipet.entity.Medico"/>
+		<mapping class="br.com.clinipet.entity.Usuario"/>
+		<mapping class="br.com.clinipet.entity.Cliente"/>
+		<mapping class="br.com.clinipet.entity.Produto"/>
+		<mapping class="br.com.clinipet.entity.Pedido"/>
+		<mapping class="br.com.clinipet.entity.ItemPedido"/>
+		<mapping class="br.com.clinipet.entity.Perfil"/>
+		<mapping class="br.com.clinipet.entity.Permissao"/>
+		<mapping class="br.com.clinipet.entity.Cargo"/>
+		<mapping class="br.com.clinipet.entity.Funcionario"/>
+		<mapping class="br.com.clinipet.entity.Consulta"/>
+		<mapping class="br.com.clinipet.entity.Animal"/>
+		<mapping class="br.com.clinipet.entity.Servico"/>
+		<mapping class="br.com.clinipet.entity.TipoConsulta"/>
+		<mapping class="br.com.clinipet.entity.Caixa"/>
+		<mapping class="br.com.clinipet.entity.Atendimento"/>
+
+ </session-factory>
+
+</hibernate-configuration>
