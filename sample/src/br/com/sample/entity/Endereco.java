@@ -4,7 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -15,10 +16,11 @@ import javax.validation.constraints.Pattern;
 public class Endereco implements Serializable{
 
 	@Id
-	@Column(name="pessoa_id")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="endereco_id")
 	private Long id;
 	
-	@OneToOne(optional=false, fetch=FetchType.LAZY)
+	@OneToOne	
 	@JoinColumn(name="pessoa_id")
 	private Pessoa pessoa;
 	

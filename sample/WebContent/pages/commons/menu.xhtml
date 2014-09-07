@@ -25,7 +25,7 @@
 
 				<f:facet name="label"><h:outputText value="Cadastros" /></f:facet>
 				
-				<p:menuitem value="Clientes" action="#{clienteBean.search}" url="#{pageContext.servletContext.contextPath}/pages/cadastros/cliente/clienteList.jsf" />
+				<p:menuitem value="Clientes" type="submit" action="#{clienteBean.search}" url="#{pageContext.servletContext.contextPath}/pages/cadastros/cliente/clienteList.jsf" ajax="false"/>
 				<p:menuitem value="Funcionario" actionListener="#{funcionarioBean.search}"  url="#{pageContext.servletContext.contextPath}/pages/cadastros/funcionario/funcionarioList.jsf" />
 				<p:menuitem value="Médico" actionListener="#{medicoBean.search}"  url="#{pageContext.servletContext.contextPath}/pages/cadastros/medico/medicolList.jsf" />
 				<p:menuitem value="Perfis" actionListener="#{perfilBean.search}"  url="#{pageContext.servletContext.contextPath}/pages/cadastros/perfil/perfilList.jsf" />

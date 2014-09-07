@@ -44,42 +44,42 @@ public class BeanUtil{
 	}
 
 	public static Boolean isAdmin(Usuario user){
-		if(user.getRole().getAuthority().equals("ADMIN")){
+		if(user.getRole().getAuthority().equals("ROLE_ADMIN")){
 			return true;
 		}
 		return false;
 	}
 
 	public static Boolean isGerente(Usuario user){
-		if(user.getRole().getAuthority().equals("GERENTE")){
+		if(user.getRole().getAuthority().equals("ROLE_GERENTE")){
 			return true;
 		}
 		return false;
 	}	
 
 	public static Boolean isMedico(Usuario user){
-		if(user.getRole().getAuthority().equals("MEDICO")){
+		if(user.getRole().getAuthority().equals("ROLE_MEDICO")){
 			return true;
 		}
 		return false;
 	}	
 
 	public static Boolean isCliente(Usuario user){
-		if(user.getRole().getAuthority().equals("CLIENTE")){
+		if(user.getRole().getAuthority().equals("ROLE_CLIENTE")){
 			return true;
 		}
 		return false;
 	}
 
 	public static Boolean isAssistente(Usuario user){
-		if(user.getRole().getAuthority().equals("ASSISTENTE")){
+		if(user.getRole().getAuthority().equals("ROLE_ASSISTENTE")){
 			return true;
 		}
 		return false;
 	}	
 
 	public static Boolean isAtendente(Usuario user){
-		if(user.getRole().getAuthority().equals("ATENDENTE")){
+		if(user.getRole().getAuthority().equals("ROLE_ATENDENTE")){
 			return true;
 		}
 		return false;

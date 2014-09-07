@@ -3,6 +3,7 @@ package br.com.sample.bean;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.model.SelectItem;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,11 @@ public class ClienteBean extends EntityBean<Long, Cliente> {
 
 	protected ClienteService retrieveEntityService() {
 		return this.service;
+	}
+	
+	@PostConstruct
+	public void init(){
+		this.entities = service.retrieveAll();
 	}
 
 	protected Cliente createNewEntity() {
@@ -76,12 +82,12 @@ public class ClienteBean extends EntityBean<Long, Cliente> {
 	}
 	
 	public String search(){
-		super.search();
+		this.entities = retrieveEntityService().retrieveAll();
 		return "clienteList";
 	}
 	
 	public String save(){
-		super.save();
-		return search();
+		retrieveEntityService().save(this.entity);
+		return "clienteList";
 	}
 }

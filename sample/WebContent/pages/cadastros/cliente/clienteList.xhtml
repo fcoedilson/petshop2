@@ -16,7 +16,7 @@
 		
 			<h:outputLabel value="Busca"/>
 			<h:inputText value="#{clienteBean.filter}"/>
-			<p:commandButton value="Pesquisar" action="#{clienteBean.search}" styleClass="button" reRender="mainForm"/>
+			<p:commandButton value="Pesquisar" type="submit" action="#{clienteBean.search}" styleClass="button" ajax="false"/>
 			
 			<p:commandButton action="#{clienteBean.novo}" icon="ui-icon-plus" ajax="false" style="float:right;" value=""/>
 			<p:commandButton value="Novo" action="#{clienteBean.prepareSave}" icon="ui-icon-plus" ajax="false" styleClass="button"/>
@@ -50,19 +50,17 @@
 				
 				<p:column>
 					<f:facet name="header"><h:outputLabel value="Endereço"/></f:facet>
-					<h:outputText value="#{cliente.endereco.logradouro}, Nº #{cliente.endnm8kereco.numero} Compl:#{cliente.endereco.complemento}"/>
+					<h:outputText value="#{cliente.endereco.logradouro}, Nº #{cliente.endereco.numero} Compl:#{cliente.endereco.complemento}"/>
 				</p:column>
 	
-				<p:column width="2%" style="text-align: center;">
-					<f:facet name="header"><h:outputText value="" /></f:facet>
-					<h:commandLink styleClass="editar" action="#{clienteBean.prepareUpdate}" value="Editar">
+				<p:column width="4%" headerText="Editar">
+					<h:commandLink icon="ui-icon-pencil" action="#{clienteBean.prepareUpdate}" value="Editar">
 						<f:setPropertyActionListener target="#{clienteBean.entity}" value="#{cliente}"/>
 					</h:commandLink>
 				</p:column>
 	
-				<p:column width="2%" style="text-align: center;">
-					<f:facet name="header"><h:outputText value="" /></f:facet>
-					<h:commandLink styleClass="excluir" action="#{clienteBean.delete}" value="Excluir" onclick="if(!confirm('Confirmar')){document.getElementById('paginaPrincipal').reset(); return false;}">
+				<p:column width="4%" headerText="Excluir">
+					<h:commandLink  icon="ui-icon-trash" action="#{clienteBean.delete}" value="Excluir" onclick="if(!confirm('Confirmar')){document.getElementById('paginaPrincipal').reset(); return false;}">
 						<f:setPropertyActionListener target="#{clienteBean.entity}" value="#{cliente}"/>
 					</h:commandLink>
 				</p:column>
