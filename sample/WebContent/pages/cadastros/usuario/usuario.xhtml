@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:sec="http://www.springframework.org/security/tags"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:t="http://myfaces.apache.org/tomahawk">
+
+	<div id="cadastro1">
+	
+		<fieldset>
+
+			<rich:tabPanel switchType="client">
+	
+				<rich:tab label="Usuário">
+
+					<a4j:outputPanel rendered="#{usuarioBean.saveState}">
+
+						<h:panelGrid  columns="3" styleClass="crudd" columnClasses="label" rendered="#{usuarioBean.saveState}">
+	
+							<h:outputLabel value="CPF"/>
+			        		<h:inputText value="#{usuarioBean.cpf}" id="cpf" required="true" requiredMessage="Informe o Nº do CPF" styleClass="maskCpf"/>
+			        		<h:commandButton id="pesquisar" action="#{usuarioBean.searchByCpf}" value="Pesquisar">
+			        			<a4j:support event="onclick" action="#{usuarioBean.prepareSave}" reRender="ajaxOutputPanel1,paginaPrincipal" immediate="true"/>
+			        			<a4j:support event="oncomplete" reRender="panelDadosUsuario"/>
+			        		</h:commandButton>
+	
+						</h:panelGrid>
+					
+					</a4j:outputPanel>
+					
+					<a4j:outputPanel id="ajaxOutputPanel1" ajaxRendered="true" rendered="#{usuarioBean.pessoaCadastrada || usuarioBean.updateState}">
+
+					<h:panelGrid columns="3" styleClass="crudd" columnClasses="label" rendered="#{usuarioBean.pessoaCadastrada || usuarioBean.updateState}">
+
+			    		<h:outputLabel value="Nome"/>
+				  		<h:inputText value="#{usuarioBean.entity.pessoa.nome}" id="nome" disabled="true" size="45"/>
+				  		<rich:message for="nome" styleClass="message"/>
+
+				  		<h:outputLabel value="Matrícula"/>
+				  		<h:inputText value="#{usuarioBean.entity.pessoa.matricula}" id="matricula" disabled="true"/>
+				  		<rich:message for="matricula" styleClass="message"/>
+
+				  		<h:outputLabel value="Tipo Pessoa"/>
+				  		<h:selectOneMenu id="tipoPessoa" value="#{usuarioBean.entity.pessoa.tpPessoa}" required="true" disabled="true"
+					    	 requiredMessage="Informe o tipo de pessoa">
+					    	<f:selectItem itemValue="1" itemLabel="Pessoa Física"/>
+					    </h:selectOneMenu>
+					    <rich:message for="tipoPessoa" styleClass="message"/>
+
+					  	 <a4j:outputPanel rendered="#{usuarioBean.usuarioCadastrado}">
+				  			<h:outputLabel value="Cliente"/>
+				  			<h:inputText value="#{usuarioBean.entity.pessoa.cliente.nome}" id="cliente2" size="45" disabled="true"/>
+				  			<rich:message for="cliente2" styleClass="message"/>
+					  	 </a4j:outputPanel>
+				  	 
+				  	 </h:panelGrid>
+				  	 
+					</a4j:outputPanel>
+					
+					<a4j:outputPanel id="ajaxOutputPanel2" ajaxRendered="true" rendered="#{usuarioBean.pessoaCadastrada || usuarioBean.updateState}">
+					
+					<h:panelGrid columns="3" styleClass="crudd" columnClasses="label" rendered="#{!usuarioBean.usuarioCadastrado}">
+
+			    		<h:outputLabel value="Cliente"/>
+			    		<h:selectOneMenu id="cliente" value="#{usuarioBean.cliente}" converter="entityConverter" required="true" 
+			    					     requiredMessage="Informe o Cliente" disabled="#{!(controlBean.adminSistema or controlBean.adminCliente)}">
+			    			<t:selectItems value="#{clienteBean.clientes}" var="cli" itemLabel="#{cli.nome}" itemValue="#{cli}"/>
+			    			<a4j:support event="onchange" action="#{usuarioBean.populate}" status="statusSearch"/>
+			    		</h:selectOneMenu>
+						<rich:message for="cliente" styleClass="message"/>
+	
+						<h:outputLabel value="Grupo"/>
+				    	<h:selectOneMenu id="grupoUser" value="#{usuarioBean.entity.role}" requiredMessage="Informe o grupo" converter="entityConverter" disabled="#{!(controlBean.adminSistema or controlBean.adminCliente)}">
+			    			<f:selectItem itemValue="" itemLabel="Informe o Grupo"/>
+			    			<t:selectItems value="#{roleBean.roles}" var="role" itemLabel="#{role.nome}" itemValue="#{role}"/>
+			    			<a4j:support event="onchange" action="#{usuarioBean.selecionarGrupoUsuario}" reRender="postoRegion" status="statusSearch"/>
+			    		</h:selectOneMenu>
+			    		<rich:message for="grupoUser" styleClass="message"/>
+
+				  		<h:outputLabel value="Login"/>
+				  		<h:inputText id="userLogin" value="#{usuarioBean.entity.login}" required="true" disabled="#{!(controlBean.adminSistema or  controlBean.adminCliente)}" requiredMessage="Informe o login"/>
+				  		<h:message for="userLogin" styleClass="message"/>	
+
+			  			<h:outputLabel value="Senha"/>
+				  		<h:inputSecret id="userPasswd" value="#{usuarioBean.entity.senha}" onkeypress="passwordChanged()" required="true" requiredMessage="Informe a senha" redisplay="true"/>
+				  		<h:message for="userPasswd" styleClass="message"/>
+				  		
+				  		<h:outputLabel value="Senha Bloqueio"/>
+				  		<h:inputSecret id="senhaBloqueio" value="#{usuarioBean.entity.senhaBloqueio}" redisplay="true"/>
+				  		<h:message for="senhaBloqueio" styleClass="message"/>
+
+			  			<h:outputLabel value="Confirma Senha"/>
+			  			<h:inputSecret id="confirmPasswd" value="#{usuarioBean.confirmaSenha}" required="true" requiredMessage="Confirme a senha" redisplay="true"/>
+				  		<h:message for="confirmPasswd" styleClass="message"/>	
+
+			  			<h:outputLabel value="Autoriza Abastecimento?"/>
+				  		<h:selectOneRadio id="autoriza" styleClass="checkbox" value="#{usuarioBean.entity.autoriza}" required="true" requiredMessage="Informe o campo autoriza" disabled="#{!controlBean.adminSistema  or !controlBean.adminCliente}">
+				  			<f:selectItem itemLabel="Não" itemValue="#{false}"/>
+				  			<f:selectItem itemLabel="Sim" itemValue="#{true}"/>
+				  		</h:selectOneRadio>
+				  		<h:message for="autoriza" styleClass="message"/>
+
+					</h:panelGrid>
+					
+					</a4j:outputPanel>
+
+				</rich:tab>
+
+			</rich:tabPanel>	
+
+		</fieldset>	
+
+   		<a4j:status id="statusSearch">
+   			<f:facet name="start">
+   				<h:panelGroup style="align:center;">
+   					<h:graphicImage value="/images/ajax-loader.gif" height="16" width="16" />
+    				<h:outputText value="Processando..." styleClass="processando"/>
+				</h:panelGroup>
+			</f:facet>
+    	</a4j:status>
+
+		<h:panelGroup rendered="#{!usuarioBean.usuarioCadastrado}">
+		  	<h:commandButton action="#{usuarioBean.save}" value="Salvar" rendered="#{usuarioBean.saveState}">
+	    		<a4j:support  event="oncomplete" reRender="paginaPrincipal"/>
+	    	</h:commandButton>
+	
+	    	<h:commandButton action="#{usuarioBean.update}" value="Alterar" rendered="#{usuarioBean.updateState}" styleClass="editar">
+				<a4j:support event="onclick" reRender="paginaPrincipal"/>	
+			</h:commandButton>
+
+		</h:panelGroup>
+
+		<h:commandButton action="#{usuarioBean.search}" value="Voltar" immediate="true">
+			<a4j:support event="onclick" reRender="paginaPrincipal"/>
+		</h:commandButton>
+
+	</div>
+
+
+</ui:composition>

@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:t="http://myfaces.apache.org/tomahawk">
+
+	<div id="cadastro1">
+
+		<fieldset>
+
+			<h:inputHidden id="lat" value="#{pontoBean.lat}" required="true"/>
+			<h:inputHidden id="lng" value="#{pontoBean.lng}" required="true"/>
+			<h:inputHidden value="#{pontoBean.entity.id}" rendered="#{pontoBean.updateState}"/>
+
+			<rich:tabPanel switchType="client">
+	
+				<rich:tab label="Ponto">
+
+					<h:outputLabel value="Descrição"/>
+					<h:inputText id="descricaoPonto" value="#{pontoBean.entity.descricao}" size="100"/>
+					<h:outputLabel value="(Clique no mapa...)" />
+					<h:commandButton action="#{pontoBean.save}" value="Salvar" rendered="#{pontoBean.saveState}" reRender="paginaPrincipal"/>
+					<a4j:commandButton value="Alterar" type="submit" action="#{pontoBean.update}" styleClass="button" rendered="#{pontoBean.updateState}" reRender="paginaPrincipal"/>
+					<a4j:commandButton value="Voltar" type="submit" action="#{pontoBean.search}" styleClass="button" immediate="true" reRender="paginaPrincipal"/>
+
+					<p/>
+
+					<div id="mapEditablePoint" style="width:100%; height:600px"></div>
+
+
+				</rich:tab>
+
+			</rich:tabPanel>
+
+		</fieldset>
+
+	</div>
+
+</ui:composition>
+

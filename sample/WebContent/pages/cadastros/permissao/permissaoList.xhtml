@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:sec="http://www.springframework.org/security/tags"
+      xmlns:a4j="http://richfaces.org/a4j">
+
+
+	<div id="cadastro1">
+
+		<fieldset>
+
+			<rich:tabPanel switchType="client">
+	
+				<rich:tab label="Permissões">
+
+
+					<h:outputLabel value="Busca"/>
+				    <h:inputText value="#{permissaoBean.filter}" size="40"/>
+					<a4j:commandButton value="Pesquisar" action="#{permissaoBean.search}" reRender="dataTable" styleClass="button"/>
+					<a4j:commandButton value="Novo" action="#{permissaoBean.prepareSave}" styleClass="button" reRender="paginaPrincipal"/>
+
+					<h:messages rendered="#{empty permissaoBean.entities}" globalOnly="true">
+						<h:outputText value="Nenhuma permissão encontrada" styleClass="messages"/>
+					</h:messages>
+
+					<rich:dataTable id="dataTable" value="#{permissaoBean.entities}" var="permissao" width="100%" rows="50" rowKeyVar="index"
+						rowClasses="even,odd" 
+						onRowMouseOver="jQuery(this).addClass('trHover')" 
+						onRowMouseOut="jQuery(this).removeClass('trHover')" rendered="#{not empty permissaoBean.entities}">
+		
+						<rich:column width="2%"  style="text-align: center;" > 
+							<f:facet name="header"><h:outputText value="#{msg['label.n']}" /></f:facet>
+							<h:outputText value="#{index+1}" style="color: black;"/>
+						</rich:column>
+		
+						<rich:column width="30%" style="text-align: left;" > 
+							<f:facet name="header"><h:outputText value="Descrição" /></f:facet>
+							<h:outputText value="#{permissao.descricao}" style="color: black;"/>
+						</rich:column>
+
+						<rich:column width="30%" style="text-align: left;"> 
+		                    <f:facet name="header"><h:outputText value="String de acesso" /></f:facet>
+		                    <h:outputText value="#{permissao.nome}" style="color: black;"/>
+		                </rich:column>
+		
+		                <rich:column width="3%" style="text-align: center;" rendered="#{controlBean.adminSistema}">
+		                    <f:facet name="header"><h:outputText value="Editar" /></f:facet>
+		                    <a4j:commandLink styleClass="editar" action="#{permissaoBean.prepareUpdate}" 
+		                        reRender="paginaPrincipal" value="Editar">
+		                        <f:setPropertyActionListener target="#{permissaoBean.entity}" value="#{permissao}"/>
+		                    </a4j:commandLink>
+		                </rich:column>
+		
+		                <rich:column width="3%" style="text-align: center;" rendered="#{controlBean.adminSistema}">
+		                    <f:facet name="header"><h:outputText value="Excluir" /></f:facet>
+		                    <a4j:commandLink styleClass="excluir"  action="#{permissaoBean.delete}" reRender="paginaPrincipal" value="Excluir"
+		                        onclick="if(!confirm('Tem certeza que deseja excluir?')){document.getElementById('paginaPrincipal').reset(); return false;}">
+		                        <f:setPropertyActionListener target="#{permissaoBean.entity}" value="#{permissao}"/>
+		                    </a4j:commandLink>
+		                </rich:column>
+		
+		                <f:facet name="footer">
+							<rich:datascroller renderIfSinglePage="false" reRender="dataTable" for="dataTable" />
+						</f:facet>
+		
+					</rich:dataTable>
+
+				</rich:tab>
+
+			</rich:tabPanel>
+
+		</fieldset>
+
+	</div>
+
+</ui:composition>
+

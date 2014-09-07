@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:t="http://myfaces.apache.org/tomahawk">
+
+		<fieldset>
+
+			<rich:tabPanel switchType="client">
+	
+				<rich:tab label="Serviços">
+
+					<h:outputLabel value="Descrição"/>
+				  	<h:inputText id="descricao" value="#{tipoServicoBean.entity.descricao}"  required="true" immediate="true" 
+				  		size="40" maxlength="70" requiredMessage="Informe a Descrição.">
+					</h:inputText>
+					<label style="color:red">*</label>
+					<rich:message errorClass="error" for="descricao" styleClass="message"/>
+
+				</rich:tab>
+
+			</rich:tabPanel>
+
+		</fieldset>
+
+	    <h:commandButton action="#{tipoServicoBean.save}" value="Salvar" rendered="#{tipoServicoBean.saveState}">
+			<a4j:support event="onclick" reRender="paginaPrincipal"/>
+		</h:commandButton>
+	
+		<h:commandButton action="#{tipoServicoBean.update}" value="Alterar" rendered="#{tipoServicoBean.updateState}"  
+			onclick="if(!confirm('Confirmar alteração')) { form.reset();return false;}" styleClass="editar">
+			<a4j:support event="onclick" reRender="paginaPrincipal"/>	
+		</h:commandButton>
+	
+		<h:commandButton action="#{tipoServicoBean.search}" value="Voltar"  immediate="true">
+			<a4j:support event="onclick" reRender="paginaPrincipal"/>
+		</h:commandButton>
+
+	<h:outputLabel id="messageUser" value="Dados gravados com sucesso." style="color:green" rendered="#{tipoServicoBean.saved or tipoServicoBean.updated}"/>
+
+</ui:composition>

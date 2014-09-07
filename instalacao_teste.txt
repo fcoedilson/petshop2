@@ -2,15 +2,28 @@ Passo a passo para realiação de testes com a aplicação:
 =============================================================================
 
 
-1) No postgresql, criar usuario petshop com senha petshop
+1- Instalação do Postgresql no windows:
 
-2) criar banco de dados com nome petshop
+- Instalar o postgresql: 
 
-3) fazer restore do banco de dados a partir do arquivo petshop.backup
+- Criar banco de dados:
 
-4) importar project para eclipse 
+- Restaurar banco de dados inicial:
 
-5) executar no tomcat7 ou JBoss Aplications Server
+
+
+
+2- Configurar ambiente de desenvolvimento
+
+- Baixar eclipse Java Enterprise Edition JEE
+- 
+
+
+3- Configurar repositório de versionamento (git)
+
+
+4- Configurar ambiente de produção
+
 
 
 

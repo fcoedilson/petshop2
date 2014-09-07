@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:t="http://myfaces.apache.org/tomahawk">
+
+
+	<div id="cadastro1">
+
+		<fieldset>
+
+			<h:inputHidden value="#{pessoaBean.entity.id}" rendered="#{pessoaBean.updateState}"/>
+
+			<rich:tabPanel switchType="client">
+	
+				<rich:tab label="Pessoa Física">
+
+					<h:panelGrid columns="3" styleClass="crudd" columnClasses="label">
+	
+						<h:outputLabel value="Nome"/>
+					  	<h:inputText id="pessoaNome" value="#{pessoaBean.entity.nome}" size="40" required="true" requiredMessage="Informe o Nome"/>
+					  	<h:message for="pessoaNome" styleClass="message"/>	
+			
+					  	<h:outputLabel value="CPF"/>
+			       		<h:inputText id="pessoaCPF" value="#{pessoaBean.entity.cpf}" required="true" requiredMessage="Informe o CPF" styleClass="maskCpf"/>
+			       		<h:message for="pessoaCPF" styleClass="message"/>
+	
+						<h:outputLabel value="Cliente"  rendered="#{controlBean.adminSistema}"/>
+			    		<h:selectOneMenu id="cliente" value="#{pessoaBean.entity.cliente}" rendered="#{controlBean.adminSistema}" required="true" requiredMessage="Informe a cliente ..." styleClass="ugList" converter="entityConverter">
+			    			<f:selectItem itemValue="" itemLabel="Informe o cliente ..."/>
+			    			<t:selectItems value="#{clienteBean.clientes}" var="cli" itemLabel="#{cli.nome}" itemValue="#{cli}"/>
+			    		</h:selectOneMenu>
+			    		<rich:message errorClass="error" for="cliente"  styleClass="message"/>					
+
+					</h:panelGrid>
+
+				</rich:tab>
+
+			</rich:tabPanel>
+
+		</fieldset>
+
+		<h:commandButton action="#{pessoaBean.save}" value="Gravar" rendered="#{pessoaBean.saveState}">
+			<a4j:support event="onclick" reRender="paginaPrincipal"/>
+		</h:commandButton>
+		
+		<h:commandButton action="#{pessoaBean.update}" value="Alterar" rendered="#{pessoaBean.updateState}">
+			<a4j:support event="onclick" reRender="paginaPrincipal" onclick="if(!confirm('Confirmar Operação')){document.getElementById('paginaPrincipal').reset(); return false;}"/>
+		</h:commandButton>
+		
+		<h:commandButton action="#{pessoaBean.search}" value="Voltar"  immediate="true">
+			<a4j:support event="onclick" reRender="paginaPrincipal"/>
+		</h:commandButton>
+
+	</div>
+
+</ui:composition>
+

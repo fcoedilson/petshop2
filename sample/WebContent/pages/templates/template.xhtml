@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html 
+	xmlns="http://www.w3c.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+	<h:head>
+		<title>Clinipet</title>
+
+		<h:outputStylesheet library="css" src="../../css/global.css" />
+		<h:outputStylesheet library="css" src="../css/estilo.css" />
+		<h:outputScript library="javascript" name="http://www.google.com/jsapi?key=AIzaSyAxEvaAQRqVZ2kIzzf9CO1n3S1m1k97Gys" />
+		<h:outputScript src="../scripts/map.js" />
+	    <script type="text/javascript">google.load("maps", "2.85");</script>
+	    
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/>
+
+	</h:head>
+	
+
+	<h:body>
+
+		<h:form id="mainForm" prependId="false">
+
+			<ui:include src="/pages/commons/menu.xhtml"/>
+
+			<ui:insert name="content"/>
+
+		</h:form>
+
+	</h:body>
+
+</html>
