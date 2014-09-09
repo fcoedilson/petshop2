@@ -16,10 +16,22 @@ Passo a passo para realiação de testes com a aplicação:
 2- Configurar ambiente de desenvolvimento
 
 - Baixar eclipse Java Enterprise Edition JEE
-- 
+
+- Importar projeto do github 
+
+- O nome do protótipo do projeto pe sample
+
+- Importar projeto sample para o eclipse
+
+
 
 
 3- Configurar repositório de versionamento (git)
+
+- instalar cliente git para windows
+
+- clonar repositório
+
 
 
 4- Configurar ambiente de produção
