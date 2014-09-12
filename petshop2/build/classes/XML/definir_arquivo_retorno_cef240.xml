@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file-format>
+	<converter name="char" class="com.blackbear.flatworm.converters.CoreConverters" method="convertChar" return-type="java.lang.String" />
+	<converter name="date" class="com.blackbear.flatworm.converters.CoreConverters" method="convertDate" return-type="java.lang.Date" />
+	<converter name="integer" class="com.blackbear.flatworm.converters.CoreConverters" method="convertInteger" return-type="java.lang.Integer" />
+	<converter name="decimal" class="com.blackbear.flatworm.converters.CoreConverters" method="convertDecimal" return-type="java.lang.Double" />
+	<converter name="long" class="com.blackbear.flatworm.converters.CoreConverters" method="convertLong" return-type="java.lang.Long"/>
+		
+	<record name="voHeaderArquivoRetornoCEF240VO">
+		<record-ident>
+			<field-ident field-start="7" field-length="1">
+				<match-string>0</match-string>
+			</field-ident>
+		</record-ident>
+		<record-definition>
+			<bean name="voHeaderArquivoRetornoCEF240VO" class="br.com.eBank.modulo.pagamento.vo.cef.siacc240.VOHeaderArquivoRetornoCEF240VO" />
+			<line >
+				<!--01--><record-element start="0"   end="3"  beanref="voHeaderArquivoRetornoCEF240VO.codigoBanco" type="char" />
+				<!--02--><record-element start="18"  end="32" beanref="voHeaderArquivoRetornoCEF240VO.numeroInscricao" type="char" />
+				<!--03--><record-element start="32"  end="38" beanref="voHeaderArquivoRetornoCEF240VO.codigoConvenio" type="char" />
+				<!--04--><record-element start="52"  end="57" beanref="voHeaderArquivoRetornoCEF240VO.agencia" type="integer" />
+				<!--05--><record-element start="57"  end="58" beanref="voHeaderArquivoRetornoCEF240VO.dvAgencia" type="integer" />
+				<!--06--><record-element start="58"  end="70" beanref="voHeaderArquivoRetornoCEF240VO.conta" type="integer" />
+				<!--07--><record-element start="70"  end="71" beanref="voHeaderArquivoRetornoCEF240VO.dvConta" type="char" />
+				<!--08--><record-element start="143" end="157" beanref="voHeaderArquivoRetornoCEF240VO.dataString" type="char" />
+				<!--09--><record-element start="157" end="163" beanref="voHeaderArquivoRetornoCEF240VO.nsaString" type="char" />
+							</line>
+		</record-definition>
+	</record>	
+	
+	<record name="voHeaderLoteArquivoRetornoCEF240VO">
+		<record-ident>
+			<field-ident field-start="7" field-length="1">
+				<match-string>1</match-string>
+			</field-ident>
+		</record-ident>
+		<record-definition>
+			<bean name="voHeaderLoteArquivoRetornoCEF240VO" class="br.com.eBank.modulo.pagamento.vo.cef.siacc240.VOHeaderLoteArquivoRetornoCEF240VO" />
+			<line >
+   				<!--01--><record-element start="3"  end="7" beanref="voHeaderLoteArquivoRetornoCEF240VO.numeroLote" type="char" />
+				<!--02--><record-element start="9"  end="11" beanref="voHeaderLoteArquivoRetornoCEF240VO.tipoServico" type="integer" />
+				<!--03--><record-element start="11"  end="13" beanref="voHeaderLoteArquivoRetornoCEF240VO.formaLancamento" type="integer" />
+				<!--04--><record-element start="38"  end="40" beanref="voHeaderLoteArquivoRetornoCEF240VO.tipoCompromisso" type="char" />
+				<!--05--><record-element start="40"  end="44" beanref="voHeaderLoteArquivoRetornoCEF240VO.codigoCompromisso" type="char" />
+				<!--06--><record-element start="44"  end="46" beanref="voHeaderLoteArquivoRetornoCEF240VO.parametroTransmissao" type="char" />
+				<!--07--><record-element start="230" end="240" beanref="voHeaderLoteArquivoRetornoCEF240VO.ocorrencias" type="char" />
+			</line>
+		</record-definition>
+	</record>
+	
+	<record name="voDetalheRemessaAcatadaArquivoRetornoCEF240VO">
+		<record-ident>
+			<field-ident field-start="0" field-length="1">
+				<match-string>R</match-string>
+			</field-ident>
+		</record-ident>
+		<record-definition>
+			<bean name="voDetalheRemessaAcatadaArquivoRetornoCEF240VO" class="br.com.eBank.modulo.pagamento.vo.cef.siacc240.VODetalheRemessaAcatadaArquivoRetornoCEF240VO" />
+			<line >
+				<!--01--><record-element start="0" end="34"  beanref="voDetalheRemessaAcatadaArquivoRetornoCEF240VO.ocorrencia" type="char" />
+			</line>
+		</record-definition>
+	</record>
+		
+	<record name="voDetalheAArquivoRetornoCEF240VO">
+		<record-ident>
+			<field-ident field-start="13" field-length="1">
+				<match-string>A</match-string>
+			</field-ident>
+		</record-ident>
+		<record-definition>
+			<bean name="voDetalheAArquivoRetornoCEF240VO" class="br.com.eBank.modulo.pagamento.vo.cef.siacc240.VODetalheAArquivoRetornoCEF240VO" />
+			<line >
+				<!--01--><record-element start="3"  end="7" beanref="voDetalheAArquivoRetornoCEF240VO.numeroLote" type="char" />
+				<!--02--><record-element start="17"  end="20" beanref="voDetalheAArquivoRetornoCEF240VO.camaraCompensacao" type="char" />
+				<!--03--><record-element start="73"  end="79" beanref="voDetalheAArquivoRetornoCEF240VO.numeroDocumentoString" type="char" />
+				<!--04--><record-element start="134"  end="143" beanref="voDetalheAArquivoRetornoCEF240VO.numeroDocumentoBancoString" type="char" />
+				<!--05--><record-element start="154"  end="162" beanref="voDetalheAArquivoRetornoCEF240VO.dataString" type="char" />
+				<!--06--><record-element start="162"  end="177" beanref="voDetalheAArquivoRetornoCEF240VO.valorRealEfetivado" type="decimal" >
+				 		    <conversion-option name="decimal-places" value="2"/>
+              		 	    <conversion-option name="decimal-implied" value="true"/>
+               			    <conversion-option name="pad-character" value="0"/>
+                		    <conversion-option name="justify" value="right"/>
+                		 </record-element>	
+   				<!--07--><record-element start="230"  end="240" beanref="voDetalheAArquivoRetornoCEF240VO.ocorrencia" type="char" />
+			</line>
+		</record-definition>
+	</record>
+	
+	<record name="voDetalheBArquivoRetornoCEF240VO">
+		<record-ident>
+			<field-ident field-start="13" field-length="1">
+				<match-string>B</match-string>
+			</field-ident>
+		</record-ident>
+		<record-definition>
+			<bean name="voDetalheBArquivoRetornoCEF240VO" class="br.com.eBank.modulo.pagamento.vo.cef.siacc240.VODetalheBArquivoRetornoCEF240VO" />
+			<line >
+				<!--01--><record-element start="0"   end="3"  beanref="voDetalheBArquivoRetornoCEF240VO.codigoBanco" type="char" />
+			</line>
+		</record-definition>
+	</record>	
+			
+	<record name="voDetalheJArquivoRetornoCEF240VO">
+		<record-ident>
+			<field-ident field-start="13" field-length="1">
+				<match-string>J</match-string>
+			</field-ident>
+		</record-ident>
+		<record-definition>
+			<bean name="voDetalheJArquivoRetornoCEF240VO" class="br.com.eBank.modulo.pagamento.vo.cef.siacc240.VODetalheJArquivoRetornoCEF240VO" />
+			<line >
+				<!--01--><record-element start="3"  end="7" beanref="voDetalheJArquivoRetornoCEF240VO.numeroLote" type="char" />
+				<!--02--><record-element start="8"  end="13" beanref="voDetalheJArquivoRetornoCEF240VO.nsr" type="integer" />
+				<!--03--><record-element start="144"  end="152" beanref="voDetalheJArquivoRetornoCEF240VO.dataString" type="char" />
+				<!--04--><record-element start="152"  end="167" beanref="voDetalheJArquivoRetornoCEF240VO.valorRealEfetivado" type="decimal" >
+				 		    <conversion-option name="decimal-places" value="2"/>
+              		 	    <conversion-option name="decimal-implied" value="true"/>
+               			    <conversion-option name="pad-character" value="0"/>
+                		    <conversion-option name="justify" value="right"/>
+                		 </record-element>	
+				<!--05--><record-element start="182"  end="188" beanref="voDetalheJArquivoRetornoCEF240VO.numeroDocumentoString" type="char" />
+   				<!--06--><record-element start="230"  end="240" beanref="voDetalheJArquivoRetornoCEF240VO.ocorrencia" type="char" />
+			</line>
+		</record-definition>
+	</record>
+						
+	<record name="voDetalheKArquivoRetornoCEF240VO">
+		<record-ident>
+			<field-ident field-start="13" field-length="1">
+				<match-string>K</match-string>
+			</field-ident>
+		</record-ident>
+		<record-definition>
+			<bean name="voDetalheKArquivoRetornoCEF240VO" class="br.com.eBank.modulo.pagamento.vo.cef.siacc240.VODetalheKArquivoRetornoCEF240VO" />
+			<line >
+				<!--01--><record-element start="3"  end="7" beanref="voDetalheKArquivoRetornoCEF240VO.numeroLote" type="char" />
+				<!--02--><record-element start="8"  end="13" beanref="voDetalheKArquivoRetornoCEF240VO.nsr" type="integer" />
+				<!--03--><record-element start="73"  end="79" beanref="voDetalheKArquivoRetornoCEF240VO.numeroDocumentoString" type="char" />
+				<!--04--><record-element start="154"  end="162" beanref="voDetalheKArquivoRetornoCEF240VO.dataString" type="char" />
+				<!--05--><record-element start="162"  end="177" beanref="voDetalheKArquivoRetornoCEF240VO.valorRealEfetivado" type="decimal" >
+				 		    <conversion-option name="decimal-places" value="2"/>
+              		 	    <conversion-option name="decimal-implied" value="true"/>
+               			    <conversion-option name="pad-character" value="0"/>
+                		    <conversion-option name="justify" value="right"/>
+                		 </record-element>	
+   				<!--06--><record-element start="230"  end="240" beanref="voDetalheKArquivoRetornoCEF240VO.ocorrencia" type="char" />
+			</line>
+		</record-definition>
+	</record>
+				
+	<record name="voDetalheZArquivoRetornoCEF240VO">
+		<record-ident>
+			<field-ident field-start="13" field-length="1">
+				<match-string>Z</match-string>
+			</field-ident>
+		</record-ident>
+		<record-definition>
+			<bean name="voDetalheZArquivoRetornoCEF240VO" class="br.com.eBank.modulo.pagamento.vo.cef.siacc240.VODetalheZArquivoRetornoCEF240VO" />
+			<line >
+				<!--01--><record-element start="3"  end="7" beanref="voDetalheZArquivoRetornoCEF240VO.numeroLote" type="char" />
+				<!--02--><record-element start="8"  end="13" beanref="voDetalheZArquivoRetornoCEF240VO.nsr" type="integer" />
+				<!--03--><record-element start="14"  end="78" beanref="voDetalheZArquivoRetornoCEF240VO.autenticacaoLegislacao" type="char" />
+				<!--04--><record-element start="78"  end="103" beanref="voDetalheZArquivoRetornoCEF240VO.autenticacaoBancaria" type="char" />
+   				<!--05--><record-element start="103"  end="240" beanref="voDetalheZArquivoRetornoCEF240VO.ocorrencia" type="char" />
+			</line>
+		</record-definition>
+	</record>
+	
+	<record name="voTrailerLoteArquivoRetornoCEF240VO">
+		<record-ident>
+			<field-ident field-start="7" field-length="1">
+				<match-string>5</match-string>
+			</field-ident>
+		</record-ident>
+		<record-definition>
+			<bean name="voTrailerLoteArquivoRetornoCEF240VO" class="br.com.eBank.modulo.pagamento.vo.cef.siacc240.VOTrailerLoteArquivoRetornoCEF240VO" />
+			<line >
+				<!--01--><record-element start="3"  end="7" beanref="voTrailerLoteArquivoRetornoCEF240VO.numeroLote" type="char" />
+				<!--02--><record-element start="23"  end="41" beanref="voTrailerLoteArquivoRetornoCEF240VO.somatorioValores" type="decimal" >
+							<conversion-option name="decimal-places" value="2"/>
+              		 	    <conversion-option name="decimal-implied" value="true"/>
+               			    <conversion-option name="pad-character" value="0"/>
+                		    <conversion-option name="justify" value="right"/>
+                		 </record-element>	
+			</line>
+		</record-definition>
+	</record>
+			
+	<record name="voTrailerArquivoRetornoCEF240VO">
+		<record-ident>
+			<field-ident field-start="7" field-length="1">
+				<match-string>9</match-string>
+			</field-ident>
+		</record-ident>
+		<record-definition>
+			<bean name="voTrailerArquivoRetornoCEF240VO" class="br.com.eBank.modulo.pagamento.vo.cef.siacc240.VOTrailerArquivoRetornoCEF240VO" />
+			<line >
+				<!--01--><record-element start="17"   end="23"  beanref="voTrailerArquivoRetornoCEF240VO.qntdLotes" type="integer" />
+				<!--02--><record-element start="23"   end="29"  beanref="voTrailerArquivoRetornoCEF240VO.qntdRegistros" type="integer" />
+			</line>
+		</record-definition>
+	</record>
+	
+</file-format>

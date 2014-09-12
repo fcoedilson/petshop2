@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags">
+	
+	<rich:dataTable id="tblData" value="#{crudBean.pagedList.dataModel}" rendered="#{crudBean.pagedList.dataModel.rowCount > 0}" rows="20" var="row"
+	styleClass="stable" rowClasses="odd-row, even-row">
+		<f:facet name="header">
+			<rich:columnGroup>
+				<rich:column>
+					<h:outputText value="#{bundle.lbl_nome}" />
+				</rich:column>
+				<rich:column>
+					<h:outputText value="#{bundle.lbl_login}" />
+				</rich:column>
+				<rich:column >
+					<h:outputText value="#{bundle.lbl_ativo}" />
+				</rich:column>
+				<rich:column >
+					<h:outputText value="#{bundle.lbl_bloqueado}" />
+				</rich:column>
+				<rich:column  rendered="#{sec:ifAnyGranted('USUARIO_U')}">
+					<h:outputText value="#{bundle.lbl_editar}" />
+				</rich:column>
+				<rich:column rendered="#{sec:ifAnyGranted('USUARIO_D')}">
+					<h:outputText value="#{bundle.lbl_remover}" />
+				</rich:column>
+			</rich:columnGroup>
+		</f:facet>
+		
+		<rich:column style="text-align: left;">
+			<h:outputText value="#{row.nome.toUpperCase()}" />
+		</rich:column>
+		<rich:column style="text-align: left;">
+			<h:outputText value="#{row.login.toUpperCase()}" />
+		</rich:column>
+		<rich:column style="text-align: center;">
+			<h:graphicImage title="#{bundle.lbl_desabilitar}" value="/resources/imagens/ativar.bmp" style="border: 0px;"   rendered="#{row.ativo}" />
+			<h:graphicImage title="#{bundle.lbl_habilitar}"   value="/resources/imagens/inativar.bmp" style="border: 0px;" rendered="#{!row.ativo}" />
+		</rich:column>
+		<rich:column style="text-align: center;">
+		    <a4j:commandLink id="fade" rendered="#{row.ultimoBloqueio.bloqueado}" action="#{crudBean.buscarUsuario(row)}" oncomplete="#{rich:component('modalTblBloqueio')}.show()" render="tblBloqueio">
+				<h:graphicImage value="/resources/imagens/ativar.bmp" style="border: 0px;" rendered="#{row.ultimoBloqueio.bloqueado}" />
+				<f:setPropertyActionListener target="#{crudBean.defaultEntity}" value="#{row}"></f:setPropertyActionListener>
+		    </a4j:commandLink>  
+			<p:tooltip for="fade" showEffect="fade" hideEffect="fade">
+    			<h:outputFormat value="#{bundle.tooltip_ultimo_bloqueio}" escape="false">
+    				<f:param value="#{row.dataBloqueio}" />
+    				<f:param value="#{row.horaBloqueio}" />
+    				<f:param value="#{row.tentativaBloqueio}" />
+    			</h:outputFormat>
+    		</p:tooltip>
+			<h:graphicImage value="/resources/imagens/inativar.bmp" style="border: 0px;" rendered="#{!row.ultimoBloqueio.bloqueado}" />
+		</rich:column>
+		<rich:column style="text-align: center;" rendered="#{sec:ifAnyGranted('USUARIO_U')}">
+			<a4j:commandLink action="#{crudBean.prepareEdit}" render="formulario, panelTitle">
+				<h:graphicImage title="#{bundle.lbl_alterar}" value="/resources/imagens/alterar.gif" style="border: 0px;" />
+				<f:setPropertyActionListener value="#{row}" target="#{crudBean.defaultEntity}" />
+			</a4j:commandLink>
+		</rich:column>
+		<rich:column style="text-align: center;" rendered="#{sec:ifAnyGranted('USUARIO_D')}">
+			<a4j:commandLink onclick="#{rich:component('popupConfirmExcluir')}.show()" immediate="true">
+				<h:graphicImage title="#{bundle.lbl_remover}" value="/resources/imagens/delete.gif" style="border: 0px;" />
+				<f:setPropertyActionListener value="#{row}" target="#{crudBean.defaultEntity}" />
+			</a4j:commandLink>
+		</rich:column>
+		<f:facet name="footer">
+			<rich:columnGroup rendered="#{crudBean.pagedList.dataModel.rowCount > 20}">
+				<rich:column colspan="7">
+					<rich:dataScroller for="tblData" page="#{crudBean.pagedList.paginaClicada}"	fastControls="hide" scrollListener="#{crudBean.pagedList.pesquisar()}" 
+					render="abaixoFiltro" />
+				</rich:column>
+			</rich:columnGroup>
+		</f:facet>
+	</rich:dataTable>
+</ui:composition>

@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:a4j="http://richfaces.org/a4j"
+				xmlns:rich="http://richfaces.org/rich"
+				xmlns:f="http://java.sun.com/jsf/core"
+		        xmlns:p="http://primefaces.org/ui"
+				xmlns:c="http://java.sun.com/jstl/core"
+				xmlns:t="http://myfaces.apache.org/tomahawk"
+				xmlns:sec="http://www.springframework.org/security/facelets/tags"
+				template="/pages/template/template.xhtml">
+
+	<ui:param name="hideButtonReport" value="true" />
+	<ui:param name="hideButtonNew" value="true" />
+	<ui:param name="hideButtonSearch" value="true" />
+	<ui:param name="hideMessageNotFoundResult" value="true" />
+	<ui:param name="pageTitle" value="#{bundle.grafico_acesso_usuarios}" />
+	<ui:param name="crudBean" value="#{moduloPaineisBean}"/>
+
+	<ui:define name="head">
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script src="http://code.highcharts.com/highcharts.js"></script>
+	</ui:define>
+
+	<ui:define name="content">
+	
+		<h:panelGrid columns="3"  style="width:50%; margin-top: 5px;  margin-left:140px;">
+			<p:column>
+				<h:outputText value="#{bundle.lbl_periodo}" class="tdCorPrimeFace"/>
+				<br />
+				<rich:calendar id="dataVendaI" value="#{crudBean.filter.dataInicial}" datePattern="dd/MM/yyyy" inputSize="10"  enableManualInput="true" />	
+				<h:outputText value=" #{bundle.lbl_ate} " class="tdCorPrimeFace"/>
+				<rich:calendar id="dataVendaF" value="#{crudBean.filter.dataFinal}" datePattern="dd/MM/yyyy" inputSize="10"  enableManualInput="true" />
+			</p:column>
+			
+			<p:column>
+				<a4j:commandButton value="#{bundle.lbl_visualizar}" render="formulario, panelTitle" styleClass="btn-padrao"/>
+			</p:column>
+		</h:panelGrid>
+		<br/>
+		<br/>
+		<div id="container" style="width:100%; height:400px;"></div>
+	
+				<script>
+				//<![CDATA[
+					Highcharts.setOptions({
+					    lang: {
+					        decimalPoint: ',',
+					        thousandsSep: '.'
+					    },
+					
+					    tooltip: {
+					        yDecimals: 2
+					    }
+					});
+					var options = {
+						chart: {
+							renderTo: 'container',
+			                type: 'spline',
+			                marginRight: 150,
+			                marginBottom: 25
+			            },
+			            title: {
+			                text: '#{bundle.grafico_acesso_usuarios}',
+			                x: -20
+			            },
+			            subtitle: {
+			                text: '#{bundle.acesso_dia}',
+			                x: -20
+			            },
+				        credits: {
+				            enabled: false
+			            },
+			            xAxis: {
+			                categories: []
+			            },
+			            yAxis: {
+			                title: {
+			                    text: '#{bundle.lbl_quant_acesso}'
+			                },
+			                plotLines: [{
+			                    value: 0,
+			                    width: 1,
+			                    color: '#808080'
+			                }]
+			            },
+			            tooltip: {
+			                valueSuffix: ' acessos'
+			            },
+			            legend: {
+			                layout: 'vertical',
+			                align: 'right',
+			                verticalAlign: 'top',
+			                x:-20,
+			                y:5,
+			                borderWidth: 0
+			            },
+			            series: []
+					};
+					
+					$(document).ready(function() {
+						 $.ajax({ 
+				             type: "GET",
+				             dataType: "json",
+				             url: "/"+'#{bundle.pathAplicacao}'+"/rest/graficoAcessoUsuarios?dataInicial=" + '#{crudBean.dataInicial}' + '&dataFinal=' + '#{crudBean.dataFinal}' ,
+				             
+				             success: function(data){
+				            	 var array = new Array();
+						           	if(data.options.series.length > 1){
+							           	 for (var i=0;data.options.series.length>i;i++){
+								            options.series[i] = data.options.series[i];
+								           	options.series[i].data[i][0] = data.options.series[i].name;
+								         }
+						           	} else {
+						           		options.series[0] = data.options.series;
+							           	options.series[0].data[0][0] = data.options.series.name;
+					           		}
+						           	options.xAxis.categories = data.options.categories;
+					                chart = new Highcharts.Chart(options);
+					             },
+					             error: function(jqXHR, textStatus, errorThrown){
+				            	 alert('Erro ao montar o grAfico, contate o suporte!');
+				            	 alert(errorThrown);
+			                },
+				         });
+					});
+					//]]>
+				</script>
+		
+	</ui:define>
+</ui:composition>

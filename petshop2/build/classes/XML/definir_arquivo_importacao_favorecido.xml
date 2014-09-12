@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file-format>
+	<converter name="char" class="com.blackbear.flatworm.converters.CoreConverters" method="convertChar" return-type="java.lang.String" />
+	<converter name="date" class="com.blackbear.flatworm.converters.CoreConverters" method="convertDate" return-type="java.lang.Date" />
+	<converter name="integer" class="com.blackbear.flatworm.converters.CoreConverters" method="convertInteger" return-type="java.lang.Integer" />
+	<converter name="decimal" class="com.blackbear.flatworm.converters.CoreConverters" method="convertDecimal" return-type="java.lang.Double" />
+	<converter name="long" class="com.blackbear.flatworm.converters.CoreConverters" method="convertLong" return-type="java.lang.Long"/>
+		
+	<record name="favorecido">
+		<record-ident>
+			<field-ident field-start="0" field-length="1">
+				<match-string>0</match-string>
+			</field-ident>
+		</record-ident>
+		<record-definition>
+			<bean name="favorecido" class="br.com.eBank.modulo.pagamento.entity.Favorecido" />
+			<line delimit=";" >
+				<!--01--><record-element end="1"  /><!--CODIGO CEDENTE-->
+				<!--02--><record-element end="1"  beanref="favorecido.codigo" type="char" />
+				<!--03--><record-element end="1"  beanref="favorecido.nome" type="char" />
+				<!--04--><record-element end="1"  /><!--NOME FANTASIA-->
+				<!--05--><record-element end="1"  /><!--TIPO PESSOA :  J ou F-->
+				<!--06--><record-element end="1"  beanref="favorecido.cnpjCpf" type="char" />
+				<!--07--><record-element end="1"  /><!--ID GRUPO-->
+				<!--08--><record-element end="1"  /><!--TIPO FAVORECIDO-->
+				<!--09--><record-element end="1"  /><!--NOME OPTANTE-->
+				<!--10--><record-element end="1"  /><!--PERTENCE A CEF-->
+				<!--11--><record-element end="1"  beanref="favorecido.banco.codigoBanco" type="char" />
+				<!--12--><record-element end="1"  beanref="favorecido.agencia" type="char" />
+				<!--13--><record-element end="1"  beanref="favorecido.dvAgencia" type="char" />
+				<!--14--><record-element end="1"  beanref="favorecido.conta" type="char" />
+				<!--15--><record-element end="1"  beanref="favorecido.dvConta" type="char" />
+				<!--16--><record-element end="1"  beanref="favorecido.logradouro" type="char" />
+				<!--17--><record-element end="1" /><!--NUMERO RESIDENCAL-->
+				<!--18--><record-element end="1"  beanref="favorecido.complemento" type="char" />
+				<!--19--><record-element end="1"  beanref="favorecido.cidade.descricao" type="char" />
+				<!--20--><record-element end="1"  beanref="favorecido.bairro" type="char" />
+				<!--21--><record-element end="1"  beanref="favorecido.cep" type="char" />
+				<!--22--><record-element end="1"  /><!--COMPLEMENTO CEP-->				
+				<!--23--><record-element end="1"  beanref="favorecido.estado.uf" type="char" />
+				<!--24--><record-element end="1"  /><!--TIPO MOEDA-->				
+				<!--25--><record-element end="1"  beanref="favorecido.valorString" type="char" />
+				<!--26--><record-element end="1"  beanref="favorecido.telefone" type="char" />
+				<!--27--><record-element end="1"  /><!--TERCEIRO ENVIADO-->	
+				<!--28--><record-element end="1"  /><!--TERCEIRO EDITANDO-->	
+				<!--29--><record-element end="1"  /><!--TERCEIRO INCLUSAO-->	
+				<!--30--><record-element end="1"  /><!--CPF 2-->	
+				<!--31--><record-element end="1"  /><!--NUM DOCIDENTIFICACAO-->	
+				<!--32--><record-element end="1"  /><!--NUM SERVICO-->	
+				<!--33--><record-element end="1"  /><!--MATRICULA-->	
+				<!--34--><record-element end="1"  /><!--CARGO-->	
+				<!--35--><record-element end="1"  /><!--FUNCAO-->	
+			</line>
+		</record-definition>
+	</record>
+		
+			
+	<record name="favorecido">
+		<record-ident>
+			<field-ident field-start="0" field-length="1">
+				<match-string>1</match-string>
+			</field-ident>
+		</record-ident>
+		<record-definition>
+			<bean name="favorecido" class="br.com.eBank.modulo.pagamento.entity.Favorecido" />
+			<line delimit=";" >
+				<!--01--><record-element end="1"  /><!--CODIGO CEDENTE-->
+				<!--02--><record-element end="1"  beanref="favorecido.codigo" type="char" />
+				<!--03--><record-element end="1"  beanref="favorecido.nome" type="char" />
+				<!--04--><record-element end="1"  /><!--NOME FANTASIA-->
+				<!--05--><record-element end="1"  /><!--TIPO PESSOA :  J ou F-->
+				<!--06--><record-element end="1"  beanref="favorecido.cnpjCpf" type="char" />
+				<!--07--><record-element end="1"  /><!--ID GRUPO-->
+				<!--08--><record-element end="1"  /><!--TIPO FAVORECIDO-->
+				<!--09--><record-element end="1"  /><!--NOME OPTANTE-->
+				<!--10--><record-element end="1"  /><!--PERTENCE A CEF-->
+				<!--11--><record-element end="1"  beanref="favorecido.banco.codigo" type="char" />
+				<!--12--><record-element end="1"  beanref="favorecido.agencia" type="char" />
+				<!--13--><record-element end="1"  beanref="favorecido.dvAgencia" type="char" />
+				<!--14--><record-element end="1"  beanref="favorecido.conta" type="char" />
+				<!--15--><record-element end="1"  beanref="favorecido.dvConta" type="char" />
+				<!--16--><record-element end="1"  beanref="favorecido.logradouro" type="char" />
+				<!--17--><record-element end="1" /><!--NUMERO RESIDENCAL-->
+				<!--18--><record-element end="1"  beanref="favorecido.complemento" type="char" />
+				<!--19--><record-element end="1"  beanref="favorecido.cidade" type="char" />
+				<!--20--><record-element end="1"  beanref="favorecido.bairro" type="char" />
+				<!--21--><record-element end="1"  beanref="favorecido.cep" type="char" />
+				<!--22--><record-element end="1"  /><!--COMPLEMENTO CEP-->				
+				<!--23--><record-element end="1"  beanref="favorecido.estado.uf" type="char" />
+				<!--24--><record-element end="1"  /><!--TIPO MOEDA-->				
+				<!--25--><record-element end="1"  beanref="favorecido.valorString" type="char" />
+				<!--26--><record-element end="1"  beanref="favorecido.telefone" type="char" />
+				<!--27--><record-element end="1"  /><!--TERCEIRO ENVIADO-->	
+				<!--28--><record-element end="1"  /><!--TERCEIRO EDITANDO-->	
+				<!--29--><record-element end="1"  /><!--TERCEIRO INCLUSAO-->	
+				<!--30--><record-element end="1"  /><!--CPF 2-->	
+				<!--31--><record-element end="1"  /><!--NUM DOCIDENTIFICACAO-->	
+				<!--32--><record-element end="1"  /><!--NUM SERVICO-->	
+				<!--33--><record-element end="1"  /><!--MATRICULA-->	
+				<!--34--><record-element end="1"  /><!--CARGO-->	
+				<!--35--><record-element end="1"  /><!--FUNCAO-->	
+			</line>
+		</record-definition>
+	</record>
+		
+			
+	<record name="favorecido">
+		<record-ident>
+			<field-ident field-start="0" field-length="1">
+				<match-string>2</match-string>
+			</field-ident>
+		</record-ident>
+		<record-definition>
+			<bean name="favorecido" class="br.com.eBank.modulo.pagamento.entity.Favorecido" />
+			<line delimit=";" >
+				<!--01--><record-element end="1"  /><!--CODIGO CEDENTE-->
+				<!--02--><record-element end="1"  beanref="favorecido.codigo" type="char" />
+				<!--03--><record-element end="1"  beanref="favorecido.nome" type="char" />
+				<!--04--><record-element end="1"  /><!--NOME FANTASIA-->
+				<!--05--><record-element end="1"  /><!--TIPO PESSOA :  J ou F-->
+				<!--06--><record-element end="1"  beanref="favorecido.cnpjCpf" type="char" />
+				<!--07--><record-element end="1"  /><!--ID GRUPO-->
+				<!--08--><record-element end="1"  /><!--TIPO FAVORECIDO-->
+				<!--09--><record-element end="1"  /><!--NOME OPTANTE-->
+				<!--10--><record-element end="1"  /><!--PERTENCE A CEF-->
+				<!--11--><record-element end="1"  beanref="favorecido.banco.codigo" type="char" />
+				<!--12--><record-element end="1"  beanref="favorecido.agencia" type="char" />
+				<!--13--><record-element end="1"  beanref="favorecido.dvAgencia" type="char" />
+				<!--14--><record-element end="1"  beanref="favorecido.conta" type="char" />
+				<!--15--><record-element end="1"  beanref="favorecido.dvConta" type="char" />
+				<!--16--><record-element end="1"  beanref="favorecido.logradouro" type="char" />
+				<!--17--><record-element end="1" /><!--NUMERO RESIDENCAL-->
+				<!--18--><record-element end="1"  beanref="favorecido.complemento" type="char" />
+				<!--19--><record-element end="1"  beanref="favorecido.cidade" type="char" />
+				<!--20--><record-element end="1"  beanref="favorecido.bairro" type="char" />
+				<!--21--><record-element end="1"  beanref="favorecido.cep" type="char" />
+				<!--22--><record-element end="1"  /><!--COMPLEMENTO CEP-->				
+				<!--23--><record-element end="1"  beanref="favorecido.estado.uf" type="char" />
+				<!--24--><record-element end="1"  /><!--TIPO MOEDA-->				
+				<!--25--><record-element end="1"  beanref="favorecido.valorString" type="char" />
+				<!--26--><record-element end="1"  beanref="favorecido.telefone" type="char" />
+				<!--27--><record-element end="1"  /><!--TERCEIRO ENVIADO-->	
+				<!--28--><record-element end="1"  /><!--TERCEIRO EDITANDO-->	
+				<!--29--><record-element end="1"  /><!--TERCEIRO INCLUSAO-->	
+				<!--30--><record-element end="1"  /><!--CPF 2-->	
+				<!--31--><record-element end="1"  /><!--NUM DOCIDENTIFICACAO-->	
+				<!--32--><record-element end="1"  /><!--NUM SERVICO-->	
+				<!--33--><record-element end="1"  /><!--MATRICULA-->	
+				<!--34--><record-element end="1"  /><!--CARGO-->	
+				<!--35--><record-element end="1"  /><!--FUNCAO-->	
+			</line>
+		</record-definition>
+	</record>
+		
+			
+	<record name="favorecido">
+		<record-ident>
+			<field-ident field-start="0" field-length="1">
+				<match-string>3</match-string>
+			</field-ident>
+		</record-ident>
+		<record-definition>
+			<bean name="favorecido" class="br.com.eBank.modulo.pagamento.entity.Favorecido" />
+			<line delimit=";" >
+				<!--01--><record-element end="1"  /><!--CODIGO CEDENTE-->
+				<!--02--><record-element end="1"  beanref="favorecido.codigo" type="char" />
+				<!--03--><record-element end="1"  beanref="favorecido.nome" type="char" />
+				<!--04--><record-element end="1"  /><!--NOME FANTASIA-->
+				<!--05--><record-element end="1"  /><!--TIPO PESSOA :  J ou F-->
+				<!--06--><record-element end="1"  beanref="favorecido.cnpjCpf" type="char" />
+				<!--07--><record-element end="1"  /><!--ID GRUPO-->
+				<!--08--><record-element end="1"  /><!--TIPO FAVORECIDO-->
+				<!--09--><record-element end="1"  /><!--NOME OPTANTE-->
+				<!--10--><record-element end="1"  /><!--PERTENCE A CEF-->
+				<!--11--><record-element end="1"  beanref="favorecido.banco.codigo" type="char" />
+				<!--12--><record-element end="1"  beanref="favorecido.agencia" type="char" />
+				<!--13--><record-element end="1"  beanref="favorecido.dvAgencia" type="char" />
+				<!--14--><record-element end="1"  beanref="favorecido.conta" type="char" />
+				<!--15--><record-element end="1"  beanref="favorecido.dvConta" type="char" />
+				<!--16--><record-element end="1"  beanref="favorecido.logradouro" type="char" />
+				<!--17--><record-element end="1" /><!--NUMERO RESIDENCAL-->
+				<!--18--><record-element end="1"  beanref="favorecido.complemento" type="char" />
+				<!--19--><record-element end="1"  beanref="favorecido.cidade" type="char" />
+				<!--20--><record-element end="1"  beanref="favorecido.bairro" type="char" />
+				<!--21--><record-element end="1"  beanref="favorecido.cep" type="char" />
+				<!--22--><record-element end="1"  /><!--COMPLEMENTO CEP-->				
+				<!--23--><record-element end="1"  beanref="favorecido.estado.uf" type="char" />
+				<!--24--><record-element end="1"  /><!--TIPO MOEDA-->				
+				<!--25--><record-element end="1"  beanref="favorecido.valorString" type="char" />
+				<!--26--><record-element end="1"  beanref="favorecido.telefone" type="char" />
+				<!--27--><record-element end="1"  /><!--TERCEIRO ENVIADO-->	
+				<!--28--><record-element end="1"  /><!--TERCEIRO EDITANDO-->	
+				<!--29--><record-element end="1"  /><!--TERCEIRO INCLUSAO-->	
+				<!--30--><record-element end="1"  /><!--CPF 2-->	
+				<!--31--><record-element end="1"  /><!--NUM DOCIDENTIFICACAO-->	
+				<!--32--><record-element end="1"  /><!--NUM SERVICO-->	
+				<!--33--><record-element end="1"  /><!--MATRICULA-->	
+				<!--34--><record-element end="1"  /><!--CARGO-->	
+				<!--35--><record-element end="1"  /><!--FUNCAO-->	
+			</line>
+		</record-definition>
+	</record>
+		
+			
+	<record name="favorecido">
+		<record-ident>
+			<field-ident field-start="0" field-length="1">
+				<match-string>4</match-string>
+			</field-ident>
+		</record-ident>
+		<record-definition>
+			<bean name="favorecido" class="br.com.eBank.modulo.pagamento.entity.Favorecido" />
+			<line delimit=";" >
+				<!--01--><record-element end="1"  /><!--CODIGO CEDENTE-->
+				<!--02--><record-element end="1"  beanref="favorecido.codigo" type="char" />
+				<!--03--><record-element end="1"  beanref="favorecido.nome" type="char" />
+				<!--04--><record-element end="1"  /><!--NOME FANTASIA-->
+				<!--05--><record-element end="1"  /><!--TIPO PESSOA :  J ou F-->
+				<!--06--><record-element end="1"  beanref="favorecido.cnpjCpf" type="char" />
+				<!--07--><record-element end="1"  /><!--ID GRUPO-->
+				<!--08--><record-element end="1"  /><!--TIPO FAVORECIDO-->
+				<!--09--><record-element end="1"  /><!--NOME OPTANTE-->
+				<!--10--><record-element end="1"  /><!--PERTENCE A CEF-->
+				<!--11--><record-element end="1"  beanref="favorecido.banco.codigo" type="char" />
+				<!--12--><record-element end="1"  beanref="favorecido.agencia" type="char" />
+				<!--13--><record-element end="1"  beanref="favorecido.dvAgencia" type="char" />
+				<!--14--><record-element end="1"  beanref="favorecido.conta" type="char" />
+				<!--15--><record-element end="1"  beanref="favorecido.dvConta" type="char" />
+				<!--16--><record-element end="1"  beanref="favorecido.logradouro" type="char" />
+				<!--17--><record-element end="1" /><!--NUMERO RESIDENCAL-->
+				<!--18--><record-element end="1"  beanref="favorecido.complemento" type="char" />
+				<!--19--><record-element end="1"  beanref="favorecido.cidade" type="char" />
+				<!--20--><record-element end="1"  beanref="favorecido.bairro" type="char" />
+				<!--21--><record-element end="1"  beanref="favorecido.cep" type="char" />
+				<!--22--><record-element end="1"  /><!--COMPLEMENTO CEP-->				
+				<!--23--><record-element end="1"  beanref="favorecido.estado.uf" type="char" />
+				<!--24--><record-element end="1"  /><!--TIPO MOEDA-->				
+				<!--25--><record-element end="1"  beanref="favorecido.valorString" type="char" />
+				<!--26--><record-element end="1"  beanref="favorecido.telefone" type="char" />
+				<!--27--><record-element end="1"  /><!--TERCEIRO ENVIADO-->	
+				<!--28--><record-element end="1"  /><!--TERCEIRO EDITANDO-->	
+				<!--29--><record-element end="1"  /><!--TERCEIRO INCLUSAO-->	
+				<!--30--><record-element end="1"  /><!--CPF 2-->	
+				<!--31--><record-element end="1"  /><!--NUM DOCIDENTIFICACAO-->	
+				<!--32--><record-element end="1"  /><!--NUM SERVICO-->	
+				<!--33--><record-element end="1"  /><!--MATRICULA-->	
+				<!--34--><record-element end="1"  /><!--CARGO-->	
+				<!--35--><record-element end="1"  /><!--FUNCAO-->	
+			</line>
+		</record-definition>
+	</record>
+		
+			
+	<record name="favorecido">
+		<record-ident>
+			<field-ident field-start="0" field-length="1">
+				<match-string>5</match-string>
+			</field-ident>
+		</record-ident>
+		<record-definition>
+			<bean name="favorecido" class="br.com.eBank.modulo.pagamento.entity.Favorecido" />
+			<line delimit=";" >
+				<!--01--><record-element end="1"  /><!--CODIGO CEDENTE-->
+				<!--02--><record-element end="1"  beanref="favorecido.codigo" type="char" />
+				<!--03--><record-element end="1"  beanref="favorecido.nome" type="char" />
+				<!--04--><record-element end="1"  /><!--NOME FANTASIA-->
+				<!--05--><record-element end="1"  /><!--TIPO PESSOA :  J ou F-->
+				<!--06--><record-element end="1"  beanref="favorecido.cnpjCpf" type="char" />
+				<!--07--><record-element end="1"  /><!--ID GRUPO-->
+				<!--08--><record-element end="1"  /><!--TIPO FAVORECIDO-->
+				<!--09--><record-element end="1"  /><!--NOME OPTANTE-->
+				<!--10--><record-element end="1"  /><!--PERTENCE A CEF-->
+				<!--11--><record-element end="1"  beanref="favorecido.banco.codigo" type="char" />
+				<!--12--><record-element end="1"  beanref="favorecido.agencia" type="char" />
+				<!--13--><record-element end="1"  beanref="favorecido.dvAgencia" type="char" />
+				<!--14--><record-element end="1"  beanref="favorecido.conta" type="char" />
+				<!--15--><record-element end="1"  beanref="favorecido.dvConta" type="char" />
+				<!--16--><record-element end="1"  beanref="favorecido.logradouro" type="char" />
+				<!--17--><record-element end="1" /><!--NUMERO RESIDENCAL-->
+				<!--18--><record-element end="1"  beanref="favorecido.complemento" type="char" />
+				<!--19--><record-element end="1"  beanref="favorecido.cidade" type="char" />
+				<!--20--><record-element end="1"  beanref="favorecido.bairro" type="char" />
+				<!--21--><record-element end="1"  beanref="favorecido.cep" type="char" />
+				<!--22--><record-element end="1"  /><!--COMPLEMENTO CEP-->				
+				<!--23--><record-element end="1"  beanref="favorecido.estado.uf" type="char" />
+				<!--24--><record-element end="1"  /><!--TIPO MOEDA-->				
+				<!--25--><record-element end="1"  beanref="favorecido.valorString" type="char" />
+				<!--26--><record-element end="1"  beanref="favorecido.telefone" type="char" />
+				<!--27--><record-element end="1"  /><!--TERCEIRO ENVIADO-->	
+				<!--28--><record-element end="1"  /><!--TERCEIRO EDITANDO-->	
+				<!--29--><record-element end="1"  /><!--TERCEIRO INCLUSAO-->	
+				<!--30--><record-element end="1"  /><!--CPF 2-->	
+				<!--31--><record-element end="1"  /><!--NUM DOCIDENTIFICACAO-->	
+				<!--32--><record-element end="1"  /><!--NUM SERVICO-->	
+				<!--33--><record-element end="1"  /><!--MATRICULA-->	
+				<!--34--><record-element end="1"  /><!--CARGO-->	
+				<!--35--><record-element end="1"  /><!--FUNCAO-->	
+			</line>
+		</record-definition>
+	</record>
+		
+			
+	<record name="favorecido">
+		<record-ident>
+			<field-ident field-start="0" field-length="1">
+				<match-string>6</match-string>
+			</field-ident>
+		</record-ident>
+		<record-definition>
+			<bean name="favorecido" class="br.com.eBank.modulo.pagamento.entity.Favorecido" />
+			<line delimit=";" >
+				<!--01--><record-element end="1"  /><!--CODIGO CEDENTE-->
+				<!--02--><record-element end="1"  beanref="favorecido.codigo" type="char" />
+				<!--03--><record-element end="1"  beanref="favorecido.nome" type="char" />
+				<!--04--><record-element end="1"  /><!--NOME FANTASIA-->
+				<!--05--><record-element end="1"  /><!--TIPO PESSOA :  J ou F-->
+				<!--06--><record-element end="1"  beanref="favorecido.cnpjCpf" type="char" />
+				<!--07--><record-element end="1"  /><!--ID GRUPO-->
+				<!--08--><record-element end="1"  /><!--TIPO FAVORECIDO-->
+				<!--09--><record-element end="1"  /><!--NOME OPTANTE-->
+				<!--10--><record-element end="1"  /><!--PERTENCE A CEF-->
+				<!--11--><record-element end="1"  beanref="favorecido.banco.codigo" type="char" />
+				<!--12--><record-element end="1"  beanref="favorecido.agencia" type="char" />
+				<!--13--><record-element end="1"  beanref="favorecido.dvAgencia" type="char" />
+				<!--14--><record-element end="1"  beanref="favorecido.conta" type="char" />
+				<!--15--><record-element end="1"  beanref="favorecido.dvConta" type="char" />
+				<!--16--><record-element end="1"  beanref="favorecido.logradouro" type="char" />
+				<!--17--><record-element end="1" /><!--NUMERO RESIDENCAL-->
+				<!--18--><record-element end="1"  beanref="favorecido.complemento" type="char" />
+				<!--19--><record-element end="1"  beanref="favorecido.cidade" type="char" />
+				<!--20--><record-element end="1"  beanref="favorecido.bairro" type="char" />
+				<!--21--><record-element end="1"  beanref="favorecido.cep" type="char" />
+				<!--22--><record-element end="1"  /><!--COMPLEMENTO CEP-->				
+				<!--23--><record-element end="1"  beanref="favorecido.estado.uf" type="char" />
+				<!--24--><record-element end="1"  /><!--TIPO MOEDA-->				
+				<!--25--><record-element end="1"  beanref="favorecido.valorString" type="char" />
+				<!--26--><record-element end="1"  beanref="favorecido.telefone" type="char" />
+				<!--27--><record-element end="1"  /><!--TERCEIRO ENVIADO-->	
+				<!--28--><record-element end="1"  /><!--TERCEIRO EDITANDO-->	
+				<!--29--><record-element end="1"  /><!--TERCEIRO INCLUSAO-->	
+				<!--30--><record-element end="1"  /><!--CPF 2-->	
+				<!--31--><record-element end="1"  /><!--NUM DOCIDENTIFICACAO-->	
+				<!--32--><record-element end="1"  /><!--NUM SERVICO-->	
+				<!--33--><record-element end="1"  /><!--MATRICULA-->	
+				<!--34--><record-element end="1"  /><!--CARGO-->	
+				<!--35--><record-element end="1"  /><!--FUNCAO-->	
+			</line>
+		</record-definition>
+	</record>
+		
+			
+	<record name="favorecido">
+		<record-ident>
+			<field-ident field-start="0" field-length="1">
+				<match-string>7</match-string>
+			</field-ident>
+		</record-ident>
+		<record-definition>
+			<bean name="favorecido" class="br.com.eBank.modulo.pagamento.entity.Favorecido" />
+			<line delimit=";" >
+				<!--01--><record-element end="1"  /><!--CODIGO CEDENTE-->
+				<!--02--><record-element end="1"  beanref="favorecido.codigo" type="char" />
+				<!--03--><record-element end="1"  beanref="favorecido.nome" type="char" />
+				<!--04--><record-element end="1"  /><!--NOME FANTASIA-->
+				<!--05--><record-element end="1"  /><!--TIPO PESSOA :  J ou F-->
+				<!--06--><record-element end="1"  beanref="favorecido.cnpjCpf" type="char" />
+				<!--07--><record-element end="1"  /><!--ID GRUPO-->
+				<!--08--><record-element end="1"  /><!--TIPO FAVORECIDO-->
+				<!--09--><record-element end="1"  /><!--NOME OPTANTE-->
+				<!--10--><record-element end="1"  /><!--PERTENCE A CEF-->
+				<!--11--><record-element end="1"  beanref="favorecido.banco.codigo" type="char" />
+				<!--12--><record-element end="1"  beanref="favorecido.agencia" type="char" />
+				<!--13--><record-element end="1"  beanref="favorecido.dvAgencia" type="char" />
+				<!--14--><record-element end="1"  beanref="favorecido.conta" type="char" />
+				<!--15--><record-element end="1"  beanref="favorecido.dvConta" type="char" />
+				<!--16--><record-element end="1"  beanref="favorecido.logradouro" type="char" />
+				<!--17--><record-element end="1" /><!--NUMERO RESIDENCAL-->
+				<!--18--><record-element end="1"  beanref="favorecido.complemento" type="char" />
+				<!--19--><record-element end="1"  beanref="favorecido.cidade" type="char" />
+				<!--20--><record-element end="1"  beanref="favorecido.bairro" type="char" />
+				<!--21--><record-element end="1"  beanref="favorecido.cep" type="char" />
+				<!--22--><record-element end="1"  /><!--COMPLEMENTO CEP-->				
+				<!--23--><record-element end="1"  beanref="favorecido.estado.uf" type="char" />
+				<!--24--><record-element end="1"  /><!--TIPO MOEDA-->				
+				<!--25--><record-element end="1"  beanref="favorecido.valorString" type="char" />
+				<!--26--><record-element end="1"  beanref="favorecido.telefone" type="char" />
+				<!--27--><record-element end="1"  /><!--TERCEIRO ENVIADO-->	
+				<!--28--><record-element end="1"  /><!--TERCEIRO EDITANDO-->	
+				<!--29--><record-element end="1"  /><!--TERCEIRO INCLUSAO-->	
+				<!--30--><record-element end="1"  /><!--CPF 2-->	
+				<!--31--><record-element end="1"  /><!--NUM DOCIDENTIFICACAO-->	
+				<!--32--><record-element end="1"  /><!--NUM SERVICO-->	
+				<!--33--><record-element end="1"  /><!--MATRICULA-->	
+				<!--34--><record-element end="1"  /><!--CARGO-->	
+				<!--35--><record-element end="1"  /><!--FUNCAO-->	
+			</line>
+		</record-definition>
+	</record>
+		
+			
+	<record name="favorecido">
+		<record-ident>
+			<field-ident field-start="0" field-length="1">
+				<match-string>8</match-string>
+			</field-ident>
+		</record-ident>
+		<record-definition>
+			<bean name="favorecido" class="br.com.eBank.modulo.pagamento.entity.Favorecido" />
+			<line delimit=";" >
+				<!--01--><record-element end="1"  /><!--CODIGO CEDENTE-->
+				<!--02--><record-element end="1"  beanref="favorecido.codigo" type="char" />
+				<!--03--><record-element end="1"  beanref="favorecido.nome" type="char" />
+				<!--04--><record-element end="1"  /><!--NOME FANTASIA-->
+				<!--05--><record-element end="1"  /><!--TIPO PESSOA :  J ou F-->
+				<!--06--><record-element end="1"  beanref="favorecido.cnpjCpf" type="char" />
+				<!--07--><record-element end="1"  /><!--ID GRUPO-->
+				<!--08--><record-element end="1"  /><!--TIPO FAVORECIDO-->
+				<!--09--><record-element end="1"  /><!--NOME OPTANTE-->
+				<!--10--><record-element end="1"  /><!--PERTENCE A CEF-->
+				<!--11--><record-element end="1"  beanref="favorecido.banco.codigo" type="char" />
+				<!--12--><record-element end="1"  beanref="favorecido.agencia" type="char" />
+				<!--13--><record-element end="1"  beanref="favorecido.dvAgencia" type="char" />
+				<!--14--><record-element end="1"  beanref="favorecido.conta" type="char" />
+				<!--15--><record-element end="1"  beanref="favorecido.dvConta" type="char" />
+				<!--16--><record-element end="1"  beanref="favorecido.logradouro" type="char" />
+				<!--17--><record-element end="1" /><!--NUMERO RESIDENCAL-->
+				<!--18--><record-element end="1"  beanref="favorecido.complemento" type="char" />
+				<!--19--><record-element end="1"  beanref="favorecido.cidade" type="char" />
+				<!--20--><record-element end="1"  beanref="favorecido.bairro" type="char" />
+				<!--21--><record-element end="1"  beanref="favorecido.cep" type="char" />
+				<!--22--><record-element end="1"  /><!--COMPLEMENTO CEP-->				
+				<!--23--><record-element end="1"  beanref="favorecido.estado.uf" type="char" />
+				<!--24--><record-element end="1"  /><!--TIPO MOEDA-->				
+				<!--25--><record-element end="1"  beanref="favorecido.valorString" type="char" />
+				<!--26--><record-element end="1"  beanref="favorecido.telefone" type="char" />
+				<!--27--><record-element end="1"  /><!--TERCEIRO ENVIADO-->	
+				<!--28--><record-element end="1"  /><!--TERCEIRO EDITANDO-->	
+				<!--29--><record-element end="1"  /><!--TERCEIRO INCLUSAO-->	
+				<!--30--><record-element end="1"  /><!--CPF 2-->	
+				<!--31--><record-element end="1"  /><!--NUM DOCIDENTIFICACAO-->	
+				<!--32--><record-element end="1"  /><!--NUM SERVICO-->	
+				<!--33--><record-element end="1"  /><!--MATRICULA-->	
+				<!--34--><record-element end="1"  /><!--CARGO-->	
+				<!--35--><record-element end="1"  /><!--FUNCAO-->	
+			</line>
+		</record-definition>
+	</record>
+		
+			
+	<record name="favorecido">
+		<record-ident>
+			<field-ident field-start="0" field-length="1">
+				<match-string>9</match-string>
+			</field-ident>
+		</record-ident>
+		<record-definition>
+			<bean name="favorecido" class="br.com.eBank.modulo.pagamento.entity.Favorecido" />
+			<line delimit=";" >
+				<!--01--><record-element end="1"  /><!--CODIGO CEDENTE-->
+				<!--02--><record-element end="1"  beanref="favorecido.codigo" type="char" />
+				<!--03--><record-element end="1"  beanref="favorecido.nome" type="char" />
+				<!--04--><record-element end="1"  /><!--NOME FANTASIA-->
+				<!--05--><record-element end="1"  /><!--TIPO PESSOA :  J ou F-->
+				<!--06--><record-element end="1"  beanref="favorecido.cnpjCpf" type="char" />
+				<!--07--><record-element end="1"  /><!--ID GRUPO-->
+				<!--08--><record-element end="1"  /><!--TIPO FAVORECIDO-->
+				<!--09--><record-element end="1"  /><!--NOME OPTANTE-->
+				<!--10--><record-element end="1"  /><!--PERTENCE A CEF-->
+				<!--11--><record-element end="1"  beanref="favorecido.banco.codigo" type="char" />
+				<!--12--><record-element end="1"  beanref="favorecido.agencia" type="char" />
+				<!--13--><record-element end="1"  beanref="favorecido.dvAgencia" type="char" />
+				<!--14--><record-element end="1"  beanref="favorecido.conta" type="char" />
+				<!--15--><record-element end="1"  beanref="favorecido.dvConta" type="char" />
+				<!--16--><record-element end="1"  beanref="favorecido.logradouro" type="char" />
+				<!--17--><record-element end="1" /><!--NUMERO RESIDENCAL-->
+				<!--18--><record-element end="1"  beanref="favorecido.complemento" type="char" />
+				<!--19--><record-element end="1"  beanref="favorecido.cidade" type="char" />
+				<!--20--><record-element end="1"  beanref="favorecido.bairro" type="char" />
+				<!--21--><record-element end="1"  beanref="favorecido.cep" type="char" />
+				<!--22--><record-element end="1"  /><!--COMPLEMENTO CEP-->				
+				<!--23--><record-element end="1"  beanref="favorecido.estado.uf" type="char" />
+				<!--24--><record-element end="1"  /><!--TIPO MOEDA-->				
+				<!--25--><record-element end="1"  beanref="favorecido.valorString" type="char" />
+				<!--26--><record-element end="1"  beanref="favorecido.telefone" type="char" />
+				<!--27--><record-element end="1"  /><!--TERCEIRO ENVIADO-->	
+				<!--28--><record-element end="1"  /><!--TERCEIRO EDITANDO-->	
+				<!--29--><record-element end="1"  /><!--TERCEIRO INCLUSAO-->	
+				<!--30--><record-element end="1"  /><!--CPF 2-->	
+				<!--31--><record-element end="1"  /><!--NUM DOCIDENTIFICACAO-->	
+				<!--32--><record-element end="1"  /><!--NUM SERVICO-->	
+				<!--33--><record-element end="1"  /><!--MATRICULA-->	
+				<!--34--><record-element end="1"  /><!--CARGO-->	
+				<!--35--><record-element end="1"  /><!--FUNCAO-->	
+			</line>
+		</record-definition>
+	</record>
+		
+	
+	
+</file-format>

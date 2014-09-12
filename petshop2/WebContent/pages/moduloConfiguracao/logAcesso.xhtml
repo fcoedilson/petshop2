@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:a4j="http://richfaces.org/a4j"
+				xmlns:rich="http://richfaces.org/rich"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:c="http://java.sun.com/jstl/core"
+				xmlns:sec="http://www.springframework.org/security/facelets/tags"
+				xmlns:p="http://primefaces.org/ui"
+				template="/pages/template/crud_template.xhtml"> 
+				
+	<ui:param name="hideButtonNew" value="true"/>
+	<ui:param name="hideButtonReport" value="true"/>
+	<ui:param name="crudBean" value="#{logAcessoBean}"/>		
+	
+	<ui:define name="content">
+		<h:panelGroup id="panelGroupDePesquisa" rendered="#{crudBean.searching}">
+			<h:panelGrid columns="3" style="width:70%;">
+				<h:column>
+					<h:outputText value="#{bundle.lbl_periodo_acesso}" style="padding-left: 0px;"/>
+					<br/>
+					<rich:calendar id="dataVendaI" value="#{crudBean.filter.dataInicio}" datePattern="dd/MM/yyyy" enableManualInput="true" buttonIcon="/resources/imagens/ico-data.gif"/>
+					<h:outputText value=" #{bundle.lbl_ate} "/>
+					<rich:calendar id="dataVendaF" value="#{crudBean.filter.dataFim}" datePattern="dd/MM/yyyy" enableManualInput="true" buttonIcon="/resources/imagens/ico-data.gif"/>
+				</h:column>
+				
+			</h:panelGrid>
+		</h:panelGroup>
+	</ui:define>
+	
+	<ui:define name="list">
+		<p:tabView id="tabView" rendered="#{not empty crudBean.searchResult}" >
+				<p:tab id="tab1" title="#{bundle.lbl_listagem}">
+					<h:commandButton   value="#{bundle.lbl_relatorio}" 	action="#{crudBean.gerarRelatorio}" execute="@this" styleClass="btn-padrao"/><br/><br/><br/>
+					<rich:dataTable id="tblPane1" value="#{crudBean.searchResult}" rendered="#{not empty crudBean.searchResult}"
+					rows="20" var="row" styleClass="stable" rowClasses="odd-row, even-row">
+						<f:facet name="header">
+							<rich:columnGroup>
+								<rich:column>
+									<h:outputText value="#{bundle.lbl_login}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{bundle.lbl_data_acesso}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{bundle.lbl_ip.toUpperCase()}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{bundle.lbl_browser}" />
+								</rich:column>
+							</rich:columnGroup>
+						</f:facet>
+						
+						<rich:column style="text-align: center; width:10%;">
+							<h:outputText value="#{row.usuario.login}" />
+						</rich:column>
+						<rich:column style="text-align: center; width:10%;">
+							<h:outputText value="#{row.dataAcesso}">
+								<f:converter converterId="dateTimeStampConverter"/>
+							</h:outputText>
+						</rich:column>
+						<rich:column style="text-align: center; width:10%;">
+							<h:outputText value="#{row.ip}" />
+						</rich:column>
+						<rich:column style="text-align: center; width:50%;">
+							<h:outputText value="#{row.browser}" />
+						</rich:column>
+						<f:facet name="footer">
+							<rich:columnGroup rendered="#{crudBean.searchResult.size() > 20}">
+								<rich:column colspan="6">
+									<rich:dataScroller for="tblPane1" fastControls="hide" render="tblPane1, divCarregando" />
+								</rich:column>
+							</rich:columnGroup>
+						</f:facet>
+					</rich:dataTable>
+				</p:tab>
+				
+				<p:tab id="tab2" title="#{bundle.lbl_usuario_sem_Acesso}">
+					<h:commandButton  value="#{bundle.lbl_relatorio}" 	action="#{crudBean.gerarRelatorioSemAcesso}" execute="@this" styleClass="btn-padrao"/><br/><br/><br/>
+					<rich:dataTable id="tblPane2" value="#{crudBean.beanProperties.usuarioSemAcesso}" rendered="#{crudBean.beanProperties.usuarioSemAcesso.size() > 0}"
+					rows="20" var="row" styleClass="stable" rowClasses="odd-row, even-row">
+						<f:facet name="header">
+							<rich:columnGroup>
+								<rich:column>
+									<h:outputText value="#{bundle.lbl_nome}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{bundle.lbl_data_ultimo_acesso}" />
+								</rich:column>
+							</rich:columnGroup>
+						</f:facet>
+						<rich:column style="text-align: left;">
+							<h:outputText value="#{row.usuario}" />
+						</rich:column>
+						<rich:column style="text-align: center;">
+							<h:outputText value="#{row.data}">
+								<f:converter converterId="dateTimeStampConverter"/>
+							</h:outputText>
+						</rich:column>
+						<f:facet name="footer">
+							<rich:columnGroup rendered="#{crudBean.beanProperties.usuarioSemAcesso.size() > 20}">
+								<rich:column colspan="6">
+									<rich:dataScroller for="tblPane2" fastControls="hide" render="tblPane2, divCarregando" />
+								</rich:column>
+							</rich:columnGroup>
+						</f:facet>
+					</rich:dataTable>
+				</p:tab>
+				
+				<p:tab id="tab4" title="#{bundle.lbl_vinte_mais_acessados}">
+					<h:commandButton   value="#{bundle.lbl_relatorio}" 	action="#{crudBean.gerarRelatorioMaisAcessados}" execute="@this" styleClass="btn-padrao"/><br/><br/><br/>
+					<p:barChart value="#{crudBean.beanProperties.acessos}" title="#{crudBean.beanProperties.periodo}" min="0" max="#{crudBean.beanProperties.maior}" 
+					animate="true" style="height:800px;" orientation="vertical" legendPosition="ne"/>  
+				</p:tab>
+				
+				<p:tab id="tab5" title="#{bundle.lbl_vinte_menos_acessados}">
+					<h:commandButton  value="#{bundle.lbl_relatorio}" 	action="#{crudBean.gerarRelatorioMenosAcessados}" execute="@this" styleClass="btn-padrao"/><br/><br/><br/>
+					<p:barChart value="#{crudBean.beanProperties.acessosMenos}" title="#{crudBean.beanProperties.periodo}" min="0" max="#{crudBean.beanProperties.menor}" 
+					animate="true" style="height:800px;" orientation="vertical" legendPosition="ne"/>  
+				</p:tab>
+				
+			</p:tabView>  
+		</ui:define>
+</ui:composition>

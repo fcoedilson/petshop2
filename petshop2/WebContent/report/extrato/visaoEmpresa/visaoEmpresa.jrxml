@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="visaoBanco" pageWidth="1300" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="1260" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="943cdf95-1f18-497f-8154-4fb3c07f4504">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="17"/>
+	<property name="ireport.y" value="0"/>
+	<style name="saldo">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{tipo}.equalsIgnoreCase("D")]]></conditionExpression>
+			<style forecolor="#FF3333">
+				<pen lineWidth="0.5" lineColor="#000000"/>
+			</style>
+		</conditionalStyle>
+	</style>
+	<style name="saldoEmpresa">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{tipoEmpresa}.equalsIgnoreCase("D")]]></conditionExpression>
+			<style forecolor="#FF3333"/>
+		</conditionalStyle>
+	</style>
+	<style name="saldoConvenio">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{tipoConvenio}.equalsIgnoreCase("DEBITO")]]></conditionExpression>
+			<style forecolor="#FF3333"/>
+		</conditionalStyle>
+	</style>
+	<style name="totalizador">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{TIPO_TOTALIZADOR}.equalsIgnoreCase("D")]]></conditionExpression>
+			<style forecolor="#FF3333" backcolor="#FF3333"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="USUARIO" class="java.lang.String"/>
+	<parameter name="CABECALHO" class="java.lang.String"/>
+	<parameter name="DATA" class="java.lang.String"/>
+	<parameter name="TOTALIZADOR" class="java.lang.Double"/>
+	<parameter name="TIPO_TOTALIZADOR" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[]]>
+	</queryString>
+	<field name="data" class="java.util.Date"/>
+	<field name="nomeBanco" class="java.lang.String"/>
+	<field name="saldo" class="java.lang.Double"/>
+	<field name="nomeEmpresa" class="java.lang.String"/>
+	<field name="nomeConvenio" class="java.lang.String"/>
+	<field name="dataEmpresa" class="java.util.Date"/>
+	<field name="dataConvenio" class="java.util.Date"/>
+	<field name="saldoEmpresa" class="java.lang.Double"/>
+	<field name="saldoConvenio" class="java.lang.Double"/>
+	<field name="tipo" class="java.lang.String"/>
+	<field name="tipoEmpresa" class="java.lang.String"/>
+	<field name="tipoConvenio" class="java.lang.String"/>
+	<group name="empresa">
+		<groupExpression><![CDATA[$F{nomeEmpresa}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<textField>
+					<reportElement uuid="66036f4f-1c6f-48e9-8505-b251cf9f332b" mode="Opaque" x="0" y="0" width="855" height="20" backcolor="#999999"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{nomeEmpresa}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="20">
+				<staticText>
+					<reportElement uuid="9d135d22-1e78-4f28-a6d8-2419dc368014" mode="Opaque" x="855" y="0" width="161" height="20" backcolor="#CCCCCC"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<text><![CDATA[Total]]></text>
+				</staticText>
+				<textField pattern="#,##0.00" isBlankWhenNull="true">
+					<reportElement uuid="5e0e0dae-9bfe-4405-9a55-17ce7cba3ab1" mode="Opaque" x="1016" y="0" width="158" height="20" backcolor="#CCCCCC"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{tipo}.equalsIgnoreCase("D") ?  $F{saldo}  + " D" : $F{saldo} + " C"]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="convenio">
+		<groupExpression><![CDATA[$F{nomeConvenio}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<textField>
+					<reportElement uuid="5dab00ae-d2af-4198-9c22-a18ef442c81c" x="55" y="0" width="800" height="20"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{nomeConvenio}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00" isBlankWhenNull="true">
+					<reportElement uuid="2130f805-eea4-4263-9f7f-20ce4907c9c6" x="1016" y="0" width="158" height="20"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{tipoConvenio}.equalsIgnoreCase("DEBITO") ?  $F{saldoConvenio}  + " D" : $F{saldoConvenio} + " C"]]></textFieldExpression>
+				</textField>
+				<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+					<reportElement uuid="c5174316-d215-445f-bdf7-9c806b936079" x="855" y="0" width="161" height="20"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{dataConvenio}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<title>
+		<band height="74" splitType="Stretch">
+			<image>
+				<reportElement uuid="f61fd835-fe50-4b8d-8f58-392db14c6fb4" x="0" y="0" width="1174" height="54"/>
+				<imageExpression><![CDATA[$P{CABECALHO}]]></imageExpression>
+			</image>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="950ea081-fbe6-4a9e-9e3c-9acd40904dbc" mode="Opaque" x="0" y="54" width="1174" height="20" backcolor="#CCCCCC"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Impresso por: " + $P{USUARIO} + "                Em: " + $P{DATA}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="914968b3-3ff0-4c82-9eb6-25cb88d7eb13" mode="Opaque" x="0" y="0" width="855" height="20" backcolor="#666666"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="02357981-0755-41d3-aa4a-8c5e9fdf039a" mode="Opaque" x="855" y="0" width="161" height="20" backcolor="#666666"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="92083c7b-3dda-46d0-9ca3-79b6df88818a" mode="Opaque" x="1016" y="0" width="158" height="20" backcolor="#666666"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Saldo]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnFooter>
+		<band height="21">
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="768cfc41-fa02-4f39-8e0c-e19d7f36f728" style="totalizador" mode="Opaque" x="1016" y="0" width="158" height="20" backcolor="#999999"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TOTALIZADOR}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="491eea0e-b5f9-4ed3-aff3-500d385d7ac5" mode="Opaque" x="855" y="0" width="161" height="20" backcolor="#999999"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Geral]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+</jasperReport>

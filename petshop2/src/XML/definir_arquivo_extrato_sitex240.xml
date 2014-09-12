@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file-format>
+	<converter name="char" class="com.blackbear.flatworm.converters.CoreConverters" method="convertChar" return-type="java.lang.String" />
+	<converter name="date" class="com.blackbear.flatworm.converters.CoreConverters" method="convertDate" return-type="java.lang.Date" />
+	<converter name="integer" class="com.blackbear.flatworm.converters.CoreConverters" method="convertInteger" return-type="java.lang.Integer" />
+	<converter name="decimal" class="com.blackbear.flatworm.converters.CoreConverters" method="convertDecimal" return-type="java.lang.Double" />
+	<converter name="long" class="com.blackbear.flatworm.converters.CoreConverters" method="convertLong" return-type="java.lang.Long"/>
+		
+	<record name="voUploadArquivoSitex240HeaderArquivoVO">
+		<record-ident>
+			<field-ident field-start="7" field-length="1">
+				<match-string>0</match-string>
+			</field-ident>
+		</record-ident>
+		<record-definition>
+			<bean name="voUploadArquivoSitex240HeaderArquivoVO" class="br.com.eBank.modulo.extrato.mapeamento.VOUploadArquivoSitex240HeaderArquivoVO" />
+			<line >
+				<!--01--><record-element start="0"  end="3" beanref="voUploadArquivoSitex240HeaderArquivoVO.codigoBanco" type="char" />
+				<!--02--><record-element start="7"  end="8" beanref="voUploadArquivoSitex240HeaderArquivoVO.tipoRegistro" type="integer" />
+				<!--03--><record-element start="18"  end="32" beanref="voUploadArquivoSitex240HeaderArquivoVO.cnpj" type="char" />
+				<!--04--><record-element start="157"  end="163" beanref="voUploadArquivoSitex240HeaderArquivoVO.nsa" type="integer" />
+			</line>
+		</record-definition>
+	</record>
+	
+	<record name="voUploadArquivoSitex240HeaderLoteVO">
+		<record-ident>
+			<field-ident field-start="7" field-length="1">
+				<match-string>1</match-string>
+			</field-ident>
+		</record-ident>
+		<record-definition>
+			<bean name="voUploadArquivoSitex240HeaderLoteVO" class="br.com.eBank.modulo.extrato.mapeamento.VOUploadArquivoSitex240HeaderLoteVO" />
+			<line >
+				<!--01--><record-element start="7"  end="8" beanref="voUploadArquivoSitex240HeaderLoteVO.tipoRegistro" type="integer" />
+			</line>
+		</record-definition>
+	</record>
+	
+	<record name="voUploadArquivoSitex240TrailerArquivoVO">
+		<record-ident>
+			<field-ident field-start="7" field-length="1">
+				<match-string>9</match-string>
+			</field-ident>
+		</record-ident>
+		<record-definition>
+			<bean name="voUploadArquivoSitex240TrailerArquivoVO" class="br.com.eBank.modulo.extrato.mapeamento.VOUploadArquivoSitex240TrailerArquivoVO" />
+			<line >
+				<!--01--><record-element start="7"  end="8" beanref="voUploadArquivoSitex240TrailerArquivoVO.tipoRegistro" type="integer" />
+			</line>
+		</record-definition>
+	</record>
+
+	<record name="voUploadArquivoSitex240DetalheVO">
+		<record-ident>
+			<field-ident field-start="7" field-length="1">
+				<match-string>3</match-string>
+			</field-ident>
+		</record-ident>
+		<record-definition>
+			<bean name="voUploadArquivoSitex240DetalheVO" class="br.com.eBank.modulo.extrato.mapeamento.VOUploadArquivoSitex240DetalheVO" />
+			<line >
+			
+				<!--01--><record-element start="0"  end="3" beanref="voUploadArquivoSitex240DetalheVO.codigoBanco" type="char" />
+				<!--02--><record-element start="3"  end="7" beanref="voUploadArquivoSitex240DetalheVO.lote" type="char" />
+				<!--03--><record-element start="7"  end="8" beanref="voUploadArquivoSitex240DetalheVO.tipoRegistro" type="integer" />
+				<!--04--><record-element start="8"  end="13" beanref="voUploadArquivoSitex240DetalheVO.sequencialRegistro" type="char" />
+				<!--05--><record-element start="18"  end="32" beanref="voUploadArquivoSitex240DetalheVO.cnpj" type="char" />
+				<!--06--><record-element start="32"  end="52" beanref="voUploadArquivoSitex240DetalheVO.codigoConvenio" type="char" />
+				<!--07--><record-element start="52"  end="57" beanref="voUploadArquivoSitex240DetalheVO.agencia" type="char" />
+				<!--08--><record-element start="57"  end="58" beanref="voUploadArquivoSitex240DetalheVO.dvAgencia" type="char" />
+				<!--09--><record-element start="58"  end="70" beanref="voUploadArquivoSitex240DetalheVO.conta" type="char" />
+				<!--10--><record-element start="70"  end="71" beanref="voUploadArquivoSitex240DetalheVO.dvConta" type="char" />
+				<!--11--><record-element start="142"  end="150" beanref="voUploadArquivoSitex240DetalheVO.dataString" type="char" />
+				<!--12--><record-element start="150"  end="168" beanref="voUploadArquivoSitex240DetalheVO.valor" type="decimal" >
+				 		    <conversion-option name="decimal-places" value="2"/>
+              		 	    <conversion-option name="decimal-implied" value="true"/>
+               			    <conversion-option name="pad-character" value="0"/>
+                		    <conversion-option name="justify" value="right"/>
+                		 </record-element>	   
+				<!--13--><record-element start="168"  end="169" beanref="voUploadArquivoSitex240DetalheVO.tipoLancamento" type="char" />
+				<!--14--><record-element start="172"  end="176" beanref="voUploadArquivoSitex240DetalheVO.codigoLancamento" type="char" />
+			    <!--15--><record-element start="176"  end="201" beanref="voUploadArquivoSitex240DetalheVO.descricaoLancamento" type="char" />
+			    <!--16--><record-element start="208"  end="240" beanref="voUploadArquivoSitex240DetalheVO.historicoLancamento" type="char" />
+			</line>
+		</record-definition>
+	</record>
+	
+	<record name="voUploadArquivoSitex240TrailerLoteVO">
+		<record-ident>
+			<field-ident field-start="7" field-length="1">
+				<match-string>5</match-string>
+			</field-ident>
+		</record-ident>
+		<record-definition>
+			<bean name="voUploadArquivoSitex240TrailerLoteVO" class="br.com.eBank.modulo.extrato.mapeamento.VOUploadArquivoSitex240TrailerLoteVO" />
+			<line >
+				<!--01--><record-element start="0"  end="3" beanref="voUploadArquivoSitex240TrailerLoteVO.codigoBanco" type="char" />
+				<!--02--><record-element start="3"  end="7" beanref="voUploadArquivoSitex240TrailerLoteVO.lote" type="char" />
+				<!--03--><record-element start="7"  end="8" beanref="voUploadArquivoSitex240TrailerLoteVO.tipoRegistro" type="integer" />
+				<!--04--><record-element start="18"  end="32" beanref="voUploadArquivoSitex240TrailerLoteVO.cnpj" type="char" />	
+				<!--05--><record-element start="32"  end="52" beanref="voUploadArquivoSitex240TrailerLoteVO.codigoConvenio" type="char" />
+				<!--06--><record-element start="142"  end="150" beanref="voUploadArquivoSitex240TrailerLoteVO.dataString" type="char" />
+     			<!--07--><record-element start="150"  end="168" beanref="voUploadArquivoSitex240TrailerLoteVO.saldo" type="decimal" >
+				 		    <conversion-option name="decimal-places" value="2"/>
+              		 	    <conversion-option name="decimal-implied" value="true"/>
+               			    <conversion-option name="pad-character" value="0"/>
+                		    <conversion-option name="justify" value="right"/>
+                		 </record-element>	        			
+				<!--08--><record-element start="168"  end="169" beanref="voUploadArquivoSitex240TrailerLoteVO.tipoSaldo" type="char" />
+			</line>
+		</record-definition>
+	</record>
+	
+</file-format>

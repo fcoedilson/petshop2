@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:a4j="http://richfaces.org/a4j"
+				xmlns:rich="http://richfaces.org/rich"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:t="http://myfaces.apache.org/tomahawk"
+				xmlns:p="http://primefaces.org/ui"
+				template="/pages/template/template.xhtml">
+	
+	<ui:param name="pageTitle" value="#{crudBean.fullTitle}" />
+
+	<ui:define name="buttonItens">
+		<h:panelGroup id="butoes" rendered="#{crudBean.searching}">
+			<a4j:commandButton value="#{bundle.lbl_pesquisar}" 	action="#{crudBean.search(true)}" 	render="formulario" rendered="#{not hideButtonSearch}" styleClass="btn-padrao">
+				<f:param name="pesquisar" value="true" />
+			</a4j:commandButton>
+			<a4j:commandButton value="#{bundle.lbl_novo}" 		action="#{crudBean.prepareInsert}" 	render="formulario, panelTitle" rendered="#{not hideButtonNew}" execute="@this" styleClass="btn-padrao"/>
+			<h:commandButton   value="#{bundle.lbl_relatorio}" 	action="#{crudBean.gerarRelatorio}" rendered="#{not hideButtonReport}" execute="@this" styleClass="btn-padrao"/>
+			<ui:insert name="extentionButtons"/>
+		</h:panelGroup>
+		
+		<h:panelGroup rendered="#{crudBean.updating || crudBean.viewing}">
+			<a4j:commandButton value="#{bundle.lbl_salvar}" action="#{crudBean.save}" rendered="#{not hideButtonSave and (crudBean.inserting or crudBean.updating)}" render="formulario, panelTitle" styleClass="btn-padrao"/>
+			<a4j:commandButton value="#{bundle.lbl_voltar}" action="#{crudBean.cancel}" immediate="true" render="formulario, panelTitle" ajaxSingle="true" rendered="#{not hideButtonCancel}" styleClass="btn-padrao"/>
+		</h:panelGroup>
+	</ui:define>
+</ui:composition>

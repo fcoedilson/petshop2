@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:a4j="http://richfaces.org/a4j"
+				xmlns:rich="http://richfaces.org/rich"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:c="http://java.sun.com/jstl/core"
+				xmlns:p="http://primefaces.org/ui"
+				xmlns:t="http://myfaces.apache.org/tomahawk"
+				xmlns:sec="http://www.springframework.org/security/facelets/tags"
+				template="/pages/template/template.xhtml">
+
+	<ui:param name="hideButtonReport" value="true" />
+	<ui:param name="hideButtonNew" value="true" />
+	<ui:param name="hideButtonSearch" value="true" />
+	<ui:param name="hideMessageNotFoundResult" value="true" />
+	<ui:param name="pageTitle" value="#{bundle.titulo_modulo_configuracoes}" />
+
+	<ui:define name="content">
+	
+		<table style="width: 100%;">
+			<tr>
+		
+				<td style="vertical-align: top;">
+					<p:panel header="#{bundle.lbl_cadastro}" styleClass="panelConfiguration">
+						<h:panelGroup rendered="#{sec:ifAnyGranted('USUARIO_R')}">
+							<li><h:commandLink value="#{bundle.menu_usuario}"     	            action="/pages/moduloConfiguracao/usuario/usuario.xhtml" /></li>
+						</h:panelGroup>
+						<h:panelGroup rendered="#{sec:ifAnyGranted('CONVENIO_R')}">
+							<li><h:commandLink value="#{bundle.menu_convenio}"     	            action="/pages/moduloConfiguracao/convenio/convenio.xhtml" /></li>
+						</h:panelGroup>	  				
+						<h:panelGroup rendered="#{sec:ifAnyGranted('BANCO_R')}">
+							<li><h:commandLink value="#{bundle.menu_cadastro_banco}"     	    action="/pages/moduloConfiguracao/banco/banco.xhtml" /></li>
+						</h:panelGroup>
+						<h:panelGroup rendered="#{sec:ifAnyGranted('FERIADO_R')}">
+							<li><h:commandLink value="#{bundle.menu_feriado}"     	            action="/pages/moduloConfiguracao/feriado.xhtml" /></li>
+						</h:panelGroup>
+						<h:panelGroup rendered="#{sec:ifAnyGranted('CATEGORIA_LANCAMENTO_R')}">
+							<li><h:commandLink value="#{bundle.lbl_categoria_lancamento}"       action="/pages/moduloExtrato/categoriaLancamento.xhtml"   /></li>
+						</h:panelGroup>
+						<h:panelGroup rendered="#{sec:ifAnyGranted('DESCRICAO_LANCAMENTO_R')}">
+							<li><h:commandLink value="#{bundle.lbl_descricao_lancamento}"       action="/pages/moduloExtrato/descricaoLancamento.xhtml"   /></li>
+						</h:panelGroup>
+					</p:panel>
+				</td>
+				
+				<td style="vertical-align: top;">
+					<p:panel header="#{bundle.lbl_seguranca}" styleClass="panelConfiguration">
+						<h:panelGroup rendered="#{sec:ifAnyGranted('ADMIN_ROOT')}">
+							<li><h:commandLink value="#{bundle.menu_permissao}"    	            action="/pages/moduloConfiguracao/grupoPermissao.xhtml" /></li>
+						</h:panelGroup>
+						<h:panelGroup rendered="#{sec:ifAnyGranted('PERFIL_R')}">
+							<li><h:commandLink value="#{bundle.menu_perfil}"    	            action="/pages/moduloConfiguracao/perfil.xhtml" /></li>
+						</h:panelGroup>
+						<li><h:commandLink value="#{bundle.menu_alterar_senha}" 		        action="/pages/moduloConfiguracao/alterarSenha.xhtml"/></li>
+						<li><a4j:commandLink value="#{bundle.menu_seguranca_ultimos_acessos}"   oncomplete="#{rich:component('popupLog')}.show()" /></li>
+						<h:panelGroup rendered="#{sec:ifAnyGranted('MENU_EMAIL_R')}">
+							<li><h:commandLink value="#{bundle.menu_cadastro_email}"            action="/pages/moduloConfiguracao/email/email.xhtml" /></li>
+						</h:panelGroup>
+					</p:panel>
+				</td>		
+
+				<td style="vertical-align: top;">
+					<p:panel header="#{bundle.lbl_log}" rendered="#{sec:ifAnyGranted('LOG_MENU')}" styleClass="panelConfiguration">
+						<h:panelGroup rendered="#{sec:ifAnyGranted('LOG_ACESSO_R')}">
+							<li><h:commandLink value="#{bundle.menu_logAcesso}"    				action="/pages/moduloConfiguracao/logAcesso.xhtml" /></li>
+						</h:panelGroup >
+						<h:panelGroup rendered="#{sec:ifAnyGranted('LOG_ERRO_PROCESSADOR_R')}">
+							<li><h:commandLink value="#{bundle.lbl_logErroProcessador}"			action="/pages/moduloConfiguracao/logErroProcessador.xhtml" /></li>
+						</h:panelGroup >
+					</p:panel>
+				</td>			</tr>
+		</table>
+	</ui:define>
+
+</ui:composition>

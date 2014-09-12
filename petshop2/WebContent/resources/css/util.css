@@ -1,0 +1,32 @@
+/* ----------------- Formatacao de textos  -----------------*/
+p{
+	font-size: 13px;
+	color:#333;
+}
+h1{
+	font-size:28px;
+	color: #900;
+}
+h2, h3{
+	font-size: 22px;
+	color: #0f5495;
+	font-family:'museo_900regular', sans-serif;
+	text-transform: uppercase;
+	font-weight: normal;
+	margin: 0 0 18px;
+	line-height: normal;
+}
+h3{
+	font-size: 15px;
+}
+h4{
+	font-size:16px;
+}
+h5{
+	font-size:14px;
+}
+h6{
+	font-size:10px;
+}
+
+/* ----------------- Fim formatação de textos  ----------------- */

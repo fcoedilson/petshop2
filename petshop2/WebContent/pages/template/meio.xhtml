@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:a4j="http://richfaces.org/a4j"
+				xmlns:rich="http://richfaces.org/rich"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:sec="http://www.springframework.org/security/facelets/tags"
+				xmlns:t="http://myfaces.apache.org/tomahawk"
+				xmlns:p="http://primefaces.org/ui">
+	
+	<h:head>
+		<meta charset="utf-8"></meta>
+	</h:head>
+	
+	<div id="conteudo">
+		<div id="panelTitle">
+			<p:messages id="messages" autoUpdate="true" closable="true" globalOnly="true"/>
+			<div class="title">
+				<div class="span6" style="margin-left: 10px !important;">
+					<h:outputText value="#{pageTitle}" styleClass="titulo-form"/>
+				</div>
+				<div>
+					<div class="logacesso" style="padding-top: 12px !important;">
+						<h:panelGroup rendered="#{!authenticationService.usuario.naoRenderizarLogAcesso}">
+							<div class="acesso">#{authenticationService.usuario.ultimoAcesso} (<span>#{authenticationService.usuario.diaDaSemana}</span>) #{bundle.lbl_as} <span>#{authenticationService.usuario.horaAcesso}</span></div>
+						</h:panelGroup>
+						
+						<div class="usuario"> (<span>#{authenticationService.usuario.nome}</span>)<h:outputText value="- admin" style="font-size: 15px; margin-left:5px;" rendered="#{sec:ifAnyGranted('ADMIN_ROOT')}"/></div>
+					</div>
+				</div>
+			</div>
+		</div>
+			
+		<h:form id="formulario">
+			
+			<div style="margin: 10px;">
+				<ui:insert name="content"/>
+			</div>
+
+			<div style="margin: 20px 10px; ">
+				<ui:insert name="buttonItens" />
+			</div>
+			
+			<div style="padding:20px 10px; margin-top: 50px; ">
+				<h:panelGroup id="abaixoFiltro">
+					
+					<h:panelGroup id="divCarregando">
+						<div style="text-align: center">
+						     <a4j:status>
+								<f:facet name="start">
+								    <div id="ajaxLoading">
+				    			        <div id="divProcessando" > 
+											<table style="background-color:transparent !important;">
+												<span class="message"><h:outputText value="Carregando..."/> </span>
+											</table>
+										</div>
+								    </div>
+								</f:facet>
+						     </a4j:status>
+						</div>
+					</h:panelGroup>
+					
+					<h:panelGroup id="panelMsg" rendered="#{empty crudBean.beanProperties.result and crudBean.searching and (!crudBean.search or empty crudBean.searchResult)  and not hideMessageNotFoundResult}">
+						<rich:panel style="text-align: center; background: none;">
+							<h:panelGroup rendered="#{!crudBean.search}">
+								<img src="/#{bundle.pathAplicacao}/resources/imagens/lbl-findWarning.png" alt="Sem Filtro" class="tdCor" />
+								<h:outputText value="#{bundle.lbl_preencha_filtros}" class="tdCor"/>
+							</h:panelGroup>
+							<h:panelGroup rendered="#{crudBean.search and empty crudBean.searchResult and not hideMessageNotFoundResult}">
+								<img src="/#{bundle.pathAplicacao}/resources/imagens/lbl-findWarningEmpty.png" alt="Sem Filtro" class="tdCor" />
+								<h:outputText value="#{bundle.lbl_nenhum_resultado}" class="tdCor"/>
+							</h:panelGroup>
+						</rich:panel>
+					</h:panelGroup>
+					
+					<h:panelGroup>
+						<h:panelGroup rendered="#{crudBean.beanProperties.mensagem != null}">
+							<h:outputText value="#{crudBean.beanProperties.mensagem}" style="font-size:15px;"/>
+							<a4j:commandLink render="abaixoFiltro" action="#{crudBean.selecionarTodasLinhas()}" value="#{bundle.voce_selecionou_todos_registros_pagina_continuacao}" style="font-size:15px; color: red;"/>
+						</h:panelGroup>
+						
+						<h:panelGroup rendered="#{crudBean.beanProperties.selecionouTodos != null}">
+							<h:outputText value="#{crudBean.beanProperties.selecionouTodos}" style="font-size:15px;"/>
+							<a4j:commandLink render="abaixoFiltro" action="#{crudBean.deselecionarTodasLinhas()}" value="#{bundle.voce_selecionou_todos_registros_continuacao}" style="font-size:15px; color: red;"/>
+						</h:panelGroup>
+					</h:panelGroup>
+					
+				</h:panelGroup>
+				
+				<ui:insert name="list"/>
+			</div>
+			
+		</h:form>
+		<ui:insert name="extras"/>
+		
+		<rich:popupPanel id="popupConfirmExcluir" modal="true" autosized="true" resizeable="false" width="320">
+				
+			<div class="modal-header">
+				<h3 id="myModalLabel"><h:outputText value="#{bundle.lbl_confirmar_excluir}" /></h3>
+			</div>
+			
+			<f:facet name="controls">
+	            <h:outputLink value="#" onclick="#{rich:component('popupConfirmExcluir')}.hide(); return false;">
+	               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	            </h:outputLink>
+	        </f:facet>	
+			
+			<div class="modal-body">
+				<h:outputText value="#{bundle.lbl_confirmacao_exclusao}"/>
+			</div>
+			
+	    	<h:form>
+				<a4j:commandButton value="#{bundle.lbl_sim}" action="#{crudBean.remove}" immediate="true" render="abaixoFiltro" oncomplete="#{rich:component('popupConfirmExcluir')}.hide(); return false;" styleClass="btn-padrao" style="margin-left: 40px; margin-bottom: 10px;"/>
+				<a4j:commandButton value="#{bundle.lbl_nao}" immediate="true" onclick="#{rich:component('popupConfirmExcluir')}.hide(); return false;" styleClass="btn-padrao" style="margin-bottom: 10px;"/>
+			</h:form>
+				
+		</rich:popupPanel>
+		
+		<rich:popupPanel id="popupConfirmExpurgo" modal="true" autosized="true" resizeable="false" width="350">
+				
+			<div class="modal-header">
+				<h3 id="myModalLabel"><h:outputText value="#{bundle.lbl_confirmar_excluir}" /></h3>
+			</div>
+			
+			<f:facet name="controls">
+		           <h:outputLink value="#" onclick="#{rich:component('popupConfirmExpurgo')}.hide(); return false;">
+		               <h:outputText value="fechar" />
+		           </h:outputLink>
+		    </f:facet>	
+			
+			<div class="modal-body">
+				<h:outputText value="#{bundle.lbl_confirmacao_exclusao}"/>
+			</div>
+			
+			<br />		
+			<br />
+			<h:form>
+				<a4j:commandButton value="#{bundle.lbl_sim}" action="#{crudBean.expurgar}" immediate="true" render="panelGroupDeListagem,tblData" oncomplete="#{rich:component('popupConfirmExpurgo')}.hide(); return false;" styleClass="btn-padrao" style="margin-left: 40px; margin-bottom: 10px;" />
+				<a4j:commandButton value="#{bundle.lbl_nao}" immediate="true" onclick="#{rich:component('popupConfirmExpurgo')}.hide(); return false;" styleClass="btn-padrao" style="margin-bottom: 10px;" />
+			</h:form>
+		</rich:popupPanel>
+		
+		<rich:popupPanel id="popupLog" modal="true" autosized="true" resizeable="false" width="500">
+			
+			<div class="modal-header">
+				<h3 id="myModalLabel"><h:outputText value="#{bundle.ultimos_acessos}" /></h3>
+			</div>
+			
+			<f:facet name="controls">
+	            <h:outputLink value="#" onclick="#{rich:component('popupLog')}.hide(); return false;">
+	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	            </h:outputLink>
+	        </f:facet>
+        	
+        	<div class="modal-body">
+	        	<h:panelGroup rendered="#{authenticationService.usuario.logAcessos.size() >= 1}">
+		        	<h:outputText value="Confira os 10 ultimos acessos realizados no sistema com o usuario #{authenticationService.usuario.nome}" /><br /><br />
+	   				<rich:dataTable var="row" rows="10" value="#{authenticationService.usuario.logAcessos}" style="width: 100%;">
+						<f:facet name="header">
+							<rich:columnGroup>
+								<rich:column><h:outputText value="#{bundle.lbl_ip}" /></rich:column>
+								<rich:column><h:outputText value="#{bundle.lbl_data_hora}" /></rich:column>
+							</rich:columnGroup>
+						</f:facet>
+						<rich:column style="text-align: center;" >
+							<h:outputText value="#{row.ip}"/>
+						</rich:column>
+						<rich:column style="text-align: center;">
+							<h:outputText value="#{row.data} - #{row.hora}"/>
+						</rich:column>
+					</rich:dataTable>
+				</h:panelGroup>
+			</div>
+        	<a4j:commandButton value="#{bundle.lbl_fechar}" render="formCupom" onclick="#{rich:component('popupLog')}.hide(); return false;" style="margin-left: 15px; margin-bottom: 10px;" styleClass="btn-padrao"/>
+		</rich:popupPanel>
+	</div>
+</ui:composition>

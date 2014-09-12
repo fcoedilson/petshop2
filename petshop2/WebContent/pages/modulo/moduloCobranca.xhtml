@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	template="/pages/template/template.xhtml">
+
+	<ui:param name="hideButtonReport" value="true" />
+	<ui:param name="hideButtonNew" value="true" />
+	<ui:param name="hideButtonSearch" value="true" />
+	<ui:param name="hideMessageNotFoundResult" value="true" />
+	<ui:param name="pageTitle" value="#{bundle.titulo_modulo_cobranca}" />
+
+	<ui:define name="content">
+	
+		<table style="width: 100%;">
+			<tr>
+				<td style="vertical-align: top;">
+					<p:panel header="#{bundle.lbl_cadastro}" styleClass="panelConfiguration">
+						<li><h:commandLink value="#{bundle.lbl_sacado}"    	          action="/pages/moduloCobranca/cobranca/sacado.xhtml"/></li>
+						<li><h:commandLink value="#{bundle.menu_grupo_sacado}"	      action="/pages/moduloCobranca/cobranca/grupoSacado.xhtml" /></li>
+					</p:panel>
+				</td>		
+				<td style="vertical-align: top;">
+					<p:panel header="#{bundle.lbl_boletos}" styleClass="panelConfiguration">
+						<li><h:commandLink value="#{bundle.lbl_gerar}"  /></li>
+						<li><h:commandLink value="#{bundle.lbl_imprimir}"  /></li>
+						<li><h:commandLink value="#{bundle.lbl_consultar}"  /></li>
+						<li><h:commandLink value="#{bundle.lbl_comprovante}"  /></li>
+					</p:panel>
+				</td>		
+				<td style="vertical-align: top;">
+					<p:panel header="#{bundle.lbl_cadastro}" styleClass="panelConfiguration">
+						<li><h:commandLink value="#{bundle.lbl_remessa}"   /></li>
+						<li><h:commandLink value="#{bundle.lbl_retorno}"   /></li>
+					</p:panel>
+				</td>		
+			</tr>
+		</table>
+		
+	</ui:define>
+</ui:composition>

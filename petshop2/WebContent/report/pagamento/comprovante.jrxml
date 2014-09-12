@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pagamento" pageWidth="650" pageHeight="900" whenNoDataType="NoDataSection" columnWidth="610" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="5db0c95c-af52-4b0d-886d-1cc279370fc4">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="USUARIO" class="java.lang.String"/>
+	<parameter name="IMAGEM_BANCO" class="java.lang.String"/>
+	<parameter name="DATA" class="java.lang.String"/>
+	<parameter name="DATA_PAGAMENTO" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="EMPRESA" class="java.lang.String"/>
+	<parameter name="BANCO" class="java.lang.String"/>
+	<parameter name="CONTA" class="java.lang.String"/>
+	<parameter name="CNPJ" class="java.lang.String"/>
+	<parameter name="COMPROMISSO" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[]]>
+	</queryString>
+	<field name="conta" class="java.lang.String"/>
+	<field name="nome" class="java.lang.String"/>
+	<field name="banco.descricao" class="java.lang.String"/>
+	<field name="agencia" class="java.lang.String"/>
+	<field name="dvConta" class="java.lang.String"/>
+	<field name="dvAgencia" class="java.lang.String"/>
+	<field name="tooltipOcorrencia" class="java.lang.String"/>
+	<field name="valor" class="java.lang.Double"/>
+	<field name="cnpjCpf" class="java.lang.String"/>
+	<field name="numeroDocumentoBanco" class="java.lang.Long"/>
+	<title>
+		<band height="32" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="8fb8beff-2159-4edc-8aae-f9ed6a37ec5e" mode="Opaque" x="149" y="6" width="298" height="26" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["   COMPROVANTE PAGAMENTO"]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="129">
+			<rectangle>
+				<reportElement uuid="f87d2b98-f820-47bb-bb30-563ed255cff1" mode="Transparent" x="28" y="23" width="545" height="95"/>
+			</rectangle>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="8fb8beff-2159-4edc-8aae-f9ed6a37ec5e" mode="Opaque" x="66" y="35" width="114" height="20" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Empresa :"]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="8fb8beff-2159-4edc-8aae-f9ed6a37ec5e" mode="Opaque" x="66" y="75" width="114" height="20" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Banco: "]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="8fb8beff-2159-4edc-8aae-f9ed6a37ec5e" mode="Opaque" x="66" y="55" width="114" height="20" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["CNPJ: "]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="8fb8beff-2159-4edc-8aae-f9ed6a37ec5e" mode="Opaque" x="66" y="95" width="114" height="20" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Conta Débito: "]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement uuid="8fb8beff-2159-4edc-8aae-f9ed6a37ec5e" mode="Transparent" x="180" y="35" width="168" height="20" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="11" isBold="false" isItalic="true" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{EMPRESA}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement uuid="8fb8beff-2159-4edc-8aae-f9ed6a37ec5e" mode="Opaque" x="180" y="55" width="168" height="20" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="11" isBold="false" isItalic="true" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{CNPJ}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement uuid="8fb8beff-2159-4edc-8aae-f9ed6a37ec5e" mode="Opaque" x="180" y="75" width="168" height="20" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="11" isBold="false" isItalic="true" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{BANCO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement uuid="8fb8beff-2159-4edc-8aae-f9ed6a37ec5e" mode="Opaque" x="180" y="95" width="168" height="20" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="11" isBold="false" isItalic="true" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{CONTA}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="8fb8beff-2159-4edc-8aae-f9ed6a37ec5e" mode="Opaque" x="28" y="0" width="141" height="20" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Emissor"]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement uuid="b1c75978-a868-4bdd-bc9c-71cfb8606491" x="348" y="45" width="225" height="56"/>
+				<imageExpression><![CDATA[$P{IMAGEM_BANCO}]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="731">
+			<rectangle>
+				<reportElement uuid="f87d2b98-f820-47bb-bb30-563ed255cff1" mode="Transparent" x="28" y="27" width="545" height="226"/>
+			</rectangle>
+			<textField>
+				<reportElement uuid="3344a4ac-185d-4106-94f0-e6c2e72c49f2" x="207" y="41" width="300" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="false" isItalic="true" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="95a24740-e5e7-4b4a-ad57-90abdb8da8cf" x="207" y="101" width="300" height="20"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="11" isBold="false" isItalic="true" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{agencia} + "-" + $F{dvAgencia} + " / " + $F{conta} + "-" + $F{dvConta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="81971b97-0d27-48ac-ade8-dc0fe5547bff" x="207" y="81" width="300" height="20"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="11" isBold="false" isItalic="true" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{banco.descricao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="81971b97-0d27-48ac-ade8-dc0fe5547bff" x="207" y="61" width="300" height="20"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="11" isBold="false" isItalic="true" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cnpjCpf}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement uuid="81971b97-0d27-48ac-ade8-dc0fe5547bff" x="207" y="181" width="300" height="20"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="11" isBold="false" isItalic="true" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tooltipOcorrencia}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement uuid="81971b97-0d27-48ac-ade8-dc0fe5547bff" x="207" y="161" width="300" height="20"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="11" isBold="false" isItalic="true" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{COMPROMISSO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="8fb8beff-2159-4edc-8aae-f9ed6a37ec5e" mode="Opaque" x="232" y="121" width="275" height="20" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="11" isBold="false" isItalic="true" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement uuid="8fb8beff-2159-4edc-8aae-f9ed6a37ec5e" mode="Opaque" x="207" y="141" width="300" height="20" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="11" isBold="false" isItalic="true" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{DATA_PAGAMENTO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="8fb8beff-2159-4edc-8aae-f9ed6a37ec5e" mode="Opaque" x="66" y="41" width="141" height="20" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Nome :"]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="8fb8beff-2159-4edc-8aae-f9ed6a37ec5e" mode="Opaque" x="66" y="81" width="141" height="20" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Banco: "]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="8fb8beff-2159-4edc-8aae-f9ed6a37ec5e" mode="Opaque" x="66" y="61" width="141" height="20" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["CPF / CNPJ: "]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="8fb8beff-2159-4edc-8aae-f9ed6a37ec5e" mode="Opaque" x="66" y="101" width="141" height="20" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Conta Crédito: "]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="8fb8beff-2159-4edc-8aae-f9ed6a37ec5e" mode="Opaque" x="66" y="141" width="141" height="20" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Data: "]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="8fb8beff-2159-4edc-8aae-f9ed6a37ec5e" mode="Opaque" x="66" y="121" width="141" height="20" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Valor: "]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="8fb8beff-2159-4edc-8aae-f9ed6a37ec5e" mode="Opaque" x="66" y="161" width="141" height="20" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Observação: "]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="8fb8beff-2159-4edc-8aae-f9ed6a37ec5e" mode="Opaque" x="66" y="181" width="141" height="20" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Informação: "]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="8fb8beff-2159-4edc-8aae-f9ed6a37ec5e" mode="Opaque" x="28" y="4" width="139" height="20" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Favorecido"]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement uuid="8fb8beff-2159-4edc-8aae-f9ed6a37ec5e" mode="Opaque" x="39" y="230" width="524" height="20" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="false" isItalic="true" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Operação realizada com sucesso segundo informações do banco!"]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement uuid="8fb8beff-2159-4edc-8aae-f9ed6a37ec5e" mode="Opaque" x="207" y="121" width="25" height="20" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="11" isBold="false" isItalic="true" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["R$"]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="8fb8beff-2159-4edc-8aae-f9ed6a37ec5e" mode="Opaque" x="66" y="201" width="141" height="20" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Núm. Doc. Banco: "]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement uuid="81971b97-0d27-48ac-ade8-dc0fe5547bff" x="207" y="201" width="300" height="20"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="11" isBold="false" isItalic="true" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numeroDocumentoBanco}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:a4j="http://richfaces.org/a4j"
+				xmlns:rich="http://richfaces.org/rich"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:c="http://java.sun.com/jstl/core">
+				
+		<h:panelGrid columns="3" style="width:80%;">
+			<h:column >
+				<h:outputText value="#{bundle.lbl_periodo_envio}"/>
+				<br />
+				<rich:calendar id="dataVendaI" value="#{crudBean.filter.dataInicial}" datePattern="dd/MM/yyyy" inputSize="10" enableManualInput="true"/>
+				<h:outputText value=" #{bundle.lbl_ate} " />
+				<rich:calendar id="dataVendaF" value="#{crudBean.filter.dataFinal}" datePattern="dd/MM/yyyy" inputSize="10"	enableManualInput="true" />
+			</h:column>
+			
+			<h:column >
+				<h:outputText value="#{bundle.lbl_status}"/>
+				<br />
+				<h:selectOneRadio  class="tdBranco" value="#{crudBean.filter.status}" style="width: 300px;">
+					<f:selectItem itemValue="0" itemLabel="#{bundle.lbl_todos}" />
+					<f:selectItem itemValue="true" itemLabel="#{bundle.lbl_enviado}" />
+					<f:selectItem itemValue="false" itemLabel="#{bundle.lbl_pendente}" />
+				</h:selectOneRadio >
+			</h:column>
+			
+			<h:column >
+				<h:outputText value="#{bundle.lbl_reenvio}"/>
+				<br />
+				<h:selectOneRadio  class="tdBranco" value="#{crudBean.filter.reenvio}" style="width: 300px;">
+					<f:selectItem itemValue="0" itemLabel="#{bundle.lbl_todos}" />
+					<f:selectItem itemValue="true" itemLabel="#{bundle.lbl_reenviado}" />
+					<f:selectItem itemValue="false" itemLabel="#{bundle.lbl_nao_reenviado}" />
+				</h:selectOneRadio >
+			</h:column>
+		</h:panelGrid>
+</ui:composition>

@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<faces-config version="2.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xi="http://www.w3.org/2001/XInclude"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee  http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+  
+    <application>
+        <el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+		<message-bundle>petShop</message-bundle>		
+		<resource-bundle>
+			<base-name>petShop</base-name>
+			<var>bundle</var>			
+		</resource-bundle>
+		
+		<locale-config>
+			<default-locale>pt_BR</default-locale>
+			<supported-locale>pt_BR</supported-locale>
+			<supported-locale>en_US</supported-locale>
+		</locale-config>
+		
+	</application>
+    
+	    <converter>
+	       <converter-id>TelefoneConverter</converter-id>
+	       <converter-class>br.com.petshop.base.converter.TelefoneConverter</converter-class>
+	    </converter>
+	    
+	    <validator>
+		  <validator-id>TelefoneValidator</validator-id> 
+		  <validator-class>br.com.petshop.base.validator.TelefoneValidator</validator-class> 
+		</validator>
+    		
+	    <converter>
+	       <converter-id>CepConverter</converter-id>
+	       <converter-class>br.com.petshop.base.converter.CepConverter</converter-class>
+	    </converter>
+	    
+	    <validator>
+		  <validator-id>CepValidator</validator-id> 
+		  <validator-class>br.com.petshop.base.validator.CepValidator</validator-class> 
+		</validator>
+	    	    
+	    <converter>
+	       <converter-id>CnpjConverter</converter-id>
+	       <converter-class>br.com.petshop.base.converter.CnpjConverter</converter-class>
+	    </converter>
+	    	    	    
+	    <converter>
+	       <converter-id>CpfConverter</converter-id>
+	       <converter-class>br.com.petshop.base.converter.CpfConverter</converter-class>
+	    </converter>
+	    
+	    <validator>
+		  <validator-id>CnpjValidator</validator-id> 
+		  <validator-class>br.com.petshop.base.validator.CnpjValidator</validator-class> 
+		</validator>
+		
+		<converter>
+			<converter-id>CnpjCpfConverter</converter-id>
+			<converter-class>br.com.petshop.base.converter.CnpjCpfConverter</converter-class>
+		</converter>
+		
+		<validator>
+			<validator-id>CnpjCpfValidator</validator-id>
+			<validator-class>br.com.petshop.base.validator.CnpjCpfValidator</validator-class>
+		</validator>
+    
+</faces-config>

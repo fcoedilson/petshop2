@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags">
+
+
+	
+	<rich:popupPanel id="modalTblBloqueio" modal="true" autosized="true" resizeable="false" width="500">
+	
+		<div class="modal-header">
+			<h3 id="myModalLabel"><h:outputText value="#{bundle.ultimos_bloqueios}"/></h3>
+		</div>
+	
+       	<div class="modal-body">
+			<rich:dataTable id="tblBloqueio" var="row" rows="10" value="#{crudBean.beanProperties.ultimosBloqueios}" style="width: 100%;">
+				<f:facet name="header">
+					<rich:columnGroup>
+						<rich:column><h:outputText value="#{bundle.lbl_data_hora}" /></rich:column>
+						<rich:column><h:outputText value="Tentativa" /></rich:column>
+						<rich:column><h:outputText value="#{bundle.lbl_bloqueado}" /></rich:column>
+					</rich:columnGroup>
+				</f:facet>
+				<rich:column style="text-align: center;">
+					<h:outputText value="#{row.dataBloqueio}"/>
+				</rich:column>
+				<rich:column style="text-align: center;">
+					<h:outputText value="#{row.tentativa}"/>
+				</rich:column>
+				<rich:column style="text-align: center;">
+					<h:graphicImage title="#{bundle.lbl_desabilitar}" value="/resources/imagens/ativar.bmp" style="border: 0px;"   rendered="#{row.bloqueado}" />
+					<h:graphicImage title="#{bundle.lbl_habilitar}"   value="/resources/imagens/inativar.bmp" style="border: 0px;" rendered="#{!row.bloqueado}" />
+				</rich:column>
+			</rich:dataTable>
+		</div>
+		
+		<h:form>
+       		<a4j:commandButton value="#{bundle.lbl_fechar}" onclick="#{rich:component('modalTblBloqueio')}.hide(); return false;" style="margin-left: 15px; margin-bottom: 10px;" styleClass="btn-padrao"/>
+       		<a4j:commandButton value="#{bundle.lbl_desbloquear}" action="#{crudBean.desbloquearUsuario()}"  immediate="true"  oncomplete="#{rich:component('modalTblBloqueio')}.hide(); return false;" style="margin-left: 15px; margin-bottom: 10px; width: 120px !important;" styleClass="btn-danger"
+       		render="formulario"/>
+       	</h:form>
+       	
+	</rich:popupPanel>
+</ui:composition>

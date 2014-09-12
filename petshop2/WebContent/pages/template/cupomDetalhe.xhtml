@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:a4j="http://richfaces.org/a4j"
+				xmlns:rich="http://richfaces.org/rich"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:c="http://java.sun.com/jstl/core"
+				xmlns:p="http://primefaces.org/ui">
+
+	<h:panelGroup rendered="#{crudBean.beanProperties.visualizarCupom}" id="visualizarCupomDentro" >
+	
+		<div class="box-extrato">
+			<div class="box-nota-fiscal">
+				<span class="borda-top"></span>
+				
+
+				<div class="box-logo-extrato">
+					<table style="width: 100%;">
+						<tr>
+							<td style="width: 80%;">
+								<img src="/#{bundle.pathAplicacao}/resources/imagens/#{crudBean.resultProperties.cupomRede}" height="33" width="93" style="padding-left: 50px;"/>
+							</td>
+							
+							<td style="width: 20%; padding-bottom: 80px;">
+								<a4j:commandLink onclick="document.getElementById('visualizarCupomDentro').style.display='none';" render="abaixoFiltro">
+									<f:setPropertyActionListener target="#{crudBean.beanProperties.visualizarCupom}" value="#{false}"/>
+									<h:graphicImage value="/resources/imagens/close.png"  style="border: 0px;"/>
+								</a4j:commandLink>
+							</td>
+						</tr>
+					</table>
+				</div>
+				
+				<p class="venda"><h:outputText value="#{crudBean.resultProperties.cupomNumeroCartao}" style="text-align: center; font-weight: bold; font-size: 14px;"/></p>
+				<p class="venda"><h:outputText value="#{crudBean.resultProperties.cupomBandeira.toUpperCase()}" style="text-align: center;"/></p>
+					
+					<h:panelGrid columns="2" style="margin-left: 20px;">
+					    
+					    <h:outputText value="#{bundle.lbl_nsu}:" style="text-align: left; font-weight: bold;"/>
+					    <h:outputText value="#{crudBean.resultProperties.cupomNsu}" style="text-align: left; margin-left: 20px;"/>
+					    
+					    <h:outputText value="#{bundle.lbl_autorizacao}:" style="text-align: left; font-weight: bold;"/>
+					    <h:outputText value="#{crudBean.resultProperties.cupomAutorizacao}" style="text-align: left; margin-left: 20px;"/>
+					    
+					    <h:outputText value="#{bundle.lbl_data}:" style="text-align: left; font-weight: bold;"/>
+					    <h:outputText value="#{crudBean.resultProperties.cupomData}" style="text-align: left; margin-left: 20px;"/>
+					    
+					    <h:outputText value="#{bundle.lbl_filiais}:" style="text-align: left; font-weight: bold;"/>
+					    <h:outputText value="#{crudBean.resultProperties.cupomLoja}" style="text-align: left; margin-left: 20px;"/>
+					
+						<h:outputText value="#{bundle.lbl_lote}:" style="text-align: left; font-weight: bold;"/>
+						<h:outputText value="#{crudBean.resultProperties.cupomLote}" style="text-align: left; margin-left: 20px;"/>
+						
+						<h:outputText value="#{bundle.lbl_parcelas}:" style="text-align: left; font-weight: bold;"/>
+						<h:outputText value="#{crudBean.resultProperties.cupomParcela}" style="text-align: left; margin-left: 20px;"/>
+						
+						<h:outputText value="#{bundle.lbl_banco}:" style="text-align: left; font-weight: bold;"/>
+						<h:outputText value="#{crudBean.resultProperties.cupomBanco}" style="text-align: left; margin-left: 20px;"/>
+						
+						<h:outputText value="#{bundle.lbl_agencia}:" style="text-align: left; font-weight: bold;"/>
+						<h:outputText value="#{crudBean.resultProperties.cupomAgencia}" style="text-align: left; margin-left: 20px;"/>
+						
+						<h:outputText value="#{bundle.lbl_conta}:" style="text-align: left; font-weight: bold;"/>
+						<h:panelGroup>
+							<h:outputText value="#{crudBean.resultProperties.cupomConta}" style="text-align: left; margin-left: 20px;"/>
+							<h:outputText value="-" rendered="#{not empty crudBean.resultProperties.cupomContaDV}" />
+							<h:outputText value="#{crudBean.resultProperties.cupomContaDV}" rendered="#{not empty crudBean.resultProperties.cupomContaDV}" />
+						</h:panelGroup>
+						
+						<h:outputText value="#{bundle.lbl_valor}:" style="text-align: left; font-weight: bold;"/>
+						<h:outputText value="#{crudBean.resultProperties.cupomValor}" style="text-align: left; margin-left: 20px;">
+				    		<f:convertNumber pattern="###,###,##0.00" />
+				    	</h:outputText>
+			    	</h:panelGrid>
+					<br/>
+					<a4j:repeat value="#{crudBean.resultProperties.cupomDetalheCupomVOs}" var="par">
+						<h:panelGrid columns="4" style="margin-left: 20px;">
+		                   	<h:outputText style="padding-right: 5px;" value="#{par.parcela}" />
+		                   	<h:outputText style="padding-right: 5px;" value="#{par.dataCreditoOuPagamento}" />
+		                   	<h:outputText style="padding-right: 5px;" value="#{par.valorParcela}" >
+		                   		<f:convertNumber pattern="###,###,##0.00" />
+		                   	</h:outputText>
+		                   	<h:outputText style="padding-right: 5px;" value="#{par.resumoParcela}" />
+		               	</h:panelGrid>
+	            	</a4j:repeat>
+				
+				<span class="borda-bottom"></span>
+			</div>
+		</div>
+       </h:panelGroup>
+</ui:composition>

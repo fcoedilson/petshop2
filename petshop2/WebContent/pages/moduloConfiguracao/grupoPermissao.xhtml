@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:a4j="http://richfaces.org/a4j"
+				xmlns:rich="http://richfaces.org/rich"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:p="http://primefaces.org/ui"
+				xmlns:c="http://java.sun.com/jstl/core"
+				xmlns:t="http://myfaces.apache.org/tomahawk"
+				template="/pages/template/crud_template.xhtml"> 
+				
+	<ui:param name="crudBean" value="#{grupoPermissaoBean}" />
+	<ui:param name="hideButtonReport" value="true" />	
+	
+	<ui:define name="content">
+		<h:panelGroup id="panelGroupDePesquisa" rendered="#{crudBean.searching}">
+			<h:panelGrid columns="2" style="width:50%;">
+				<h:outputText value="#{bundle.lbl_nome}"/>
+				<h:panelGroup styleClass="campo">
+					<p:inputText value="#{crudBean.filter.nome}" size="60" maxlength="40"  styleClass="ipt"/>
+				</h:panelGroup>
+			</h:panelGrid>
+		</h:panelGroup>
+		
+		<h:panelGroup id="panelGroupDeCadastro" rendered="#{crudBean.updating}" >
+		
+			<h:panelGrid columns="2" style="width:50%;">
+				<h:outputText value="#{bundle.lbl_nome}"/>
+				<h:panelGroup styleClass="campo">
+					<p:inputText id="nome" value="#{crudBean.defaultEntity.nome}" size="60" maxlength="40"  styleClass="ipt"/>
+				</h:panelGroup>
+				<p:message for="nome" errorClass="msgError"/>
+			</h:panelGrid>
+			
+			<br/> 
+			<p:panel id="panelPermissoesGrupo" header="#{bundle.lbl_permissoes}" style="width: 600px;">
+			
+				<h:outputText value="#{bundle.lbl_chave}: " />
+				<p:inputText value="#{crudBean.permissao.chave}" />
+				
+				<h:outputText value="#{bundle.lbl_descricao}: " />
+				<p:inputText value="#{crudBean.permissao.descricao}" />
+				
+				<a4j:commandButton value="#{bundle.lbl_incluir}" action="#{crudBean.adicionarPermissao}" render="panelPermissoesGrupo, divCarregando" styleClass="btn-padrao"/>
+				
+				<br/><br/><br/>
+				
+				<rich:dataTable rendered="#{not empty crudBean.defaultEntity.permissoes}" value="#{crudBean.defaultEntity.permissoes}" var="row" style="width: 100%;"
+				styleClass="table table-striped">
+					<rich:column >
+						<f:facet name="header">
+							<h:outputText value="#{bundle.lbl_chave}" />
+						</f:facet>
+						<h:outputText value="#{row.chave}"/>
+					</rich:column>
+					<rich:column >
+						<f:facet name="header">
+							<h:outputText value="#{bundle.lbl_descricao}" />
+						</f:facet>
+						<h:outputText value="#{row.descricao}"/>
+					</rich:column>
+					<rich:column style="text-align: center;">
+						<f:facet name="header">
+							<h:outputText value="#{bundle.lbl_editar}" />
+						</f:facet>
+						<a4j:commandLink ajaxSingle="true" render="formulario, panelTitle">
+							<h:graphicImage title="#{bundle.lbl_alterar}" value="/resources/imagens/alterar.gif" style="border: 0px;"/>
+							<f:setPropertyActionListener value="#{row}" target="#{crudBean.permissao}" />
+						</a4j:commandLink>
+					</rich:column>
+					<rich:column style="text-align: center;">
+						<f:facet name="header">
+							<h:outputText value="#{bundle.lbl_remover}" />
+						</f:facet>
+						<a4j:commandLink onclick="#{rich:component('popupConfirmExcluirPermissao')}.show()" immediate="true" >
+							<h:graphicImage title="#{bundle.lbl_remover}" value="/resources/imagens/delete.gif" style="border: 0px;"/>
+							<f:setPropertyActionListener value="#{row}" target="#{crudBean.beanProperties.permissaoDelecao}" />
+						</a4j:commandLink>
+					</rich:column>
+				</rich:dataTable>
+			</p:panel>
+		</h:panelGroup>
+	</ui:define>
+	
+	<ui:define name="list">
+		<h:panelGroup id="panelGroupDeListagem" rendered="#{crudBean.searching}">
+			<rich:dataTable id="tblData" value="#{crudBean.pagedList.dataModel}" rendered="#{crudBean.pagedList.dataModel.rowCount > 0}" rows="20" var="row" style="width: 50%;">
+              	<rich:column style="text-align: left;">
+					<f:facet name="header">
+						<h:outputText value="#{bundle.lbl_nome}" />
+					</f:facet>
+					<h:outputText value="#{row.nome}"/>
+				</rich:column>
+				<rich:column style="text-align: center;">
+					<f:facet name="header">
+						<h:outputText value="#{bundle.lbl_editar}" />
+					</f:facet>
+					<a4j:commandLink action="#{crudBean.prepareEdit}" ajaxSingle="true" render="formulario, panelTitle">
+						<h:graphicImage title="#{bundle.lbl_alterar}" value="/resources/imagens/alterar.gif" style="border: 0px;"/>
+						<f:setPropertyActionListener value="#{row}" target="#{crudBean.defaultEntity}" />
+					</a4j:commandLink>
+				</rich:column>
+				<rich:column style="text-align: center;">
+					<f:facet name="header">
+						<h:outputText value="#{bundle.lbl_remover}" />
+					</f:facet>
+					<a4j:commandLink onclick="#{rich:component('popupConfirmExcluir')}.show()" immediate="true" >
+						<h:graphicImage title="#{bundle.lbl_remover}" value="/resources/imagens/delete.gif" style="border: 0px;"/>
+						<f:setPropertyActionListener value="#{row}" target="#{crudBean.defaultEntity}" />
+					</a4j:commandLink>
+				</rich:column>
+				
+				<f:facet name="footer">
+					<rich:columnGroup>
+						<rich:column colspan="5" >
+							<rich:dataScroller for="tblData" page="#{crudBean.pagedList.paginaClicada}" fastControls="hide" 
+							scrollListener="#{crudBean.pagedList.pesquisar()}" render="tblData, divCarregando" />
+						</rich:column>
+					</rich:columnGroup>
+				</f:facet>
+			</rich:dataTable>
+		</h:panelGroup>
+	</ui:define>
+	
+	<ui:define name="extras">
+		<rich:popupPanel id="popupConfirmExcluirPermissao" modal="true" autosized="true" resizeable="false" width="300">
+				
+			<div class="modal-header">
+				<h3 id="myModalLabel"><h:outputText value="#{bundle.lbl_confirmar_excluir}" /></h3>
+			</div>
+			
+			<f:facet name="controls">
+	            <h:outputLink value="#" onclick="#{rich:component('popupConfirmExcluirPermissao')}.hide(); return false;">
+	               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	            </h:outputLink>
+	        </f:facet>	
+			
+			<div class="modal-body">
+				<h:outputText value="#{bundle.lbl_confirmacao_exclusao}"/>
+			</div>
+			
+	    	<h:form>
+				<a4j:commandButton value="#{bundle.lbl_sim}" action="#{crudBean.removerPermissao}" immediate="true" render="panelPermissoesGrupo" oncomplete="#{rich:component('popupConfirmExcluirPermissao')}.hide(); return false;"  style="margin-left: 40px; margin-bottom: 10px;"/>
+				<a4j:commandButton value="#{bundle.lbl_nao}" immediate="true" onclick="#{rich:component('popupConfirmExcluirPermissao')}.hide(); return false;"  style="margin-bottom: 10px;"/>
+			</h:form>
+				
+		</rich:popupPanel>
+	</ui:define>
+	
+</ui:composition>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:a4j="http://richfaces.org/a4j"
+				xmlns:rich="http://richfaces.org/rich"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:c="http://java.sun.com/jstl/core"
+				xmlns:sec="http://www.springframework.org/security/facelets/tags"
+				xmlns:p="http://primefaces.org/ui"
+				template="/pages/template/crud_template.xhtml"> 
+
+	<ui:param name="crudBean" value="#{feriadoBean}" />
+	<ui:param name="hideButtonReport" value="true" />	
+	<ui:param name="hideButtonNew" value="#{sec:ifNotGranted('FERIADO_C')}" />	
+	
+	<ui:define name="content">
+	
+		<h:panelGroup id="panelGroupDePesquisa" rendered="#{crudBean.searching}">
+			<h:panelGrid columns="3" style="width:30%;">
+				<h:outputText value="#{bundle.lbl_descricao}"/>
+				<p:inputText id="descricao" value="#{crudBean.filter.descricao}" size="40" maxlength="50"/>
+				<p:message for="descricao" errorClass="msgError"/>
+			</h:panelGrid>
+		</h:panelGroup>
+		
+		<h:panelGroup id="panelGroupDeCadastro" rendered="#{crudBean.updating}" >
+			<h:panelGrid columns="4" style="width:30%;">
+				<h:outputText value="#{bundle.lbl_descricao} *"/>
+				<p:inputText id="descricaoDe" value="#{crudBean.defaultEntity.descricao}" size="40" maxlength="50" required="true"/>
+				<p:message for="descricaoDe" errorClass="msgError"/>
+				<p:tooltip for="descricaoDe"/>
+
+				<h:outputText value="#{bundle.lbl_dia} *"/>
+				<p:inputText id="dia" value="#{crudBean.defaultEntity.dia}" size="2" maxlength="2" required="true" title="Digite apenas o DIA do Feriado"/>
+				<p:message for="dia" errorClass="msgError"/>
+				<p:tooltip for="dia" showEvent="focus" hideEvent="blur" />
+
+				<h:outputText value="#{bundle.lbl_mes} *"/>
+				<p:inputText id="mes" value="#{crudBean.defaultEntity.mes}" size="2" maxlength="2" required="true" title="Digite apenas o MÊS do Feriado"/>
+				<p:message for="mes" errorClass="msgError"/>
+				<p:tooltip for="mes" showEvent="focus" hideEvent="blur" />
+
+				<h:outputText value="#{bundle.lbl_ano}"/>
+				<p:inputText id="ano" value="#{crudBean.defaultEntity.ano}" size="4" maxlength="4" title="Caso deixe em branco, será confirmado que esse feriado é FIXO. Assim o mesmo se repetirá todos os anos."/>
+				<p:message for="ano" errorClass="msgError"/>
+				<p:tooltip for="ano" showEvent="focus" hideEvent="blur" />
+			</h:panelGrid>
+		</h:panelGroup>
+		
+	</ui:define>
+	
+	<ui:define name="list">
+		<h:panelGroup rendered="#{crudBean.searching}">
+			<rich:dataTable id="tblData" value="#{crudBean.searchResult}" var="row" rows="20" rendered="#{not empty crudBean.searchResult}"
+			styleClass="stable" rowClasses="odd-row, even-row">
+				<f:facet name="header">
+					<rich:columnGroup>
+						<rich:column style="text-align: center; width: 10%;">
+							<h:outputText value="#{bundle.lbl_descricao}" />
+						</rich:column>
+						<rich:column style="text-align: center; width: 10%;">
+							<h:outputText value="#{bundle.lbl_data}" />
+						</rich:column>
+						<rich:column style="text-align: center; width: 10%;">
+							<h:outputText value="#{bundle.lbl_fixo}" />
+						</rich:column>
+						<rich:column style="text-align: center; width: 10%;">
+							<h:outputText value="#{bundle.lbl_editar}" />
+						</rich:column>
+						<rich:column style="text-align: center; width: 10%;">
+							<h:outputText value="#{bundle.lbl_remover}" />
+						</rich:column>
+					</rich:columnGroup>
+				</f:facet>
+		
+				<rich:column style="text-align: center;">
+					<h:outputText value="#{row.descricao.toUpperCase()}" />
+				</rich:column>
+				<rich:column style="text-align: center;" >
+					<h:outputText value="#{row.dia}/#{row.mes}/#{row.ano}" rendered="#{row.ano  != null}"/>
+					<h:outputText value="#{row.dia}/#{row.mes}"            rendered="#{row.ano  == null}"/>
+				</rich:column>
+				<rich:column style="text-align: center;">
+					<h:graphicImage title="#{bundle.lbl_desabilitar}" value="/resources/imagens/ativar.bmp" style="border: 0px;"   rendered="#{row.ano == null}" />
+					<h:graphicImage title="#{bundle.lbl_habilitar}"   value="/resources/imagens/inativar.bmp" style="border: 0px;" rendered="#{row.ano != null}" />
+				</rich:column>
+				<rich:column style="text-align: center;">
+					<a4j:commandLink render="formulario, panelTitle" action="#{crudBean.prepareEdit}" ajaxSingle="true">
+						<h:graphicImage value="/resources/imagens/alterar.gif" style="border: 0px;" />
+						<f:setPropertyActionListener value="#{row}" target="#{crudBean.defaultEntity}" />
+					</a4j:commandLink>
+				</rich:column>
+				<rich:column style="text-align: center;" >
+					<a4j:commandLink render="formulario, panelTitle"  onclick="#{rich:component('popupConfirmExcluir')}.show()" immediate="true">
+						<h:graphicImage value="/resources/imagens/delete.gif" style="border: 0px;" />
+						<f:setPropertyActionListener value="#{row}" target="#{crudBean.defaultEntity}" />
+					</a4j:commandLink>
+				</rich:column>
+				<f:facet name="footer">
+					<rich:columnGroup>
+						<rich:column colspan="10" breakRowBefore="true" rendered="#{crudBean.searchResult.size() > 20}">
+							<rich:dataScroller for="tblData" render="abaixoFiltro" />
+						</rich:column>
+					</rich:columnGroup>
+				</f:facet>
+			</rich:dataTable>
+		</h:panelGroup>
+	</ui:define>
+</ui:composition>

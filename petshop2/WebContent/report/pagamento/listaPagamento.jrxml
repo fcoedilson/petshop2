@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pagamento" pageWidth="1300" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="1260" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="5db0c95c-af52-4b0d-886d-1cc279370fc4">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="USUARIO" class="java.lang.String"/>
+	<parameter name="CABECALHO" class="java.lang.String"/>
+	<parameter name="DATA" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[]]>
+	</queryString>
+	<field name="convenio.conta" class="java.lang.String"/>
+	<field name="dataPagamento" class="java.util.Date"/>
+	<field name="valorTotal" class="java.lang.Double"/>
+	<field name="statusString" class="java.lang.String"/>
+	<field name="compromisso.tipo.descricao" class="java.lang.String"/>
+	<field name="convenio.empresa.nomeFantasia" class="java.lang.String"/>
+	<field name="convenio.banco.descricao" class="java.lang.String"/>
+	<field name="convenio.agencia" class="java.lang.String"/>
+	<field name="convenio.dvConta" class="java.lang.String"/>
+	<field name="convenio.dvAgencia" class="java.lang.String"/>
+	<title>
+		<band height="74" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="8fb8beff-2159-4edc-8aae-f9ed6a37ec5e" mode="Opaque" x="0" y="54" width="1174" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Impresso por: " + $P{USUARIO} + "                Em: " + $P{DATA}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement uuid="b1c75978-a868-4bdd-bc9c-71cfb8606491" x="0" y="0" width="1174" height="54"/>
+				<imageExpression><![CDATA[$P{CABECALHO}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="41">
+			<staticText>
+				<reportElement uuid="9ffe3d64-0bb1-48bc-a87f-78255f7b795d" mode="Opaque" x="0" y="20" width="261" height="20" backcolor="#666666"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Empresa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a0c7c76a-7a01-4e6b-a021-c4203fbe6fbd" mode="Opaque" x="885" y="20" width="131" height="20" backcolor="#666666"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3d6d437e-a0b4-49ad-ac22-3bc328847ba5" mode="Opaque" x="1016" y="20" width="158" height="20" backcolor="#666666"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Status]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1846de83-8a40-49d9-bbdd-b882e30ff47d" mode="Opaque" x="393" y="20" width="163" height="20" backcolor="#666666"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Conta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5b8f444f-9635-4494-a78c-885d2f8a69b1" mode="Opaque" x="556" y="20" width="183" height="20" backcolor="#666666"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Compromisso]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="8fb8beff-2159-4edc-8aae-f9ed6a37ec5e" mode="Opaque" x="0" y="0" width="1174" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["PAGAMENTOS:  "]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="5b8f444f-9635-4494-a78c-885d2f8a69b1" mode="Opaque" x="261" y="20" width="132" height="20" backcolor="#666666"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Banco]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a0c7c76a-7a01-4e6b-a021-c4203fbe6fbd" mode="Opaque" x="739" y="20" width="146" height="20" backcolor="#666666"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="20">
+			<textField>
+				<reportElement uuid="3344a4ac-185d-4106-94f0-e6c2e72c49f2" x="0" y="0" width="261" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{convenio.empresa.nomeFantasia}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="5dfa3010-31c4-4eb7-bdb1-876b51ef7fae" x="885" y="0" width="131" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{valorTotal}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="70c18abb-0cb6-4469-9270-819a25dd2323" x="1016" y="0" width="158" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{statusString}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="95a24740-e5e7-4b4a-ad57-90abdb8da8cf" x="393" y="0" width="163" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{convenio.agencia} + "-" + $F{convenio.dvAgencia} + " / " + $F{convenio.conta} + "-" + $F{convenio.dvConta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="81971b97-0d27-48ac-ade8-dc0fe5547bff" x="261" y="0" width="132" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{convenio.banco.descricao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="81971b97-0d27-48ac-ade8-dc0fe5547bff" x="556" y="0" width="183" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{compromisso.tipo.descricao}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="81971b97-0d27-48ac-ade8-dc0fe5547bff" x="739" y="0" width="146" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{dataPagamento}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

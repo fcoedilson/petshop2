@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file-format>
+	<converter name="char" class="com.blackbear.flatworm.converters.CoreConverters" method="convertChar" return-type="java.lang.String" />
+	<converter name="date" class="com.blackbear.flatworm.converters.CoreConverters" method="convertDate" return-type="java.lang.Date" />
+	<converter name="integer" class="com.blackbear.flatworm.converters.CoreConverters" method="convertInteger" return-type="java.lang.Integer" />
+	<converter name="decimal" class="com.blackbear.flatworm.converters.CoreConverters" method="convertDecimal" return-type="java.lang.Double" />
+	<converter name="long" class="com.blackbear.flatworm.converters.CoreConverters" method="convertLong" return-type="java.lang.Long"/>
+		
+	<record name="voCabecalhoArquivoPagamentoVO">
+		<record-ident>
+			<field-ident field-start="0" field-length="1">
+				<match-string>0</match-string>
+			</field-ident>
+		</record-ident>
+		<record-definition>
+			<bean name="voCabecalhoArquivoPagamentoVO" class="br.com.eBank.modulo.pagamento.vo.VOCabecalhoArquivoPagamentoVO" />
+			<line >
+				<!--01--><record-element start="0"  end="1" beanref="voCabecalhoArquivoPagamentoVO.tipoRegistro" type="integer" />
+				<!--02--><record-element start="1"  end="15" beanref="voCabecalhoArquivoPagamentoVO.cnpj" type="char" />
+				<!--03--><record-element start="15"  end="23" beanref="voCabecalhoArquivoPagamentoVO.dataString" type="char" />
+				<!--04--><record-element start="23"  end="27" beanref="voCabecalhoArquivoPagamentoVO.versao" type="integer" />
+			</line>
+		</record-definition>
+	</record>
+
+
+	
+	<record name="voCabecalhoPagamentoArquivoPagamentoVO">
+		<record-ident>
+			<field-ident field-start="0" field-length="1">
+				<match-string>1</match-string>
+			</field-ident>
+		</record-ident>
+		
+		<record-definition>
+			<bean name="voCabecalhoPagamentoArquivoPagamentoVO" class="br.com.eBank.modulo.pagamento.vo.VOCabecalhoPagamentoArquivoPagamentoVO" />
+			<line >
+				<!--01--><record-element start="0"   end="1"  beanref="voCabecalhoPagamentoArquivoPagamentoVO.tipoRegistro" type="integer" />
+				<!--02--><record-element start="1"   end="5"  beanref="voCabecalhoPagamentoArquivoPagamentoVO.numeroLote" type="char" />
+				<!--03--><record-element start="5"   end="8"  beanref="voCabecalhoPagamentoArquivoPagamentoVO.qntdFavorecidos" type="integer" />
+				<!--04--><record-element start="8"   end="11" beanref="voCabecalhoPagamentoArquivoPagamentoVO.codigoBanco" type="char" />	
+				<!--05--><record-element start="11"  end="16" beanref="voCabecalhoPagamentoArquivoPagamentoVO.agencia" type="char" />
+				<!--06--><record-element start="16"  end="17" beanref="voCabecalhoPagamentoArquivoPagamentoVO.dvAgencia" type="char" />
+				<!--07--><record-element start="17"  end="30" beanref="voCabecalhoPagamentoArquivoPagamentoVO.conta" type="char" />
+				<!--08--><record-element start="30"  end="31" beanref="voCabecalhoPagamentoArquivoPagamentoVO.dvConta" type="char" />
+				<!--09--><record-element start="31"  end="34" beanref="voCabecalhoPagamentoArquivoPagamentoVO.operacao" type="char" />
+				<!--10--><record-element start="34"  end="42" beanref="voCabecalhoPagamentoArquivoPagamentoVO.dataPagamentoString" type="char" />
+				<!--11--><record-element start="42"  end="43" beanref="voCabecalhoPagamentoArquivoPagamentoVO.tipoFavorecido" type="integer" />
+     			<!--12--><record-element start="43"  end="57" beanref="voCabecalhoPagamentoArquivoPagamentoVO.valorTotal" type="decimal" >
+				 		    <conversion-option name="decimal-places" value="2"/>
+              		 	    <conversion-option name="decimal-implied" value="true"/>
+               			    <conversion-option name="pad-character" value="0"/>
+                		    <conversion-option name="justify" value="right"/>
+                		 </record-element>	        			
+			</line>
+		</record-definition>
+	</record>
+	
+	<record name="voDetalheArquivoPagamentoVO">
+		<record-ident>
+			<field-ident field-start="0" field-length="1">
+				<match-string>2</match-string>
+			</field-ident>
+		</record-ident>
+		<record-definition>
+			<bean name="voDetalheArquivoPagamentoVO" class="br.com.eBank.modulo.pagamento.vo.VODetalheArquivoPagamentoVO" />
+			<line >
+			
+				<!--01--><record-element start="0"    end="1"   beanref="voDetalheArquivoPagamentoVO.tipoRegistro" type="integer" />
+				<!--02--><record-element start="1"    end="5"   beanref="voDetalheArquivoPagamentoVO.numeroLote" type="char" />
+				<!--03--><record-element start="5"    end="65"  beanref="voDetalheArquivoPagamentoVO.nomeFavorecido" type="char" />
+				<!--04--><record-element start="65"   end="95"  beanref="voDetalheArquivoPagamentoVO.codigoFavorecido" type="char" />
+				<!--05--><record-element start="95"   end="98"  beanref="voDetalheArquivoPagamentoVO.codigoBanco" type="char" />
+				<!--06--><record-element start="98"   end="104" beanref="voDetalheArquivoPagamentoVO.agencia" type="char" />
+				<!--07--><record-element start="104"  end="105" beanref="voDetalheArquivoPagamentoVO.dvAgencia" type="char" />
+				<!--08--><record-element start="105"  end="118" beanref="voDetalheArquivoPagamentoVO.conta" type="char" />
+				<!--09--><record-element start="118"  end="119" beanref="voDetalheArquivoPagamentoVO.dvConta" type="char" />
+				<!--10--><record-element start="119"  end="122" beanref="voDetalheArquivoPagamentoVO.operacao" type="char" />
+				<!--11--><record-element start="122"  end="123" beanref="voDetalheArquivoPagamentoVO.tipoFavorecido" type="integer" />
+				<!--12--><record-element start="123"  end="124" beanref="voDetalheArquivoPagamentoVO.tipoInscricao" type="integer" />
+				<!--13--><record-element start="124"  end="139" beanref="voDetalheArquivoPagamentoVO.numeroInscricao" type="char" />
+				<!--14--><record-element start="139"  end="180" beanref="voDetalheArquivoPagamentoVO.logradouro" type="char" />
+			    <!--15--><record-element start="180"  end="201" beanref="voDetalheArquivoPagamentoVO.complemento" type="char" />
+			    <!--16--><record-element start="201"  end="212" beanref="voDetalheArquivoPagamentoVO.bairro" type="char" />
+			   	<!--17--><record-element start="212"  end="233" beanref="voDetalheArquivoPagamentoVO.cidade" type="char" />
+			    <!--18--><record-element start="233"  end="241" beanref="voDetalheArquivoPagamentoVO.CEP" type="char" />
+			    <!--19--><record-element start="241"  end="243" beanref="voDetalheArquivoPagamentoVO.UF" type="char" />
+			    <!--20--><record-element start="243"  end="254" beanref="voDetalheArquivoPagamentoVO.valor" type="decimal" >
+				 		    <conversion-option name="decimal-places" value="2"/>
+              		 	    <conversion-option name="decimal-implied" value="true"/>
+               			    <conversion-option name="pad-character" value="0"/>
+                		    <conversion-option name="justify" value="right"/>
+                		 </record-element>	   
+			</line>
+		</record-definition>
+	</record>
+</file-format>

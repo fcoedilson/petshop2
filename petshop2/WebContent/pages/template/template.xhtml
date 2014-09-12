@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:a4j="http://richfaces.org/a4j"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:rich="http://richfaces.org/rich"
+	  xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+		<meta charset="utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+		<meta name="description" content=""/>
+		<meta name="viewport" content="width=device-width"/>
+		
+		<title><h:outputText value="#{bundle.tituloAplicacao}" /></title>
+		<link type="image/ico" href="/#{bundle.pathAplicacao}/resources/imagens/eextratoFavicon.ico" rel="Shortcut Icon" />
+		<h:outputStylesheet library="css" name="bootstrap.min.css"/>
+		<h:outputStylesheet library="css" name="util.css"/>
+		<h:outputStylesheet library="css" name="style.css"/>
+		<h:outputStylesheet library="css" name="prettify.css"/>
+		
+		<h:outputScript library="js" name="jquery.bootstrap.wizard.js"/>
+		<h:outputScript library="js" name="jquery.bootstrap.wizard.min.js"/>
+		<h:outputScript library="js" name="prettify.js"/>
+		<h:outputScript library="js" name="bootstrap.js"/>
+		<h:outputScript library="js" name="bootstrap.min.js"/>
+		<h:outputScript library="js" name="jquery.justNumber.js"/>
+		<h:outputScript library="js" name="jquery.maskMoney.js"/>
+		<h:outputScript library="js" name="jquery.maskedinput-1.3.min.js"/>
+		
+	    <script>
+	        var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+	        (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+	            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+	            s.parentNode.insertBefore(g,s)}(document,'script'));
+	    </script>
+	    <ui:insert name="head"></ui:insert>
+	    
+	</h:head>
+	
+	<ui:include src="menu.xhtml"/>
+	<ui:include src="meio.xhtml"/>
+	<ui:include src="rodape.xhtml"/>
+	
+	<a4j:outputPanel ajaxRendered="true">
+	    <rich:jQuery selector=".stable tr:odd" query="addClass('odd-row')" />
+	   	<rich:jQuery selector=".stable tr:even" query="addClass('even-row')" />
+	  	<rich:jQuery selector=".stable tr" event="mouseover" query="jQuery(this).addClass('active-row')" />
+	  	<rich:jQuery selector=".stable tr" event="mouseout" query="jQuery(this).removeClass('active-row')" />
+	</a4j:outputPanel>
+	
+	<a4j:outputPanel id="mascaras" ajaxRendered="true">
+		<script type="text/javascript">
+			$(".integer").unNumber().justNumber();
+			$(".float-number").unmaskMoney().maskMoney({decimal:',',thousands:'.',showSymbol:false, symbol:'R$'});
+			$(".rf-cal-inp").mask("99/99/9999");
+			$(".hasDatepicker").mask("99/99/9999");
+			$(".calendar").mask("99/99/9999");
+			$(".mask-cnpj").mask("99.999.999/9999-99");
+			$(".mask-cep").mask("99.999-999");
+			$(".mask-telefone").mask("(99)9999-9999?9");
+
+			//tecla ENTER
+            $(document).ready(function(){
+                /* ao pressionar uma tecla em um campo que seja de class="inputUnico", 
+				em vez de submeter o formulário, vai pular para o próximo campo.
+				o formulário só vai executar o submit com a tecla enter se estiver no ultimo campo do formulário*/
+                $('.inputUnico').keypress(function(e){
+                    /* 
+                     * verifica se o evento é Keycode (para IE e outros browsers)
+                     * se não for pega o evento Which (Firefox)
+                    */
+                   var tecla = (e.keyCode ? e.keyCode : e.which);
+                    
+                   /* verifica se a tecla pressionada é a tecla ENTER */
+                   if(tecla == 13){
+                       /* guarda o seletor do campo onde foi pressionado Enter */
+                       campo =  $('.inputUnico');
+                       /* pega o indice do elemento*/
+                       indice = campo.index(this);
+                       /*soma mais um ao indice e verifica se não é null
+                        *se não for é porque existe outro elemento
+                       */
+                      if(campo[indice+1] != null){
+                         /* adiciona mais 1 no valor do indice */
+                         proximo = campo[indice + 1];
+                         /* passa o foco para o proximo elemento */
+                         proximo.focus();
+                      } else {
+						return true;
+					  }
+                   }
+				   if(tecla == 13){
+                    /* impede o submit caso esteja dentro de um form */
+                    e.preventDefault(e);
+                    return false;
+					} else {
+                    /* se não for tecla enter deixa escrever */
+                    return true;
+					}
+                })
+             });
+			</script>
+	</a4j:outputPanel>
+</html>

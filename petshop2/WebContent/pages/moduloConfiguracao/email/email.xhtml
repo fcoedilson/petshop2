@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:a4j="http://richfaces.org/a4j"
+				xmlns:rich="http://richfaces.org/rich"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:c="http://java.sun.com/jstl/core"
+				xmlns:sec="http://www.springframework.org/security/facelets/tags"
+				template="/pages/template/crud_template.xhtml"> 
+
+	<ui:param name="crudBean" value="#{emailBean}" />
+	<ui:param name="hideButtonReport" value="true" />
+	<ui:param name="hideButtonNew" value="true" />
+	
+	<ui:define name="content">
+		<h:panelGroup id="panelGroupDePesquisa" rendered="#{crudBean.searching}">
+			<ui:include src="emailFiltro_inc.xhtml" />
+		</h:panelGroup>
+	</ui:define>
+	
+	<ui:define name="list">
+		<h:panelGroup id="panelGroupDeListagem" rendered="#{crudBean.searching}">
+			<ui:include src="emailTabelaPrincipal_inc.xhtml" />
+		</h:panelGroup>
+	</ui:define>
+	
+	<ui:define name="extras">
+		<rich:popupPanel id="popupDetalheEmail" modal="true" autosized="true">
+		
+			<div class="modal-header">
+				<h3 id="myModalLabel"><h:outputText value="#{bundle.lbl_detalhe_email_corpo}" /></h3>
+			</div>
+			
+			<f:facet name="controls">
+	            <h:outputLink value="#" onclick="#{rich:component('popupDetalheEmail')}.hide(); return false;">
+	               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	            </h:outputLink>
+	        </f:facet>	
+			
+			<div class="modal-body">
+				<h:outputText rows="40" cols="200" escape="false" value="#{crudBean.defaultEntity.corpo}"/>
+			</div>
+		
+		</rich:popupPanel>
+	</ui:define>
+</ui:composition>

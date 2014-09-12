@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:a4j="http://richfaces.org/a4j"
+				xmlns:rich="http://richfaces.org/rich"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:sec="http://www.springframework.org/security/facelets/tags"
+				xmlns:t="http://myfaces.apache.org/tomahawk">
+	
+   	<h:form style="margin: none;">
+		<header>
+			<div class="bg-sair">	
+				<div class="geral">
+					<h1 class="marca"><h:commandLink value="#{bundle.tituloAplicacaoMenor}"	action="/pages/inicial/login.xhtml" styleClass="ir"/></h1>
+					<ul class="menu">
+						<h:panelGroup rendered="#{sec:ifAnyGranted('MODULO_PAINEIS_R')}" >
+							<li class="paineis">      <h:commandLink action="/pages/modulo/moduloPaineis.xhtml"><span></span>#{bundle.lbl_paineis}      </h:commandLink>
+								<div class="sub-menu">
+									<span class="ico">
+										<img src="/#{bundle.pathAplicacao}/resources/imagens/seta-sub.png" alt="Um sistema Boavista Tecnologia" title="Um sistema Boavista Tecnologia"/>
+									</span>
+									<ul  class="sub-menu-itens sub-grande">
+										<li>						
+											<h:panelGroup rendered="#{sec:ifAnyGranted('MODULO_EXTRATO_R')}" >
+												<h4>#{bundle.lbl_extrato}</h4>
+												<ul><li><h:commandLink value="#{bundle.grafico_saldo_mensal}"  action="/pages/moduloExtrato/painelExtrato.xhtml"  /></li></ul>
+												<br/>
+												<br/>
+											</h:panelGroup>	
+											<h:panelGroup rendered="#{sec:ifAnyGranted('MODULO_PAGAMENTO_R')}" >
+												<h4>#{bundle.lbl_pagamento}</h4>
+												<ul><li><h:commandLink value="#{bundle.grafico_pagamento}"  action="/pages/moduloPagamento/painelPagamento.xhtml"  /></li></ul>
+											</h:panelGroup>
+										</li>
+									</ul>
+									<ul class="sub-menu-pequeno">
+										<li>
+											<h4>#{bundle.lbl_seguranca}</h4>
+											<ul><li><h:commandLink value="#{bundle.grafico_acesso_usuarios}"  action="/pages/moduloConfiguracao/painelAcesso.xhtml"  /></li></ul>
+										</li>
+									</ul>		
+								</div>
+							</li>
+						</h:panelGroup>
+						<li class="configuracoes"><h:commandLink action="/pages/modulo/moduloConfiguracoes.xhtml" ><span></span>#{bundle.lbl_configuracoes}</h:commandLink>
+							<div class="sub-menu">
+									<span class="ico">
+										<img src="/#{bundle.pathAplicacao}/resources/imagens/seta-sub.png" alt="Um sistema Boavista Tecnologia" title="Um sistema Boavista Tecnologia"/>
+									</span>
+									<ul class="sub-menu-itens sub-grande">
+										<li>
+											<h4>#{bundle.lbl_seguranca}</h4>
+											<ul>
+												<li><h:commandLink value="#{bundle.menu_alterar_senha}" 		        action="/pages/moduloConfiguracao/alterarSenha.xhtml"/></li>
+												<li><a4j:commandLink value="#{bundle.menu_seguranca_ultimos_acessos}"   oncomplete="#{rich:component('popupLog')}.show()" /></li>
+												<h:panelGroup rendered="#{sec:ifAnyGranted('PERFIL_R')}">
+													<li><h:commandLink value="#{bundle.menu_perfil}"    	            action="/pages/moduloConfiguracao/perfil.xhtml" /></li>
+												</h:panelGroup>
+											</ul>
+										</li>
+									</ul>
+									<ul class="sub-menu-pequeno">
+										<li>
+											<h:panelGroup rendered="#{sec:ifAnyGranted('LOG_MENU')}">
+												<h4>#{bundle.lbl_log}</h4>
+												<ul>
+													<h:panelGroup rendered="#{sec:ifAnyGranted('LOG_ACESSO_R')}">
+														<li><h:commandLink value="#{bundle.menu_logAcesso}"    				action="/pages/moduloConfiguracao/logAcesso.xhtml" /></li>
+													</h:panelGroup >
+													<h:panelGroup rendered="#{sec:ifAnyGranted('LOG_ERRO_PROCESSADOR_R')}">
+														<li><h:commandLink value="#{bundle.lbl_logErroProcessador}"			action="/pages/moduloConfiguracao/logErroProcessador.xhtml" /></li>
+													</h:panelGroup >
+												</ul>
+												<br/>
+												<br/>
+											</h:panelGroup>	
+											<h:panelGroup rendered="#{sec:ifAnyGranted('MENU_CADASTRO_R')}">
+												<h4>#{bundle.lbl_cadastro}</h4>
+												<ul>
+								                 	<h:panelGroup rendered="#{sec:ifAnyGranted('USUARIO_R')}">
+														<li><h:commandLink value="#{bundle.menu_usuario}"     	            action="/pages/moduloConfiguracao/usuario/usuario.xhtml" /></li>
+													</h:panelGroup>
+												</ul>
+											</h:panelGroup>
+										</li>
+									</ul>
+								</div>
+							</li>
+					</ul>
+					<h:commandLink class="btn-sair ir" action="#{loginBean.logout}" value="Sair" />
+				</div>
+			</div>
+		</header>
+	</h:form>
+</ui:composition>

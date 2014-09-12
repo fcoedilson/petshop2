@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:a4j="http://richfaces.org/a4j"
+				xmlns:rich="http://richfaces.org/rich"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:c="http://java.sun.com/jstl/core"
+				xmlns:p="http://primefaces.org/ui"
+				template="/pages/template/crud_template.xhtml"> 
+
+	<ui:param name="crudBean" value="#{alteraSenhaBean}" />
+	<ui:param name="hideButtonSave" value="true" />
+	<ui:param name="hideButtonCancel" value="true"/>
+	
+	<ui:define name="content">
+	<table>
+		<tr>
+			<td style="vertical-align:top;">
+				<h:panelGroup id="panelGroupDeVisualizacao">
+					<h:panelGrid columns="3">
+				
+						<p:outputLabel for="usuario" value="#{bundle.lbl_usuario}" />
+						<p:inputText id="usuario" value="#{authenticationService.usuario.nome}" size="30" disabled="true"/>
+						<p:message for="usuario" display="text"/>
+				
+						<p:outputLabel for="login" value="#{bundle.lbl_login}"/>
+						<p:inputText id="login" value="#{authenticationService.usuario.login}" size="30" disabled="true"/>
+						<p:message for="login" display="text"/>
+				
+						<p:outputLabel for="senhaAtual" value="#{bundle.lbl_senha_atual}"/>
+						<p:inputText id="senhaAtual" value="#{crudBean.beanProperties.senha}" size="30" maxlength="50" required="true" type="password" styleClass="naoUpperCase"/>
+						<p:message for="senhaAtual"/>
+				
+						<p:outputLabel for="pass1" value="#{bundle.lbl_nova_senha}" />
+						<p:password id="pass1" value="#{crudBean.beanProperties.senhaNova}" size="30" maxlength="50" styleClass="tdBranco naoUpperCase" required="true"	/>
+						<p:message for="pass1" />
+				
+						<p:outputLabel for="pass2" value="#{bundle.lbl_confirmacao_senha}"/>
+						<p:password id="pass2" value="#{crudBean.beanProperties.senhaNovaConfirma}" size="30" maxlength="50" styleClass="tdBranco naoUpperCase" required="true" />
+						<p:message for="pass2" />
+						
+					</h:panelGrid>
+				</h:panelGroup>
+			</td>
+			<td style="vertical-align:top; text-align:center; padding-left:100px;">
+				<p:fieldset legend="#{bundle.lbl_atencao}" style="text-align:left;">
+					<table cellpadding="5">
+						<tr>
+							<td><h:graphicImage value="/resources/imagens/ativar.bmp" height="20" width="20" style="border: 0px;" rendered="#{crudBean.mapErros.erroSenhaAtual == 'true'}"/>
+							<h:graphicImage value="/resources/imagens/inativar.bmp" height="20" width="20" style="border: 0px;" rendered="#{crudBean.mapErros.erroSenhaAtual == 'false'}"/>
+							<h:graphicImage value="/resources/imagens/exclamation-red_16x16.png" height="20" width="20" style="border: 0px;" rendered="#{crudBean.mapErros.erroSenhaAtual == null}"/></td>
+							<td><h:outputText value="#{bundle.lbl_alterar_senha_atencao_um}"/></td>
+						</tr>
+						<tr>
+							<td><h:graphicImage value="/resources/imagens/ativar.bmp" height="20" width="20" style="border: 0px;" rendered="#{crudBean.mapErros.erroSeteCaracteres  == 'true'}"/>
+							<h:graphicImage value="/resources/imagens/inativar.bmp" height="20" width="20" style="border: 0px;" rendered="#{crudBean.mapErros.erroSeteCaracteres  == 'false'}"/>
+							<h:graphicImage value="/resources/imagens/exclamation-red_16x16.png" height="20" width="20" style="border: 0px;" rendered="#{crudBean.mapErros.erroSeteCaracteres == null}"/></td>
+							<td><h:outputText value="#{bundle.lbl_alterar_senha_atencao_dois}"/></td>
+						</tr>
+						<tr>
+							<td><h:graphicImage value="/resources/imagens/ativar.bmp" height="20" width="20" style="border: 0px;" rendered="#{crudBean.mapErros.erroLetrasNumeros  == 'true'}"/>
+							<h:graphicImage value="/resources/imagens/inativar.bmp" height="20" width="20" style="border: 0px;" rendered="#{crudBean.mapErros.erroLetrasNumeros== 'false'}"/>
+							<h:graphicImage value="/resources/imagens/exclamation-red_16x16.png" height="20" width="20" style="border: 0px;" rendered="#{crudBean.mapErros.erroLetrasNumeros == null}"/></td>
+							<td><h:outputText value="#{bundle.lbl_alterar_senha_atencao_tres}"/></td>
+						</tr>
+						<tr>
+							<td><h:graphicImage value="/resources/imagens/ativar.bmp" height="20" width="20" style="border: 0px;" rendered="#{crudBean.mapErros.erroUltimasSenhas  == 'true'}"/>
+							<h:graphicImage value="/resources/imagens/inativar.bmp" height="20" width="20" style="border: 0px;" rendered="#{crudBean.mapErros.erroUltimasSenhas == 'false'}"/>
+							<h:graphicImage value="/resources/imagens/exclamation-red_16x16.png" height="20" width="20" style="border: 0px;" rendered="#{crudBean.mapErros.erroUltimasSenhas == null}"/></td>
+							<td><h:outputText value="#{bundle.lbl_alterar_senha_atencao_quatro}"/></td>
+						</tr>
+						<tr>
+							<td><h:graphicImage value="/resources/imagens/ativar.bmp" height="20" width="20" style="border: 0px;" rendered="#{crudBean.mapErros.erroSenhasIguais  == 'true'}"/>
+							<h:graphicImage value="/resources/imagens/inativar.bmp" height="20" width="20" style="border: 0px;" rendered="#{crudBean.mapErros.erroSenhasIguais == 'false'}"/>
+							<h:graphicImage value="/resources/imagens/exclamation-red_16x16.png" height="20" width="20" style="border: 0px;" rendered="#{crudBean.mapErros.erroSenhasIguais == null}"/></td>
+							<td><h:outputText value="#{bundle.lbl_alterar_senha_atencao_cinco}"/></td>
+						</tr>
+					</table>
+				</p:fieldset>
+			</td>
+		</tr>
+	</table>
+		<br/>
+		<h:commandButton value="#{bundle.lbl_alterar}" action="#{crudBean.atualizaSenha}" render="panelGroupDeVisualizacao" styleClass="btn-padrao"/>
+	</ui:define>
+</ui:composition>

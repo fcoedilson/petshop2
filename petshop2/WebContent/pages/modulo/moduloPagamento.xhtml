@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	template="/pages/template/template.xhtml">
+
+	<ui:param name="hideButtonReport" value="true" />
+	<ui:param name="hideButtonNew" value="true" />
+	<ui:param name="hideButtonSearch" value="true" />
+	<ui:param name="hideMessageNotFoundResult" value="true" />
+	<ui:param name="pageTitle" value="#{bundle.titulo_modulo_pagamento}" />
+
+	<ui:define name="content">
+	
+		<table style="width: 100%;">
+			<tr>
+				<td style="vertical-align: top;">
+					<p:panel header="#{bundle.lbl_cadastro}" styleClass="panelConfiguration">
+						<h:panelGroup rendered="#{sec:ifAnyGranted('FAVORECIDO_R')}">
+							<li><h:commandLink value="#{bundle.lbl_favorecido}"     	action="/pages/moduloPagamento/favorecido/favorecido.xhtml"  /></li>
+						</h:panelGroup>
+						<h:panelGroup rendered="#{sec:ifAnyGranted('GRUPO_R')}">
+							<li><h:commandLink value="#{bundle.lbl_grupo}"     	        action="/pages/moduloPagamento/grupo.xhtml"  /></li>
+						</h:panelGroup>
+					</p:panel>
+				</td>	
+				<td style="vertical-align: top;">
+					<p:panel header="#{bundle.lbl_pagamento}" styleClass="panelConfiguration">
+						<h:panelGroup rendered="#{sec:ifAnyGranted('PAGAMENTO_R')}">
+							<li><h:commandLink value="#{bundle.lbl_favorecido}"		  action="/pages/moduloPagamento/favorecido/pagamentoFavorecido.xhtml" /></li>
+						</h:panelGroup> 
+						<h:panelGroup rendered="#{sec:ifAnyGranted('PAGAMENTO_TITULO_R')}">
+							<li><h:commandLink value="#{bundle.lbl_codigo_barras}"	  action="/pages/moduloPagamento/titulo/pagamentoTitulo.xhtml" /></li>
+						</h:panelGroup> 
+						<h:panelGroup rendered="#{sec:ifAnyGranted('FAVORECIDO_R')}">
+							<li><h:commandLink value="#{bundle.menu_upload_arquivo}"	action="/pages/moduloPagamento/arquivo/uploadArquivoPagamento.xhtml" /></li>
+						</h:panelGroup> 
+					</p:panel>
+				</td>	
+				<td style="vertical-align: top;">
+					<p:panel header="#{bundle.lbl_arquivo}" styleClass="panelConfiguration">
+						<h:panelGroup rendered="#{sec:ifAnyGranted('ARQUIVO_REM_R')}">
+							<li><h:commandLink value="#{bundle.lbl_remessa}"	    action="/pages/moduloPagamento/arquivo/remessa/arquivoRemessa.xhtml" /></li>
+						</h:panelGroup>
+						<h:panelGroup rendered="#{sec:ifAnyGranted('ARQUIVO_RET_R')}">
+							<li><h:commandLink value="#{bundle.lbl_retorno}"        action="/pages/moduloPagamento/arquivo/retorno/arquivoRetorno.xhtml" /></li>
+						</h:panelGroup>
+					</p:panel>
+				</td>		
+			</tr>
+		</table>
+
+	</ui:define>
+
+</ui:composition>

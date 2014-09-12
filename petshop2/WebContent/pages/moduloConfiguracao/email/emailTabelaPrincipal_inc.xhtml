@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:a4j="http://richfaces.org/a4j"
+				xmlns:rich="http://richfaces.org/rich"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:c="http://java.sun.com/jstl/core">
+				
+	<rich:dataTable id="tblData" value="#{crudBean.pagedList.dataModel}" rendered="#{crudBean.pagedList.dataModel.rowCount > 0}" rows="20" var="row" style="width: 100%;">
+		<f:facet name="header">
+			<rich:columnGroup>
+				<rich:column><h:outputText value="#{bundle.lbl_data_de_envio}"/></rich:column>
+				<rich:column><h:outputText value="#{bundle.lbl_titulo}"/></rich:column>
+				<rich:column><h:outputText value="#{bundle.lbl_email}"/></rich:column>
+				<rich:column><h:outputText value="#{bundle.lbl_destinatario}"/></rich:column>
+				<rich:column><h:outputText value="#{bundle.lbl_tipo}"/></rich:column>
+				<rich:column><h:outputText value="#{bundle.lbl_enviado}"/></rich:column>
+				<rich:column><h:outputText value="#{bundle.lbl_reenviado}"/></rich:column>
+				<rich:column></rich:column>
+			</rich:columnGroup>
+		</f:facet>
+		
+		<rich:column style="text-align: center;">
+			<h:outputText value="#{row.dataEnvio}">
+				<f:converter converterId="dateTimeStampConverter"/>
+			</h:outputText>
+		</rich:column>
+		<rich:column style="text-align: center;"><h:outputText value="#{row.titulo}"/></rich:column>
+		<rich:column style="text-align: center;">
+			<a4j:commandLink value="#{bundle.lbl_detalhe}" oncomplete="#{rich:component('popupDetalheEmail')}.show()" render="popupDetalheEmail">
+				<f:setPropertyActionListener value="#{row}" target="#{crudBean.defaultEntity}" />
+			</a4j:commandLink>
+		</rich:column>
+		<rich:column style="text-align: center;"><h:outputText value="#{row.destinatario}"/></rich:column>
+		<rich:column style="text-align: center;"><h:outputText value="#{row.tipoEmail.toString()}"/></rich:column>
+		<rich:column style="text-align: center;">
+			<h:graphicImage value="/resources/imagens/ativar.bmp" rendered="#{row.enviado}" />
+			<h:graphicImage value="/resources/imagens/inativar.bmp" rendered="#{not row.enviado}" />
+		</rich:column>
+		<rich:column style="text-align: center;">
+			<h:outputText value="#{bundle.lbl_nunca}" rendered="#{row.reenviado == 0}"/>
+			<h:outputText value="Foi reenviado #{row.reenviado} vezes" rendered="#{row.reenviado != 0}"/>
+		</rich:column>
+		<rich:column style="text-align: center;">
+			<h:commandButton value="#{bundle.lbl_reenviar}" action="#{crudBean.reenviarEmail(row)}"/>
+		</rich:column>
+		<f:facet name="footer">
+			<rich:columnGroup rendered="#{crudBean.pagedList.dataModel.rowCount > 20}">
+				<rich:column colspan="10">
+					<rich:dataScroller for="tblData" page="#{crudBean.pagedList.paginaClicada}" fastControls="hide" 
+						scrollListener="#{crudBean.pagedList.pesquisar()}" render="formulario" />
+				</rich:column>
+			</rich:columnGroup>
+		</f:facet>
+	</rich:dataTable>				
+</ui:composition>

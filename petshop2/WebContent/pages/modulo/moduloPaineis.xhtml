@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	template="/pages/template/template.xhtml">
+
+	<ui:param name="hideButtonReport" value="true" />
+	<ui:param name="hideButtonNew" value="true" />
+	<ui:param name="hideButtonSearch" value="true" />
+	<ui:param name="hideMessageNotFoundResult" value="true" />
+	<ui:param name="pageTitle" value="#{bundle.lbl_paineis}" />
+
+	<ui:define name="content">
+	
+		<table style="width: 100%;">
+			<tr>
+				<td style="vertical-align: top; text-align: center;">
+					<p:panel header="#{bundle.grafico_saldo_mensal}"  styleClass="panelConfiguration"  rendered="#{sec:ifAnyGranted('MODULO_EXTRATO_R')}">
+					    <h:commandLink id="grafSaldoMensal" action="/pages/moduloExtrato/painelExtrato.xhtml" style="vertical-align: top; text-align: center;">
+							<h:graphicImage value="/resources/imagens/icon_graf_linha.png" title="#{bundle.grafico_linha}"/>
+					    </h:commandLink>  					
+					</p:panel>
+				</td>	
+				
+				<td style="vertical-align: top; text-align: center;">
+					<p:panel header="#{bundle.grafico_acesso_usuarios}" styleClass="panelConfiguration" >
+					    <h:commandLink id="grafAcessoUsuarios" action="/pages/moduloConfiguracao/painelAcesso.xhtml" >
+							<h:graphicImage value="/resources/imagens/icon_graf_linha.png" title="#{bundle.grafico_linha}"/>
+					    </h:commandLink>  					
+					</p:panel>
+				</td>		
+								
+				<td style="vertical-align: top; text-align: center;">
+					<p:panel header="#{bundle.grafico_pagamento}" styleClass="panelConfiguration" rendered="#{sec:ifAnyGranted('MODULO_PAGAMENTO_R')}" >
+					    <h:commandLink id="grafPagamentos" action="/pages/moduloPagamento/painelPagamento.xhtml" >
+							<h:graphicImage value="/resources/imagens/icon_graf_col.png" title="#{bundle.grafico_coluna}"/>
+					    </h:commandLink>  					
+					</p:panel>
+				</td>				
+			</tr>
+		</table>
+
+	</ui:define>
+
+</ui:composition>

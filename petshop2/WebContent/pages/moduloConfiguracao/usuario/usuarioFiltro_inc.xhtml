@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags">
+
+	<h:panelGrid columns="8" style="width:100%" styleClass="filtroCadastro">
+		<h:outputText value="#{bundle.lbl_nome}"/>
+		<p:inputText  value="#{crudBean.filter.nome}" size="30" maxlength="50"/>
+
+		<h:outputText value="#{bundle.lbl_login}"/>
+		<p:inputText  value="#{crudBean.filter.login}" size="30" maxlength="20"/>
+
+		<h:outputText value="#{bundle.lbl_situacao}"/>
+		<h:selectOneRadio value="#{crudBean.filter.ativo}" style="width:100%;">
+			<f:selectItem itemValue="null" itemLabel="#{bundle.lbl_todos.toUpperCase()}" />
+			<f:selectItem itemValue="true" itemLabel="#{bundle.lbl_ativo.toUpperCase()}" />
+			<f:selectItem itemValue="false" itemLabel="#{bundle.lbl_inativo.toUpperCase()}" />
+		</h:selectOneRadio>
+	</h:panelGrid>
+	
+	<a4j:commandButton value="#{bundle.lbl_pesquisar}" 	action="#{crudBean.search(true)}" 	render="formulario"  styleClass="btn-padrao">
+		<f:param name="pesquisar" value="true" />
+	</a4j:commandButton>
+	<a4j:commandButton value="#{bundle.lbl_novo}" 		action="#{crudBean.prepareInsert}" rendered="#{!sec:ifNotGranted('USUARIO_C')}"	render="formulario, panelTitle"  execute="@this" styleClass="btn-padrao"/>
+			
+</ui:composition>

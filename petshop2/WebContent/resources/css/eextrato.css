@@ -1,0 +1,261 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, h7, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td{
+	margin:0;
+	padding:0;
+	border:0;
+	outline:0;
+	font-size:100%;
+	vertical-align:baseline;
+	background:transparent;
+}
+
+body{
+	line-height:1.4;
+	margin:0;
+	padding:0;
+	border:0;
+	outline:0;
+}
+
+ol, ul{
+	list-style:none;
+}
+
+table{
+	border-collapse:collapse;
+	border-spacing:0;
+}
+
+/* CLEARFIX */
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+.clearfix {
+	display: inline-block;
+}
+html[xmlns] .clearfix {
+	display: block;
+}
+* html .clearfix {
+	height: 1%;
+}
+
+/* ESTILOS PADRÃO */
+body{
+	font-size:14px !important;
+	font-family: Helvetica, Arial, Verdana, sans-serif;
+	color: #FFF;
+	background: url(../resources/imagens/bgBottombody.gif) left bottom repeat-x #093157;
+	text-shadow: 0px 1px 1px #000;
+}
+h1{
+	font-size:26px;
+}
+h2{
+	font-size:20px;
+	color: #f5c30b;
+}
+h3{
+	font-size:18px;
+}
+h4{
+	font-size:16px;
+}
+h5{
+	font-size:13px;
+}
+h6{
+	font-size:9px;
+}
+h7{
+	font-size:50px;
+}
+a:link, a:visited, a:active{
+	color:#6dbeff !important;
+	text-decoration:none !important;
+	font-size: 100% !important;
+}
+a:hover{
+	color:#fff !important;
+	text-decoration:underline !important;
+	cursor:pointer !important;
+}
+
+
+/* MENSAGENS */
+.error_field{
+	color:#C00 !important;
+	display: inline;
+}
+.message, .warning, .success, .error{
+	font-size:15px !important;
+	font-weight:bold !important;
+	margin-bottom:15px !important;
+}
+.message{
+	color:#aaa9a6;
+}
+.warning{
+	color:#F90;
+}
+.success{
+	color:#090;
+}
+.error{
+	color:#C00;
+}
+.footer_info{
+	color:#4f6d81;
+}
+
+
+/* FORMULÁRIOS */
+input[type="text"], input[type="password"], textarea, select, input[type="checkbox"]{
+	color:#333333 !important;
+	border-bottom: 2px solid #125fa7 !important;
+	border-left: 0 !important;
+	border-top: 0 !important;	
+	border-right: 0 !important;	
+	background: url(../resources/imagens/bgCampos.gif) top left repeat-x #f0f0f0 !important;
+	width: 223px !important;
+	-moz-border-radius:5px !important;
+	-webkit-border-radius:5px !important;
+	border-radius:5px !important;
+	padding: 9px 10px !important;
+	vertical-align: middle !important;
+	font-size: 100% !important;
+	text-transform: uppercase !important;
+}
+
+input[type="checkbox"]{
+	width: auto;
+	margin-top: 8px; 
+}
+
+input[type="button"], input[type="reset"], input[type="submit"]{
+	padding:9px 10px 12px 10px !important;
+	font-weight: bold !important;
+	text-shadow: 0px 1px 1px #c58a11 !important;	
+	border: 1px solid #0b3b67 !important;
+	cursor:pointer !important;
+	color:#1c1c1c !important;
+	background: url(../resources/imagens/bgBtns.gif) left bottom repeat-x #fec61b !important;
+	-moz-border-radius:5px !important;
+	-webkit-border-radius:5px !important;
+	border-radius:5px !important;
+	font-size: 100% !important;
+}
+
+/* ESTRUTURA */
+#moldura {
+	width:960px;
+	margin:0 auto;
+}
+.floatClear{
+	clear: both;
+}
+
+#bgPrincipal{
+	width: 100%;
+	background: url(../resources/imagens/bgPrincipal.gif) top center repeat;
+}
+#bgBrilhoCartao{
+	width: 100%;
+	background: url(../resources/imagens/bgSombraCartoes.jpg) top center no-repeat;
+}
+
+#logoPrincipal{
+	float: left;
+	margin: 40px 640px 0 0;	
+	}
+#topicosHome{
+	float: left;
+	width: 670px;
+	margin: 10px 0 50px -20px;
+}
+.topico{
+	float: left;
+	width: 310px;
+	margin: 30px 0 0 20px;
+}
+.imgComoAdquiri{
+	float: left;
+}
+.linhaImgTexto {
+	float: left;
+	width: 100%;
+	margin-bottom: 10px;
+}
+.linhaImgTexto p{
+	float: left;
+	font-size: 18px;
+	margin-left: 10px;
+}
+
+#campoLoginSenha{
+	float:right;
+	width: 262px;
+	height: 248px;
+	margin-top: 30px;
+	background: url(../resources/imagens/baseLogin.png) right top no-repeat;
+}
+
+.linhaImgTextoDois{
+	float: left;
+	width: 100%;
+	margin: 10px 0 0 20px;
+}
+.linhaImgTextoDois h2{
+	float:left;
+	font-size: 16px;
+	margin: 3px 0 0 10px;
+}
+.linhaImgTextoDois img{
+	float: left;
+}
+
+#formLoginSenha{
+	float: left !important;
+	margin: 2px 0 0 20px !important;
+}
+#formLoginSenha .campoPadrao{
+	width: 202px !important;
+	margin: 5px 0 10px 0 !important;
+}
+#formLoginSenha p{
+	font-size: 100% !important;
+}
+
+#campoLoginSenha .botaoPadrao{
+	float: left !important;
+	margin: 8px 0 0 20px !important;
+}
+#fotoPessoas{
+	width: 100%;
+	background: url(../resources/imagens/bancos.jpg) bottom right no-repeat;
+}
+#rodape {
+	width: 100%;
+	height: 70px;
+	background-color: #093157;
+	text-align: center;
+	bottom: 0;
+	position:relative;
+	clear:both;
+}
+
+#rodape img {
+	margin-top: 12px;
+}

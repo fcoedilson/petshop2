@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:a4j="http://richfaces.org/a4j"
+				xmlns:rich="http://richfaces.org/rich"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:c="http://java.sun.com/jstl/core"
+				xmlns:p="http://primefaces.org/ui"
+				xmlns:t="http://myfaces.apache.org/tomahawk"
+				xmlns:sec="http://www.springframework.org/security/facelets/tags"
+				template="/pages/template/crud_template.xhtml"> 
+				
+	<ui:param name="crudBean" value="#{logErroProcessadorBean}" />
+	<ui:param name="hideButtonReport" value="true" />
+	<ui:param name="hideButtonNew" value="true" />			
+	
+	<ui:define name="saveStateObjectsDefined"></ui:define>
+	
+	<ui:define name="content">
+		<!-- Painel de Pesquisa - Inicio -->
+		<h:panelGroup id="panelGroupDePesquisa" rendered="#{crudBean.searching}">
+			<f:subview id="viewBusca">
+				<h:panelGrid columns="3" columnClasses="tdCor,tdBranco" >
+					<p:outputLabel for="nomeFiltro" value="#{bundle.lbl_nomeArquivo}"/>
+					<p:inputText id="nomeFiltro" styleClass="upper-case"  value="#{crudBean.filter.nomeArquivo}" style=" width: 268px" maxlength="255"/>
+					<p:message for="nomeFiltro" display="text"/>
+				</h:panelGrid>
+			</f:subview>
+		</h:panelGroup>
+		<!-- Painel de Pesquisa - Fim -->
+	</ui:define>
+	
+	<ui:define name="list">
+		<h:panelGroup id="panelGroupDeListagem" rendered="#{crudBean.searching}">
+			<p:dataTable id="tblData" value="#{crudBean.pagedList.dataModel}" rendered="#{crudBean.pagedList.dataModel.rowCount > 0}" rows="20" var="row" rowClasses="par,impar">
+		              
+               	<p:column  style="text-align: left;">
+					<f:facet name="header">
+						<h:outputText value="#{bundle.lbl_data}" />
+					</f:facet>
+					<h:outputText value="#{row.data}" >
+						<f:converter converterId="dateTimeStampConverter"/>
+					</h:outputText>
+				</p:column >
+
+              	<p:column >
+					<f:facet name="header">
+						<h:outputText value="#{bundle.lbl_nomeArquivo}" />
+					</f:facet>
+					<h:outputText value="#{row.nomeArquivo}"/>
+				</p:column>
+				
+              	<p:column >
+					<f:facet name="header">
+						<h:outputText value="#{bundle.lbl_erro}" />
+					</f:facet>
+					<h:outputText value="#{row.erro}"/>
+				</p:column>
+
+				<p:column  style="text-align: center;" rendered="#{sec:ifAnyGranted('LOG_ERRO_PROCESSADOR_D')}" >
+					<f:facet name="header">
+						<h:outputText value="#{bundle.lbl_excluir}" />
+					</f:facet>
+					<a4j:commandLink onclick="#{rich:component('popupConfirmExcluir')}.show()" immediate="true" >
+						<h:graphicImage title="#{bundle.lbl_remover}" value="/resources/imagens/delete.gif" style="border: 0px;"/>
+						<f:setPropertyActionListener value="#{row}" target="#{crudBean.defaultEntity}" />
+					</a4j:commandLink>
+				</p:column >
+				
+				<f:facet name="footer">
+					<p:columnGroup>
+						<p:column colspan="5" >
+							<rich:dataScroller for="tblData" page="#{crudBean.pagedList.paginaClicada}" fastControls="hide" scrollListener="#{crudBean.pagedList.pesquisar()}" render="formulario" />
+						</p:column>
+					</p:columnGroup>
+				</f:facet>
+			</p:dataTable>
+		</h:panelGroup>
+	</ui:define>
+	
+</ui:composition>

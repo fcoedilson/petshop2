@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:a4j="http://richfaces.org/a4j"
+				xmlns:rich="http://richfaces.org/rich"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:c="http://java.sun.com/jstl/core"
+				xmlns:p="http://primefaces.org/ui"
+				xmlns:sec="http://www.springframework.org/security/facelets/tags">
+	
+	<table>
+		<tr >
+			<td style="vertical-align: top; width: 600px;">
+				<div >
+					<p:panel header="#{bundle.lbl_dados_do_usuario}">
+						<h:panelGrid columns="3" >
+							<h:outputLabel for="nome" value="#{bundle.lbl_nome}"/>
+							<p:inputText id="nome" required="true" value="#{crudBean.defaultEntity.nome}" size="40" maxlength="50" style="margin-left: 20px;"/>
+							<p:message for="nome"/>
+							
+							<h:outputLabel for="login" value="#{bundle.lbl_login}"/>
+							<p:inputText id="login" required="true" value="#{crudBean.defaultEntity.login}" size="40" maxlength="20" style="margin-left: 20px;"/>
+							<p:message for="login"/>
+							
+							<h:outputLabel for="email" value="#{bundle.lbl_email}"/>
+							<p:inputText id="email" required="true" value="#{crudBean.defaultEntity.email}" size="40" maxlength="255" style="margin-left: 20px;"/>
+							<p:message for="email"/>
+							
+							<h:outputLabel value="#{bundle.lbl_senha}"/>
+							<p:commandButton id="btnGeraSenha" value="#{bundle.lbl_gerar_senha}" action="#{crudBean.gerarSenha}" style="margin-left: 20px;" 
+							disabled="#{crudBean.defaultEntity.new or !crudBean.beanProperties.habilitaGeraSenha}" update="btnGeraSenha imgToolTip" />
+							
+							<p:graphicImage id="imgToolTip" value="/resources/imagens/question.gif" height="20" width="20" style="border: 0px;">
+		            			<rich:tooltip id="tt1" styleClass="tooltip" layout="block" rendered="#{!crudBean.defaultEntity.new}">
+		                			<span style="white-space: nowrap"><h:outputText value="#{bundle.botao_gerar_habilitado}" escape="false"/></span>
+	            				</rich:tooltip>
+	            				
+		            			<rich:tooltip id="tt2" styleClass="tooltip" layout="block" rendered="#{crudBean.defaultEntity.new}">
+		                			<span style="white-space: nowrap"><h:outputText value="#{bundle.botao_gerar_desabilitado}" escape="false"/></span>
+	            				</rich:tooltip>
+							</p:graphicImage>
+							
+							<h:outputLabel for="ativo" value="#{bundle.lbl_ativo}?"/>
+							<p:selectBooleanCheckbox id="ativo" value="#{crudBean.defaultEntity.ativo}" style="margin-left: 20px;" disabled="#{crudBean.defaultEntity.new}" />
+							<p:message for="ativo"/>
+							
+							<h:outputLabel for="alteraSenha" value="#{bundle.lbl_alteraSenha}?"/>
+							<p:selectBooleanCheckbox id="alteraSenha" value="#{crudBean.defaultEntity.alteraSenha}" style="margin-left: 20px;"/>
+							<p:message for="alteraSenha"/>
+						</h:panelGrid>
+					</p:panel>
+					<br/>
+				</div>
+			</td>
+			<td style="vertical-align: top;">		
+				<div style="margin-left: 50px;">
+					<p:panel header="#{bundle.lbl_perfil.toUpperCase()}" style="width: 620px">
+						<h:panelGrid columns="2">
+							<p:pickList id="listaPerfil" value="#{crudBean.beanProperties.listaPerfil}" var="_perfil" iconOnly="true" itemLabel="#{_perfil.nome}" style="margin-left: 30px;"  itemValue="#{_perfil}" converter="entityConverter">
+								<f:facet name="sourceCaption">
+									<h:outputText value="#{bundle.lbl_perfisDisponiveis}" />
+								</f:facet>
+								<f:facet name="targetCaption">
+									<h:outputText value="#{bundle.lbl_perfisUsuario}"/>
+								</f:facet>
+							</p:pickList>
+							<p:message for="listaPerfil"/>
+						</h:panelGrid>
+					</p:panel>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td style="vertical-align: top; width: 550px;">
+				<h:panelGroup id="formIP" rendered="#{!crudBean.defaultEntity.new}" >
+					<p:panel header="#{bundle.lbl_cadastro_ip}"  >
+						<h:panelGrid columns="4">
+							<p:outputLabel for="ip" value="#{bundle.lbl_ip.toUpperCase()}"/>
+							<p:inputText id="ip" size="40" maxlength="50" value="#{crudBean.beanProperties.ip}" title="#{bundle.atencao_ip_local}"
+							style="margin-left: 85px;"/>
+							<a4j:commandLink action="#{crudBean.adcionaIP}" render="formIP">
+								<h:graphicImage title="#{bundle.lbl_add}" value="/resources/imagens/add.png" style="margin-left: 40px;"/>
+							</a4j:commandLink>
+							<p:message for="ip"/>
+							<p:tooltip for="ip" showEvent="focus" hideEvent="blur" />
+						</h:panelGrid>
+						<br/>
+						<p:dataTable id="tblIP" value="#{crudBean.beanProperties.listIP}" var="row" emptyMessage="#{bundle.nao_existe_ip_cadastrado}" style="text-align: center;">
+							<p:column headerText="#{bundle.lbl_ip.toUpperCase()}" style="text-align: center;">
+								<h:outputText value="#{row.ip}"/>
+							</p:column>
+							<p:column headerText="#{bundle.lbl_remover}" style="text-align: center;">
+								<a4j:commandLink action="#{crudBean.removeIP(row)}" render="formIP">
+									<h:graphicImage title="#{bundle.lbl_remover}" value="/resources/imagens/delete.gif" style="border: 0px;" />
+								</a4j:commandLink>
+							</p:column>
+						</p:dataTable>
+					</p:panel>
+				</h:panelGroup>
+				<br/>
+			</td>
+		</tr>
+	</table>
+</ui:composition>

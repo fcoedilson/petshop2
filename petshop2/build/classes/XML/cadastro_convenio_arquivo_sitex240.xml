@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file-format>
+	<converter name="char" class="com.blackbear.flatworm.converters.CoreConverters" method="convertChar" return-type="java.lang.String" />
+	<converter name="date" class="com.blackbear.flatworm.converters.CoreConverters" method="convertDate" return-type="java.lang.Date" />
+	<converter name="integer" class="com.blackbear.flatworm.converters.CoreConverters" method="convertInteger" return-type="java.lang.Integer" />
+	<converter name="decimal" class="com.blackbear.flatworm.converters.CoreConverters" method="convertDecimal" return-type="java.lang.Double" />
+	<converter name="long" class="com.blackbear.flatworm.converters.CoreConverters" method="convertLong" return-type="java.lang.Long"/>
+		
+	<record name="voCadastroConvenioSitex240HeaderArquivoVO">
+		<record-ident>
+			<field-ident field-start="7" field-length="1">
+				<match-string>0</match-string>
+			</field-ident>
+		</record-ident>
+		<record-definition>
+			<bean name="voCadastroConvenioSitex240HeaderArquivoVO" class="br.com.eBank.base.mapeamento.VOCadastroConvenioSitex240HeaderArquivoVO" />
+			<line >
+				<!--01--><record-element start="0"  end="3" beanref="voCadastroConvenioSitex240HeaderArquivoVO.codigoBanco" type="char" />
+				<!--02--><record-element start="7"  end="8" beanref="voCadastroConvenioSitex240HeaderArquivoVO.tipoRegistro" type="integer" />
+				<!--03--><record-element start="18"  end="32" beanref="voCadastroConvenioSitex240HeaderArquivoVO.cnpj" type="char" />
+			</line>
+		</record-definition>
+	</record>
+	
+	<record name="voCadastroConvenioSitex240HeaderLoteVO">
+		<record-ident>
+			<field-ident field-start="7" field-length="1">
+				<match-string>1</match-string>
+			</field-ident>
+		</record-ident>
+		<record-definition>
+			<bean name="voCadastroConvenioSitex240HeaderLoteVO" class="br.com.eBank.base.mapeamento.VOCadastroConvenioSitex240HeaderLoteVO" />
+			<line >
+				<!--01--><record-element start="0"  end="3" beanref="voCadastroConvenioSitex240HeaderLoteVO.codigoBanco" type="char" />
+				<!--02--><record-element start="7"  end="8" beanref="voCadastroConvenioSitex240HeaderLoteVO.tipoRegistro" type="integer" />
+				<!--03--><record-element start="18"  end="32" beanref="voCadastroConvenioSitex240HeaderLoteVO.cnpj" type="char" />	
+				<!--04--><record-element start="32"  end="52" beanref="voCadastroConvenioSitex240HeaderLoteVO.codigoConvenio" type="char" />				
+				<!--05--><record-element start="52"  end="57" beanref="voCadastroConvenioSitex240HeaderLoteVO.agencia" type="char" />
+				<!--06--><record-element start="57"  end="58" beanref="voCadastroConvenioSitex240HeaderLoteVO.dvAgencia" type="char" />
+				<!--07--><record-element start="58"  end="70" beanref="voCadastroConvenioSitex240HeaderLoteVO.conta" type="char" />	
+				<!--08--><record-element start="70"  end="71" beanref="voCadastroConvenioSitex240HeaderLoteVO.dvConta" type="char" />
+			</line>
+		</record-definition>
+	</record>
+	
+	<record name="voCadastroConvenioSitex240TrailerArquivoVO">
+		<record-ident>
+			<field-ident field-start="7" field-length="1">
+				<match-string>9</match-string>
+			</field-ident>
+		</record-ident>
+		<record-definition>
+			<bean name="voCadastroConvenioSitex240TrailerArquivoVO" class="br.com.eBank.base.mapeamento.VOCadastroConvenioSitex240TrailerArquivoVO" />
+			<line >
+				<!--01--><record-element start="7"  end="8" beanref="voCadastroConvenioSitex240TrailerArquivoVO.tipoRegistro" type="integer" />
+			</line>
+		</record-definition>
+	</record>
+
+	<record name="voCadastroConvenioSitex240DetalheVO">
+		<record-ident>
+			<field-ident field-start="7" field-length="1">
+				<match-string>3</match-string>
+			</field-ident>
+		</record-ident>
+		<record-definition>
+			<bean name="voCadastroConvenioSitex240DetalheVO" class="br.com.eBank.base.mapeamento.VOCadastroConvenioSitex240DetalheVO" />
+			<line >
+				<!--01--><record-element start="7"  end="8" beanref="voCadastroConvenioSitex240DetalheVO.tipoRegistro" type="integer" />
+			</line>
+		</record-definition>
+	</record>
+	
+	<record name="voCadastroConvenioSitex240TrailerLoteVO">
+		<record-ident>
+			<field-ident field-start="7" field-length="1">
+				<match-string>5</match-string>
+			</field-ident>
+		</record-ident>
+		<record-definition>
+			<bean name="voCadastroConvenioSitex240TrailerLoteVO" class="br.com.eBank.base.mapeamento.VOCadastroConvenioSitex240TrailerLoteVO" />
+			<line >
+				<!--01--><record-element start="7"  end="8" beanref="voCadastroConvenioSitex240TrailerLoteVO.tipoRegistro" type="integer" />
+			</line>
+		</record-definition>
+	</record>
+	
+</file-format>
