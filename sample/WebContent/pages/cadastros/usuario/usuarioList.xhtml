@@ -1,122 +1,23 @@
 <?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:c="http://java.sun.com/jstl/core"
-      xmlns:rich="http://richfaces.org/rich"
-      xmlns:a4j="http://richfaces.org/a4j">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/pages/templates/template.xhtml">
 
-	<div id="cadastro1">
-
-	
-		<fieldset>
-
-			<rich:tabPanel switchType="client">
-	
-				<rich:tab label="Usuários">
-
-			      	<h:panelGroup rendered="#{controlBean.adminSistema or controlBean.adminCliente}">
-
-						<h:outputLabel value="Busca"/>
-						<h:inputText value="#{usuarioBean.filter}"></h:inputText>
-						<a4j:commandButton value="Pesquisar" action="#{usuarioBean.searchUsuarios}" styleClass="button" reRender="dataTable"/>
-						<a4j:commandButton value="Novo" action="#{usuarioBean.prepareSave}" styleClass="button" reRender="paginaPrincipal"/>
-
-						<h:selectOneRadio id="radioStatus" styleClass="checkbox" value="#{usuarioBean.status}" label="ativoInativo" style="width:20%;">
-							<f:selectItem itemLabel="Ativo" itemValue="true"/>
-							<f:selectItem itemLabel="Inativo" itemValue="false"/>
-						</h:selectOneRadio>
-
-					</h:panelGroup>
+	<ui:define name="content">
 
 
-			      	<rich:dataTable id="dataTable"	value="#{usuarioBean.entities}" var="usuario" rows="50" rowKeyVar="index"
-			      		rowClasses="even,odd" 
-			      		onRowMouseOver="jQuery(this).addClass('trHover')" 
-						onRowMouseOut="jQuery(this).removeClass('trHover')"
-						width="100%">
-						
-						<c:if test="#{empty usuarioBean.entities}">
-							<rich:column>
-								<f:facet name="header">Nenhum registro foi encontrado.</f:facet>
-							</rich:column>
-						</c:if>
+		<div id="cadastro">
 		
-			      		<c:if test="#{not empty usuarioBean.entities}">
-		
-							<rich:column width="1%" style="text-align: center;" > 
-								<f:facet name="header"><h:outputText value="Nº" /></f:facet>
-								<h:outputText value="#{index+1}" style="color: black;"/>
-							</rich:column>
-			
-							<rich:column sortBy="#{usuario.login}" width="10%" style="text-align: left;" > 
-								<f:facet name="header"><h:outputText value="Login" /></f:facet>
-								<h:outputText value="#{usuario.login}" style="color: black;"/>
-							</rich:column>
-			
-							<rich:column sortBy="#{usuario.role.nome}" width="15%" style="text-align: left;" > 
-								<f:facet name="header"><h:outputText value="Grupo" /></f:facet>
-								<h:outputText value="#{usuario.role.nome}" style="color: black;"/>
-							</rich:column>				
+		</div>
 
-							<rich:column sortBy="#{usuario.pessoa.nome}" width="20%" style="text-align: left;" > 
-								<f:facet name="header"><h:outputText value="Nome" /></f:facet>
-								<h:outputText value="#{usuario.pessoa.nome}" style="color: black;"/>
-							</rich:column>
+	</ui:define>
 
-
-							<rich:column sortBy="#{usuario.pessoa.cliente.nome}" width="40%" style="text-align: left;"  rendered="#{controlBean.adminSistema}"> 
-								<f:facet name="header"><h:outputText value="Cliente" /></f:facet>
-								<h:outputText value="#{usuario.pessoa.cliente.nome}" style="color: black;"/>
-							</rich:column>
-			
-							<rich:column width="3%" style="text-align: center;">
-								<f:facet name="header"><h:outputText value="Editar" /></f:facet>
-								<h:commandLink styleClass="editar" action="#{usuarioBean.prepareUpdate}" value="Editar">
-									<f:setPropertyActionListener target="#{usuarioBean.entity}" value="#{usuario}"/>
-									<a4j:support event="onclick" reRender="paginaPrincipal"/>
-								</h:commandLink>
-							</rich:column>
-			
-							<rich:column width="2%" style="text-align: center;" rendered="#{controlBean.adminSistema}">
-			
-								<f:facet name="header"><h:outputText></h:outputText></f:facet>
-								<h:commandLink id="bloq" styleClass="desbloquear" action="#{usuarioBean.bloquear}" value="Bloquear" rendered="#{usuario.status == 'TRUE' or usuario.status == 'true'}"
-									onclick="if(!confirm('Tem certeza que deseja bloquear o usuário?')) { form.reset();return false;}">
-									<f:setPropertyActionListener target="#{usuarioBean.entity}" value="#{usuario}"/>
-									<a4j:support event="oncomplete" reRender="paginaPrincipal"/>
-								</h:commandLink>
-								<rich:toolTip value="Usuário Desbloqueado" for="bloq" rendered="#{usuario.status == 'TRUE' or usuario.status == 'true'}"/>
-			
-								<h:commandLink id="desbloq" styleClass="bloquear" action="#{usuarioBean.desbloquear}" value="Desbloquear" rendered="#{usuario.status == 'FALSE'or usuario.status == 'false'}"
-									onclick="if(!confirm('Tem certeza que deseja desbloquear o usuário?')) { form.reset();return false;}">
-									<f:setPropertyActionListener target="#{usuarioBean.entity}" value="#{usuario}"/>
-									<a4j:support event="oncomplete" reRender="paginaPrincipal"/>
-								</h:commandLink>
-								<rich:toolTip value="Usuário Bloqueado" for="desbloq" rendered="#{usuario.status == 'FALSE' or usuario.status == 'false'}"/>
-			
-							</rich:column>
-			
-							<f:facet name="footer">
-								<rich:datascroller renderIfSinglePage="false" for="dataTable"/>
-			          	 	</f:facet>
-		          	 	
-		          	 	</c:if>					
-		
-					</rich:dataTable>
-
-				</rich:tab>
-
-			</rich:tabPanel>
-
-		</fieldset>
-
-	</div>
-
-	      		
 
 </ui:composition>
+

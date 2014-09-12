@@ -82,7 +82,7 @@ public class ClienteBean extends EntityBean<Long, Cliente> {
 	}
 	
 	public String search(){
-		this.entities = retrieveEntityService().retrieveAll();
+		super.search();
 		return "clienteList";
 	}
 	
