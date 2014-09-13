@@ -15,53 +15,7 @@
 	</h:head>
 
     <h:body>
-    	<div id="bgPrincipal">	
-		    <div id="bgBrilhoCartao">
-		        <div id="moldura">
-		            <div id="fotoPessoas">
-		              	<h2><h:outputText value="e-Bank" style="font-size:60px;color: #CFCFCF;" /></h2>
-		            		<div id="topicosHome">
-				                <div class="topico">
-				                    <h2><h:outputText value="#{bundle.lbl_o_sistema}"/></h2>
-				                    <p align="justify">
-				                    	<h:outputText value="#{bundle.primeira_frase}"/>
-				                    	<br/>
-				                    	<h:outputLink value="#{bundle.link_1}"><h:outputText value="#{bundle.saiba_mais}"/></h:outputLink>
-				                    </p>
-				                </div>
-				                <div class="topico">
-				                    <h2><h:outputText value="#{bundle.lbl_quer_saber_mais}"/></h2>
-				                    <p>
-				                    	<h:outputText value="#{bundle.segunda_frase}"/>
-				                    	<br/>
-				                    	<h:outputLink value="#{bundle.link_1}"><h:outputText value="#{bundle.terceira_frase}"/></h:outputLink>
-				                    </p>
-				                </div>
-				                <div class="topico" style="margin-right:200px;">
-				                	<h2><h:outputText value="#{bundle.como_adquirir}"/></h2>
-				                    <div class="linhaImgTexto">
-				                        <img class="imgComoAdquiri" src="/#{bundle.pathAplicacao}/resources/imagens/icoTelefone.png"  />
-				                       <p><h:outputText value="#{bundle.telefone_pagina_inicial}"/></p>
-				                    </div>                      
-				                    <div class="linhaImgTexto">
-				                        <img class="imgComoAdquiri" src="/#{bundle.pathAplicacao}/resources/imagens/icoCarta.png" style="margin-top: 5px;" />
-				                        <p><h:outputText value="#{bundle.email_pagina_inicial}"/></p>
-				                    </div>                 
-				                </div>
-				                <div class="topico">
-				                	<h2><h:outputText value="#{bundle.lbl_suporte}"/></h2>
-				                    <p>
-				                    	<h:outputText value="#{bundle.entre_em_contato}"/>
-										<br/>
-										<h:outputText value="#{bundle.telefone_e_email_pagina_inicial}"/>
-										<br/>
-				                    	<h:outputLink value="#{bundle.link_1}">
-				                    		<h:outputText value="#{bundle.saiba_mais}"/>
-				                    	</h:outputLink>
-				                    </p>
-				                </div>                                            
-		            		</div>
-		            		
+    
 				            <div id="campoLoginSenha">
 				                <div class="linhaImgTextoDois">
    				                    <img src="/#{bundle.pathAplicacao}/resources/imagens/imgCadeado.png"/>
@@ -81,25 +35,13 @@
 												</div>
 							                </div>
 						                	<h:commandButton type="submit" action="#{loginBean.logar}" value="Acessar" class="botaoPadrao" style="width:100px;"/>
-		                				    <a href="https://seals.trustsign.com.br/certificate.php?id=434&amp;site=www.eextrato.com.br&amp;lang=pt" target="_blank" style="float: right; margin-right: 15px; margin-top: 0px;">
-			    								<img src="https://seals.trustsign.com.br/cache/434/site_autentico-cinza-www.eextrato.com.br-105x45.png" border="0" title="Clique para validar" name="trustseal" alt="Site Autêntico"/>
-			   								</a>
-							                <br/><br/>
+		                				    
 						                </h:form>
 						                <h:messages warnClass="msgWarm" errorClass="msgError" infoClass="msgInfo" style="padding-top:25px;"/>
 				                	</h:panelGrid>
 				                </h:panelGroup>
 				            </div>
-		            		<div class="floatClear"></div>
-		            	</div>     
-		        	</div>
-		    	</div>   
-			</div>
-			<div id="rodape">
-				<a href="http://www.boavistanet.com.br/" target="_blank">
-				    <img src="/#{bundle.pathAplicacao}/resources/imagens/Boavista-logo.png" alt="Boavista Logo" />
-			    </a>
-			</div> 
+		            	
 
 			<a4j:outputPanel ajaxRendered="true">
 			    <rich:jQuery selector=".stable tr:odd" query="addClass('odd-row')" />
