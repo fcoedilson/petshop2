@@ -8,8 +8,6 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:c="http://java.sun.com/jstl/core"
-	xmlns:a4j="http://richfaces.org/a4j"
-	xmlns:rich="http://richfaces.org/rich"
 	xmlns:p="http://primefaces.org/ui">
 
 
@@ -18,42 +16,41 @@
 			<h:outputLabel value="Busca"/>
 			<h:inputText value="#{racaBean.filter}"/>
 
-			<a4j:commandButton value="Pesquisar" type="submit" action="#{racaBean.search}" render="dataTable" styleClass="button"/>
-			<a4j:commandButton value="Novo" action="#{racaBean.prepareSave}" render="appForm" icon="ui-icon-plus" styleClass="button" immediate="true"/>
-
+			<p:commandButton value="Pesquisar" type="submit" action="#{racaBean.search}" update="dataTable" styleClass="button"/>
+			<p:commandButton value="Novo" action="#{racaBean.prepareSave}" update="appForm" icon="ui-icon-plus" styleClass="button" immediate="true"/>
 
 			<p:dataTable id="dataTable" rowClasses="even,odd" value="#{racaBean.entities}" var="raca" rows="10" rowKeyVar="index">
 
 
-				<rich:column width="3%" style="text-align: center;" > 
+				<p:column width="3%" style="text-align: center;" > 
 					<f:facet name="header"><h:outputText value="Nº" /></f:facet>
 					<h:outputText value="#{index+1}" style="color: black;"/>
-				</rich:column>
+				</p:column>
 
-				<rich:column width="20%" sortBy="#{raca.nome}">
+				<p:column width="20%" sortBy="#{raca.nome}">
 					<f:facet name="header"><h:outputLabel value="Nome"/></f:facet>
 					<h:outputText value="#{raca.nome}"/>
-				</rich:column>
+				</p:column>
 
-				<rich:column width="15%" sortBy="#{raca.descricao}">
+				<p:column width="15%" sortBy="#{raca.descricao}">
 					<f:facet name="header"><h:outputLabel value="Descricao"/></f:facet>
 					<h:outputText value="#{raca.descricao}"/>
-				</rich:column>
+				</p:column>
 
-				<rich:column width="4%" headerText="Editar">
+				<p:column width="4%" headerText="Editar">
 					<h:commandLink icon="ui-icon-pencil" action="#{racaBean.prepareUpdate}" value="Editar">
 						<f:setPropertyActionListener target="#{racaBean.entity}" value="#{raca}"/>
 					</h:commandLink>
-				</rich:column>
+				</p:column>
 
-				<rich:column width="4%" headerText="Excluir">
+				<p:column width="4%" headerText="Excluir">
 					<h:commandLink  icon="ui-icon-trash" action="#{racaBean.delete}" value="Excluir" onclick="if(!confirm('Confirmar')){document.getElementById('appForm').reset(); return false;}">
 						<f:setPropertyActionListener target="#{racaBean.entity}" value="#{raca}"/>
 					</h:commandLink>
-				</rich:column>
+				</p:column>
 
 	            <f:facet name="footer">
-					<rich:dataScroller renderIfSinglePage="false" render="dataTable" />
+					<p:dataScroller renderIfSinglePage="false" render="dataTable" />
 	            </f:facet>
 
 			</p:dataTable>

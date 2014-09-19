@@ -6,18 +6,46 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core"
-	template="/pages/templates/template.xhtml">
-
-	<ui:define name="content">
+	xmlns:f="http://java.sun.com/jsf/core">
 
 
-		<div id="cadastro">
-		
-		</div>
+	<div id="cadastro">
 
-	</ui:define>
+		<h:inputHidden value="#{usuarioBean.entity.id}" rendered="#{usuarioBean.updateState}"/>
 
+ 		<fieldset>
+ 			
+ 			<legend>Usuários</legend>
+
+            <h:panelGrid columns="3" styleClass="crudd" columnClasses="label">
+            
+
+				<h:outputLabel value="Nome"/>
+				<h:inputText id="nome" value="#{usuarioBean.entity.nome}" required="true" maxlength="120" size="60">
+					<f:validateLength maximum="50" minimum="3"/>
+				</h:inputText>
+				<p:message errorClass="error" for="nome"/>
+
+
+				<h:outputLabel value="Login"/>
+				<h:inputText id="login" value="#{usuarioBean.entity.login}" required="true"/>
+				<p:message errorClass="error" for="login"/>
+
+				<h:outputLabel value="Senha"/>
+				<h:inputText id="senha" value="#{usuarioBean.entity.senha}" required="true"/>
+				<p:message errorClass="error" for="senha"/>
+
+			</h:panelGrid>
+			
+		</fieldset>
+
+
+	<p:commandButton value="Salvar" type="submit" action="#{usuarioBean.save}" styleClass="button" rendered="#{usuarioBean.saveState}" update="appForm" />
+	<p:commandButton value="Alterar" type="submit" action="#{usuarioBean.update}" styleClass="button" rendered="#{usuarioBean.updateState}" update="appForm"/>
+	<p:commandButton value="Voltar" action="#{usuarioBean.search}" update="appForm" styleClass="button" immediate="true"/>
+
+	
+	</div>
 
 </ui:composition>
 

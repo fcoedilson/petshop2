@@ -6,20 +6,16 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:c="http://java.sun.com/jstl/core"
-	xmlns:a4j="http://richfaces.org/a4j"
-	xmlns:rich="http://richfaces.org/rich"
 	xmlns:p="http://primefaces.org/ui">
 
 
 		<h:inputHidden value="#{racaBean.entity.id}" rendered="#{racaBean.updateState}"/>
 
- 		<fieldset>
+ 		<p:fieldset legend="Raças de Animais">
  			
- 			<legend>Raças de anaimais</legend>
 
             <h:panelGrid columns="3" styleClass="crudd" columnClasses="label">
             
-
 				<h:outputLabel value="Nome"/>
 				<h:inputText id="nome" value="#{racaBean.entity.nome}" required="true" maxlength="120" size="60">
 					<f:validateLength maximum="50" minimum="3"/>
@@ -33,12 +29,12 @@
 
 			</h:panelGrid>
 			
-		</fieldset>
+		</p:fieldset>
 
 
-	<a4j:commandButton value="Salvar" type="submit" action="#{racaBean.save}" styleClass="button" rendered="#{racaBean.saveState}" render="appForm" execute="@form"/>
-	<a4j:commandButton value="Alterar" type="submit" action="#{racaBean.update}" styleClass="button" rendered="#{racaBean.updateState}" render="appForm" execute="@form"/>
-	<a4j:commandButton value="Voltar" action="#{racaBean.search}" render="appForm" styleClass="button" execute="@this" immediate="true"/>
+	<p:commandButton value="Salvar" type="submit" action="#{racaBean.save}" styleClass="button" rendered="#{racaBean.saveState}" update="appForm"/>
+	<p:commandButton value="Alterar" type="submit" action="#{racaBean.update}" styleClass="button" rendered="#{racaBean.updateState}" update="appForm"/>
+	<p:commandButton value="Voltar" action="#{racaBean.search}" update="appForm" styleClass="button" immediate="true"/>
 
 
 </ui:composition>
