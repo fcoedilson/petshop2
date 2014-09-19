@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition 	
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui">
+
+
+		<div id="cadastro">
+		
+			<h:outputLabel value="Busca"/>
+			<h:inputText value="#{racaBean.filter}"/>
+
+			<a4j:commandButton value="Pesquisar" type="submit" action="#{racaBean.search}" render="dataTable" styleClass="button"/>
+			<a4j:commandButton value="Novo" action="#{racaBean.prepareSave}" render="appForm" icon="ui-icon-plus" styleClass="button" immediate="true"/>
+
+
+			<p:dataTable id="dataTable" rowClasses="even,odd" value="#{racaBean.entities}" var="raca" rows="10" rowKeyVar="index">
+
+
+				<rich:column width="3%" style="text-align: center;" > 
+					<f:facet name="header"><h:outputText value="Nº" /></f:facet>
+					<h:outputText value="#{index+1}" style="color: black;"/>
+				</rich:column>
+
+				<rich:column width="20%" sortBy="#{raca.nome}">
+					<f:facet name="header"><h:outputLabel value="Nome"/></f:facet>
+					<h:outputText value="#{raca.nome}"/>
+				</rich:column>
+
+				<rich:column width="15%" sortBy="#{raca.descricao}">
+					<f:facet name="header"><h:outputLabel value="Descricao"/></f:facet>
+					<h:outputText value="#{raca.descricao}"/>
+				</rich:column>
+
+				<rich:column width="4%" headerText="Editar">
+					<h:commandLink icon="ui-icon-pencil" action="#{racaBean.prepareUpdate}" value="Editar">
+						<f:setPropertyActionListener target="#{racaBean.entity}" value="#{raca}"/>
+					</h:commandLink>
+				</rich:column>
+
+				<rich:column width="4%" headerText="Excluir">
+					<h:commandLink  icon="ui-icon-trash" action="#{racaBean.delete}" value="Excluir" onclick="if(!confirm('Confirmar')){document.getElementById('appForm').reset(); return false;}">
+						<f:setPropertyActionListener target="#{racaBean.entity}" value="#{raca}"/>
+					</h:commandLink>
+				</rich:column>
+
+	            <f:facet name="footer">
+					<rich:dataScroller renderIfSinglePage="false" render="dataTable" />
+	            </f:facet>
+
+			</p:dataTable>
+	
+		</div>
+
+</ui:composition>

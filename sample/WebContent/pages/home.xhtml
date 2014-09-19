@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!DOCTYPE html>
+
+<ui:composition template="templates/template.xhtml"
+
+	xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core" 
+    xmlns:ui="http://java.sun.com/jsf/facelets" 
+    xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+	<ui:define name="content">
+
+		<h:messages styleClass="messages" globalOnly="true" />
+	
+		<c:if test="#{controlBean.clienteBean}">
+			<c:if test="#{clienteBean.searchState}">
+				<ui:include src="cadastros/cliente/clienteList.xhtml" />
+			</c:if>
+			<c:if test="#{clienteBean.saveState || clienteBean.updateState}">
+				<ui:include src="cadastros/cliente/cliente.xhtml" />
+			</c:if>
+		</c:if>
+
+		<c:if test="#{controlBean.animalBean}">
+			<c:if test="#{animalBean.searchState}">
+				<ui:include src="cadastros/animal/animalList.xhtml"/>
+			</c:if>
+			<c:if test="#{animalBean.saveState || animalBean.updateState}">
+				<ui:include src="cadastros/animal/animal.xhtml"/>
+			</c:if>
+		</c:if>
+
+		<c:if test="#{controlBean.racaBean}">
+			<c:if test="#{racaBean.searchState}">
+				<ui:include src="cadastros/raca/racaList.xhtml"/>
+			</c:if>
+			<c:if test="#{racaBean.saveState || racaBean.updateState}">
+				<ui:include src="cadastros/raca/raca.xhtml"/>
+			</c:if>
+		</c:if>
+
+	</ui:define>
+
+</ui:composition>

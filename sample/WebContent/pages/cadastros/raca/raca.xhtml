@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition 	
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui">
+
+
+		<h:inputHidden value="#{racaBean.entity.id}" rendered="#{racaBean.updateState}"/>
+
+ 		<fieldset>
+ 			
+ 			<legend>Raças de anaimais</legend>
+
+            <h:panelGrid columns="3" styleClass="crudd" columnClasses="label">
+            
+
+				<h:outputLabel value="Nome"/>
+				<h:inputText id="nome" value="#{racaBean.entity.nome}" required="true" maxlength="120" size="60">
+					<f:validateLength maximum="50" minimum="3"/>
+				</h:inputText>
+				<p:message errorClass="error" for="nome"/>
+
+
+				<h:outputLabel value="Descrição raça"/>
+				<h:inputTextarea id="descricao" value="#{racaBean.entity.descricao}" cols="30" rows="2"/>
+				<p:message errorClass="error" for="descricao"/>
+
+			</h:panelGrid>
+			
+		</fieldset>
+
+
+	<a4j:commandButton value="Salvar" type="submit" action="#{racaBean.save}" styleClass="button" rendered="#{racaBean.saveState}" render="appForm" execute="@form"/>
+	<a4j:commandButton value="Alterar" type="submit" action="#{racaBean.update}" styleClass="button" rendered="#{racaBean.updateState}" render="appForm" execute="@form"/>
+	<a4j:commandButton value="Voltar" action="#{racaBean.search}" render="appForm" styleClass="button" execute="@this" immediate="true"/>
+
+
+</ui:composition>

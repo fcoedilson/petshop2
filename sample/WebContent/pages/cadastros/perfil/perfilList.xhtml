@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/pages/templates/template.xhtml">
+
+
+	<ui:define name="content">
+	
+		<div id="cadastro">
+	
+			<fieldset>
+	
+	
+				<h:outputLabel  value="Busca"/>
+				<h:inputText value="#{perfilBean.filter}"></h:inputText>
+		
+				<p:commandButton value="Pesquisar" action="#{perfilBean.search}" styleClass="button"/>
+				<p:commandButton value="Novo" action="#{perfilBean.prepareSave}" styleClass="button"/>
+
+		      	<p:dataTable id="dataTable"	value="#{perfilBean.entities}" var="role" rows="50" rowKeyVar="k"
+					width="100%" rowClasses="even, odd" 
+					onRowMouseOver="jQuery(this).addClass('trHover')" 
+					onRowMouseOut="jQuery(this).removeClass('trHover')">
+					
+					<p:column width="1%" style="text-align: center;" > 
+						<f:facet name="header"><h:outputLabel value="Nº"/></f:facet>
+						<h:outputText value="#{k+1}" style="color: black;"/>
+					</p:column>
+
+					<p:column width="30%" > 
+						<f:facet name="header"><h:outputLabel value="Nome"/></f:facet>
+						<h:outputText value="#{role.nome}" style="color: black;"/>
+					</p:column>
+
+					<p:column width="30%" > 
+						<f:facet name="header"><h:outputLabel value="authority"/></f:facet>
+						<h:outputText value="#{role.authority}" style="color: black;"/>
+					</p:column>
+
+					<p:column width="3%">
+						<f:facet name="header"><h:outputText value="Editar" /></f:facet>
+						<h:commandLink styleClass="editar" action="#{perfilBean.prepareUpdate}" value="Editar">
+							<f:setPropertyActionListener target="#{perfilBean.entity}" value="#{role}"/>
+						</h:commandLink>
+					</p:column>
+	
+					<p:column width="3%" style="text-align: center;" rendered="false">
+						<f:facet name="header"><h:outputText value="Excluir"/></f:facet>
+						<h:commandLink styleClass="excluir"  action="#{perfilBean.delete}" value="Excluir"
+							onclick="if(!confirm('Tem certeza que deseja excluir?')) { form.reset();return false;}">
+							<f:setPropertyActionListener target="#{perfilBean.entity}" value="#{role}"/>
+						</h:commandLink>
+					</p:column>
+	
+					<f:facet name="footer">
+						<p:datascroller renderIfSinglePage="false" reRender="dataTable" for="dataTable" />
+					</f:facet>
+	
+				</p:dataTable>
+	
+			</fieldset>
+	
+		</div>
+	
+	</ui:define>
+	
+</ui:composition>

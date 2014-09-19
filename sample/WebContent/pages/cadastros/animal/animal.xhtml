@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition 	
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui">
+
+
+		<h:inputHidden value="#{animalBean.entity.id}" rendered="#{animalBean.updateState}"/>
+
+ 		<p:fieldset legend="Dados do Animal">
+ 			
+
+            <h:panelGrid columns="3" styleClass="crudd" columnClasses="label">
+            
+
+				<h:outputLabel value="Nome"/>
+				<h:inputText id="nome" value="#{animalBean.entity.nome}" required="true" maxlength="120" size="60">
+					<f:validateLength maximum="50" minimum="3"/>
+				</h:inputText>
+				<p:message errorClass="error" for="nome"/>
+				
+
+				<h:outputLabel value="Cor"/>
+				<h:inputText id="cor" value="#{animalBean.entity.cor}" required="true" maxlength="8" size="18">
+					<f:validateLength maximum="18" minimum="8"/>
+				</h:inputText>
+				<p:message errorClass="error" for="cor"/>
+
+				<h:outputLabel value="Espécie"/>
+				<h:inputText id="especie" value="#{animalBean.entity.especie}" required="true" maxlength="8" size="18">
+					<f:validateLength maximum="18" minimum="8"/>
+				</h:inputText>
+				<p:message errorClass="error" for="especie"/>
+
+				<h:outputLabel value="Características"/>
+				<h:inputTextarea id="caracte" value="#{animalBean.entity.caracteristicas}" cols="30" rows="2"/>
+				<p:message errorClass="error" for="caracte"/>
+
+			</h:panelGrid>
+			
+		</p:fieldset>
+
+
+	<p:commandButton value="Salvar" type="submit" action="#{animalBean.save}" styleClass="button" rendered="#{animalBean.saveState}" update="appForm"/>
+	<p:commandButton value="Alterar" type="submit" action="#{animalBean.update}" styleClass="button" rendered="#{animalBean.updateState}" update="appForm"/>
+	<p:commandButton value="Voltar" action="#{animalBean.search}" update="appForm" styleClass="button" immediate="true"/>
+
+
+</ui:composition>
