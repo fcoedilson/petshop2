@@ -52,15 +52,17 @@
 					<h:outputText value="#{cliente.endereco.logradouro}, Nº #{cliente.endereco.numero} #{cliente.endereco.complemento} - #{cliente.endereco.bairro} #{cliente.endereco.cidade}"/>
 				</p:column>
 	
-				<p:column width="4%" headerText="Editar">
-					<h:commandLink icon="ui-icon-pencil" action="#{clienteBean.prepareUpdate}" value="Editar">
+				<p:column width="3%">
+					<h:commandLink icon="ui-icon-pencil" action="#{clienteBean.prepareUpdate}" value="">
 						<f:setPropertyActionListener target="#{clienteBean.entity}" value="#{cliente}"/>
+						<p:graphicImage value="../images/pencil.png"/>
 					</h:commandLink>
 				</p:column>
 	
-				<p:column width="4%" headerText="Excluir">
-					<h:commandLink  icon="ui-icon-trash" action="#{clienteBean.delete}" value="Excluir" onclick="if(!confirm('Confirmar')){document.getElementById('appForm').reset(); return false;}">
+				<p:column width="3%">
+					<h:commandLink  icon="ui-icon-trash" action="#{clienteBean.delete}" value="" onclick="if(!confirm('Confirmar')){document.getElementById('appForm').reset(); return false;}">
 						<f:setPropertyActionListener target="#{clienteBean.entity}" value="#{cliente}"/>
+						<p:graphicImage value="../images/cross.png"/>
 					</h:commandLink>
 				</p:column>
 	

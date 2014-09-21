@@ -42,12 +42,14 @@
 				<p:column width="4%" headerText="Editar">
 					<h:commandLink icon="ui-icon-pencil" action="#{usuarioBean.prepareUpdate}" value="Editar">
 						<f:setPropertyActionListener target="#{usuarioBean.entity}" value="#{usuario}"/>
+						<p:graphicImage value="../images/pencil.png"/>
 					</h:commandLink>
 				</p:column>
 	
 				<p:column width="4%" headerText="Excluir">
 					<h:commandLink  icon="ui-icon-trash" action="#{usuarioBean.delete}" value="Excluir" onclick="if(!confirm('Confirmar')){document.getElementById('appForm').reset(); return false;}">
 						<f:setPropertyActionListener target="#{usuarioBean.entity}" value="#{usuario}"/>
+						<p:graphicImage value="../images/cross.png"/>
 					</h:commandLink>
 				</p:column>
 	

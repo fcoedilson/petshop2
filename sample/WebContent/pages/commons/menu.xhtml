@@ -18,15 +18,16 @@
 
 			<rich:dropDownMenu label="Cadastros" rendered="#{controlBean.hasRole('MENU_CADASTRO')}">
 
-				<rich:menuItem label="Clientes" action="#{clienteBean.search}" immediate="true"/>
 				<rich:menuItem label="Animais" action="#{animalBean.search}" immediate="true"/>
+				<rich:menuItem label="Especies" action="#{especieBean.search}" immediate="true"/>
 				<rich:menuItem label="Raças" action="#{racaBean.search}" immediate="true"/>
+				<rich:menuItem label="Clientes" action="#{clienteBean.search}" immediate="true"/>
 				<rich:menuItem label="Funcionários" action="#{funcionarioBean.search}" immediate="true"/>
 				<rich:menuItem label="Médicos" action="#{medicoBean.search}"   immediate="true"/>
 				<rich:menuItem label="Usuários" action="#{usuarioBean.search}"  immediate="true"/>
 				<rich:menuItem label="Perfis" action="#{perfilBean.search}" immediate="true"/>
 				<rich:menuItem label="Permissões" action="#{permissaoBean.search}" immediate="true"/>
-					<rich:menuItem label="Produtos" action="#{produtoBean.search}" immediate="true"/>
+				<rich:menuItem label="Produtos" action="#{produtoBean.search}" immediate="true" />
 			
 			</rich:dropDownMenu>
 

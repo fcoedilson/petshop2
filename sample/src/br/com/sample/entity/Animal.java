@@ -30,14 +30,15 @@ public class Animal implements Serializable{
 	@JoinColumn(name="raca_id")
 	private Raca raca;
 	
+	@ManyToOne
+	@JoinColumn(name="especie_id")
+	private Especie especie;
+	
 	@OneToMany(mappedBy="animal", fetch=FetchType.LAZY)
 	private List<Atendimento> atendimentos;
 	
 	@NotNull(message="nome do animal é requerido")
 	private String nome;
-	
-	@NotNull(message="espécie é requerida")
-	private String especie;
 	
 	private String cor;
 	
@@ -67,11 +68,11 @@ public class Animal implements Serializable{
 		this.nome = nome;
 	}
 
-	public String getEspecie() {
+	public Especie getEspecie() {
 		return especie;
 	}
 
-	public void setEspecie(String especie) {
+	public void setEspecie(Especie especie) {
 		this.especie = especie;
 	}
 

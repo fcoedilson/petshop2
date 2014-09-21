@@ -49,6 +49,15 @@
 				<ui:include src="cadastros/raca/raca.xhtml"/>
 			</c:if>
 		</c:if>
+
+		<c:if test="#{controlBean.especieBean}">
+			<c:if test="#{especieBean.searchState}">
+				<ui:include src="cadastros/especie/especieList.xhtml"/>
+			</c:if>
+			<c:if test="#{especieBean.saveState || especieBean.updateState}">
+				<ui:include src="cadastros/especie/especie.xhtml"/>
+			</c:if>
+		</c:if>
 		
 		<c:if test="#{controlBean.produtoBean}">
 			<c:if test="#{produtoBean.searchState}">

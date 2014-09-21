@@ -14,12 +14,12 @@
 		<div id="cadastro">
 		
 			<h:outputLabel value="Busca"/>
-			<h:inputText value="#{racaBean.filter}"/>
+			<h:inputText value="#{especieBean.filter}"/>
 
-			<p:commandButton value="Pesquisar" type="submit" action="#{racaBean.search}" update="dataTable" styleClass="button"/>
-			<p:commandButton value="Novo" action="#{racaBean.prepareSave}" update="appForm" icon="ui-icon-plus" styleClass="button" immediate="true"/>
+			<p:commandButton value="Pesquisar" type="submit" action="#{especieBean.search}" update="dataTable" styleClass="button"/>
+			<p:commandButton value="Novo" action="#{especieBean.prepareSave}" update="appForm" icon="ui-icon-plus" styleClass="button" immediate="true"/>
 
-			<p:dataTable id="dataTable" rowClasses="even,odd" value="#{racaBean.entities}" var="raca" rows="10" rowIndexVar="index">
+			<p:dataTable id="dataTable" rowClasses="even,odd" value="#{especieBean.entities}" var="especie" rows="10" rowIndexVar="index">
 
 
 				<p:column width="3%" style="text-align: center;" > 
@@ -27,26 +27,26 @@
 					<h:outputText value="#{index+1}" style="color: black;"/>
 				</p:column>
 
-				<p:column width="20%" sortBy="#{raca.nome}">
+				<p:column width="20%" sortBy="#{especie.nome}">
 					<f:facet name="header"><h:outputLabel value="Nome"/></f:facet>
-					<h:outputText value="#{raca.nome}"/>
+					<h:outputText value="#{especie.nome}"/>
 				</p:column>
 
-				<p:column width="40%" sortBy="#{raca.descricao}">
+				<p:column width="40%" sortBy="#{especie.descricao}">
 					<f:facet name="header"><h:outputLabel value="Descricao"/></f:facet>
-					<h:outputText value="#{raca.descricao}"/>
+					<h:outputText value="#{especie.descricao}"/>
 				</p:column>
 
 				<p:column width="4%">
-					<h:commandLink icon="ui-icon-pencil" action="#{racaBean.prepareUpdate}" value="">
-						<f:setPropertyActionListener target="#{racaBean.entity}" value="#{raca}"/>
+					<h:commandLink icon="ui-icon-pencil" action="#{especieBean.prepareUpdate}" value="">
+						<f:setPropertyActionListener target="#{especieBean.entity}" value="#{especie}"/>
 						<p:graphicImage value="../images/pencil.png"/>
 					</h:commandLink>
 				</p:column>
 
 				<p:column width="4%">
-					<h:commandLink  icon="ui-icon-trash" action="#{racaBean.delete}" value="" onclick="if(!confirm('Confirmar')){document.getElementById('appForm').reset(); return false;}">
-						<f:setPropertyActionListener target="#{racaBean.entity}" value="#{raca}"/>
+					<h:commandLink  icon="ui-icon-trash" action="#{especieBean.delete}" value="" onclick="if(!confirm('Confirmar')){document.getElementById('appForm').reset(); return false;}">
+						<f:setPropertyActionListener target="#{especieBean.entity}" value="#{especie}"/>
 						<p:graphicImage value="../images/cross.png"/>
 					</h:commandLink>
 				</p:column>

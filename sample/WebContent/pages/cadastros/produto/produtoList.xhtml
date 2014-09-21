@@ -20,7 +20,7 @@
 				<p:commandButton value="Pesquisar" action="#{produtoBean.search}" styleClass="button" update="dataTable"/>
 				<p:commandButton value="Novo" action="#{produtoBean.prepareSave}" styleClass="button" update="appForm" ajax="false"/>
 
-		      	<p:dataTable id="dataTable"	value="#{produtoBean.entities}" var="produto" rows="50" rowKeyVar="k"
+		      	<p:dataTable id="dataTable"	value="#{produtoBean.entities}" var="produto" rows="50" rowIndexVar="k"
 					width="100%" rowClasses="even, odd" 
 					onRowMouseOver="jQuery(this).addClass('trHover')" 
 					onRowMouseOut="jQuery(this).removeClass('trHover')">
@@ -57,17 +57,17 @@
 <!-- 					</p:column> -->
 
 					<p:column width="3%">
-						<f:facet name="header"><h:outputText value="Editar" /></f:facet>
-						<h:commandLink styleClass="editar" action="#{produtoBean.prepareUpdate}" value="Editar">
+						<h:commandLink action="#{produtoBean.prepareUpdate}" value="">
 							<f:setPropertyActionListener target="#{produtoBean.entity}" value="#{produto}"/>
+							<p:graphicImage value="../images/pencil.png"/>
 						</h:commandLink>
 					</p:column>
 	
-					<p:column width="3%" style="text-align: center;">
-						<f:facet name="header"><h:outputText value="Excluir"/></f:facet>
-						<h:commandLink styleClass="excluir"  action="#{produtoBean.delete}" value="Excluir"
+					<p:column width="3%">
+						<h:commandLink  action="#{produtoBean.delete}" value=""
 							onclick="if(!confirm('Tem certeza que deseja excluir?')) { form.reset();return false;}">
 							<f:setPropertyActionListener target="#{produtoBean.entity}" value="#{produto}"/>
+							<p:graphicImage value="../images/cross.png"/>
 						</h:commandLink>
 					</p:column>
 	

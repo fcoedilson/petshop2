@@ -10,8 +10,10 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import br.com.sample.entity.Animal;
+import br.com.sample.entity.Especie;
 import br.com.sample.entity.Raca;
 import br.com.sample.service.AnimalService;
+import br.com.sample.service.EspecieService;
 import br.com.sample.service.RacaService;
 
 @Scope("session")
@@ -24,14 +26,16 @@ public class AnimalBean extends EntityBean<Long, Animal> {
 	@Autowired
 	private RacaService racaService;
 
-
-	private Raca raca;
+	@Autowired
+	private EspecieService especieService;
 
 	private List<Raca> racas = new ArrayList<Raca>();
+	private List<Especie> especies = new ArrayList<Especie>();
 
 	@PostConstruct
 	public void init(){
-		racas = new ArrayList<Raca>(racaService.retrieveAll());
+		racas = racaService.retrieveAll();
+		especies = especieService.retrieveAll();
 	}
 
 	protected Long retrieveEntityId(Animal entity) {
@@ -45,6 +49,7 @@ public class AnimalBean extends EntityBean<Long, Animal> {
 	protected Animal createNewEntity() {
 		Animal animal = new Animal();
 		animal.setRaca(new Raca());
+		animal.setEspecie(new Especie());
 		return animal;
 	}
 
@@ -56,12 +61,12 @@ public class AnimalBean extends EntityBean<Long, Animal> {
 		this.racas = racas;
 	}
 
-	public Raca getRaca() {
-		return raca;
+	public List<Especie> getEspecies() {
+		return especies;
 	}
 
-	public void setRaca(Raca raca) {
-		this.raca = raca;
+	public void setEspecies(List<Especie> especies) {
+		this.especies = especies;
 	}
 
 }
