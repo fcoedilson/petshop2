@@ -3,6 +3,8 @@ package br.com.sample.bean;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -18,12 +20,20 @@ public class AnimalBean extends EntityBean<Long, Animal> {
 
 	@Autowired
 	private AnimalService service;
-	
+
 	@Autowired
 	private RacaService racaService;
-	
-	private List<Raca> racas = new ArrayList<Raca>(racaService.retrieveAll());
-	
+
+
+	private Raca raca;
+
+	private List<Raca> racas = new ArrayList<Raca>();
+
+	@PostConstruct
+	public void init(){
+		racas = new ArrayList<Raca>(racaService.retrieveAll());
+	}
+
 	protected Long retrieveEntityId(Animal entity) {
 		return entity.getId();
 	}
@@ -34,6 +44,7 @@ public class AnimalBean extends EntityBean<Long, Animal> {
 
 	protected Animal createNewEntity() {
 		Animal animal = new Animal();
+		animal.setRaca(new Raca());
 		return animal;
 	}
 
@@ -43,6 +54,14 @@ public class AnimalBean extends EntityBean<Long, Animal> {
 
 	public void setRacas(List<Raca> racas) {
 		this.racas = racas;
+	}
+
+	public Raca getRaca() {
+		return raca;
+	}
+
+	public void setRaca(Raca raca) {
+		this.raca = raca;
 	}
 
 }

@@ -26,6 +26,10 @@ public class Animal implements Serializable{
 	@JoinColumn(name="cliente_id")
 	private Cliente cliente;
 	
+	@ManyToOne
+	@JoinColumn(name="raca_id")
+	private Raca raca;
+	
 	@OneToMany(mappedBy="animal", fetch=FetchType.LAZY)
 	private List<Atendimento> atendimentos;
 	
@@ -34,8 +38,6 @@ public class Animal implements Serializable{
 	
 	@NotNull(message="espécie é requerida")
 	private String especie;
-	
-	private String raca;
 	
 	private String cor;
 	
@@ -73,12 +75,20 @@ public class Animal implements Serializable{
 		this.especie = especie;
 	}
 
-	public String getRaca() {
+	public Raca getRaca() {
 		return raca;
 	}
 
-	public void setRaca(String raca) {
+	public void setRaca(Raca raca) {
 		this.raca = raca;
+	}
+
+	public List<Atendimento> getAtendimentos() {
+		return atendimentos;
+	}
+
+	public void setAtendimentos(List<Atendimento> atendimentos) {
+		this.atendimentos = atendimentos;
 	}
 
 	public String getCor() {

@@ -33,10 +33,6 @@
 					<h:inputText id="custo" value="#{produtoBean.entity.precoCusto}" required="true"/>
 					<p:message errorClass="error" for="custo"/>
 					
-					<h:outputLabel for="image" value="Select Image: *" />
-						
-					<p:fileUpload fileUploadListener="#{produtoBean.handleFileUpload}" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" 
-						sizeLimit="100000" description="Select Images"/>					
 
 				</h:panelGrid>
 		

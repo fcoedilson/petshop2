@@ -66,7 +66,7 @@ public class Produto implements Serializable{
 
 			String namefile =  UUID.randomUUID().toString();
 			InputStream is = new ByteArrayInputStream(this.image);
-			image = new DefaultStreamedContent(is, "image/jpeg", namefile+".jpg");
+			image = new DefaultStreamedContent(is, "image/jpg");
 
 		}
 
