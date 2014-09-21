@@ -29,6 +29,7 @@
 		<mapping class="br.com.sample.entity.Funcionario" />
 		<mapping class="br.com.sample.entity.Consulta" />
 		<mapping class="br.com.sample.entity.Animal" />
+		<mapping class="br.com.sample.entity.Raca" />
 		<mapping class="br.com.sample.entity.Servico" />
 		<mapping class="br.com.sample.entity.TipoConsulta" />
 		<mapping class="br.com.sample.entity.Caixa" />

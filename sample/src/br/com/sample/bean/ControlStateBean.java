@@ -57,7 +57,6 @@ public class ControlStateBean extends BaseStateBean implements Serializable {
 				for (Permissao permissao : this.role.getPermissoes()) {
 					this.permissoes.add(permissao);
 				}
-
 			}
 			return SUCCESS;
 		} else {
@@ -180,6 +179,10 @@ public class ControlStateBean extends BaseStateBean implements Serializable {
 
 	public boolean isRacaBean(){
 		return RacaBean.class.getSimpleName().equals(getCurrentBean());
+	}	
+	
+	public boolean isProdutoBean(){
+		return ProdutoBean.class.getSimpleName().equals(getCurrentBean());
 	}	
 	
 	public boolean isPerfilBean(){

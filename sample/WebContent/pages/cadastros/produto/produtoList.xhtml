@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	
+		<div id="cadastro">
+	
+			<p:fieldset legend="Produtos">
+	
+	
+				<h:outputLabel  value="Busca"/>
+				<h:inputText value="#{produtoBean.filter}" size="80"/>
+		
+				<p:commandButton value="Pesquisar" action="#{produtoBean.search}" styleClass="button" update="dataTable"/>
+				<p:commandButton value="Novo" action="#{produtoBean.prepareSave}" styleClass="button" update="appForm" ajax="false"/>
+
+		      	<p:dataTable id="dataTable"	value="#{produtoBean.entities}" var="produto" rows="50" rowKeyVar="k"
+					width="100%" rowClasses="even, odd" 
+					onRowMouseOver="jQuery(this).addClass('trHover')" 
+					onRowMouseOut="jQuery(this).removeClass('trHover')">
+					
+					<p:column width="2%" style="text-align: center;" > 
+						<f:facet name="header"><h:outputLabel value="Nº"/></f:facet>
+						<h:outputText value="#{k+1}" style="color: black;"/>
+					</p:column>
+
+					<p:column width="15%" > 
+						<f:facet name="header"><h:outputLabel value="Nome"/></f:facet>
+						<h:outputText value="#{produto.nome}" style="color: black;"/>
+					</p:column>
+
+					<p:column width="5%" > 
+						<f:facet name="header"><h:outputLabel value="Estoque"/></f:facet>
+						<h:outputText value="#{produto.estoque}" style="color: black;"/>
+					</p:column>
+
+					<p:column width="5%" > 
+						<f:facet name="header"><h:outputLabel value="Preço Venda"/></f:facet>
+						<h:outputText value="#{produto.precoVenda}" style="color: black;"/>
+					</p:column>
+
+					<p:column width="5%" > 
+						<f:facet name="header"><h:outputLabel value="Preço Custo"/></f:facet>
+						<h:outputText value="#{produto.precoCusto}" style="color: black;"/>
+					</p:column>
+					
+					<p:column width="8%" > 
+						 <h:graphicImage value="#{produto.img}" width="50" height="40"  style="border:0"/> 
+					</p:column>
+
+					<p:column width="3%">
+						<f:facet name="header"><h:outputText value="Editar" /></f:facet>
+						<h:commandLink styleClass="editar" action="#{produtoBean.prepareUpdate}" value="Editar">
+							<f:setPropertyActionListener target="#{produtoBean.entity}" value="#{produto}"/>
+						</h:commandLink>
+					</p:column>
+	
+					<p:column width="3%" style="text-align: center;">
+						<f:facet name="header"><h:outputText value="Excluir"/></f:facet>
+						<h:commandLink styleClass="excluir"  action="#{produtoBean.delete}" value="Excluir"
+							onclick="if(!confirm('Tem certeza que deseja excluir?')) { form.reset();return false;}">
+							<f:setPropertyActionListener target="#{produtoBean.entity}" value="#{produto}"/>
+						</h:commandLink>
+					</p:column>
+	
+	            <f:facet name="footer">
+					<p:dataScroller renderIfSinglePage="false" render="dataTable" />
+	            </f:facet>
+	
+				</p:dataTable>
+	
+			</p:fieldset>
+	
+		</div>
+	
+</ui:composition>

@@ -32,8 +32,8 @@
 		</p:fieldset>
 
 
-	<p:commandButton value="Salvar" type="submit" action="#{racaBean.save}" styleClass="button" rendered="#{racaBean.saveState}" update="appForm"/>
-	<p:commandButton value="Alterar" type="submit" action="#{racaBean.update}" styleClass="button" rendered="#{racaBean.updateState}" update="appForm"/>
+	<p:commandButton value="Salvar" type="submit" action="#{racaBean.save}" styleClass="button" rendered="#{racaBean.saveState}" update="appForm" ajax="false"/>
+	<p:commandButton value="Alterar" type="submit" action="#{racaBean.update}" styleClass="button" rendered="#{racaBean.updateState}" update="appForm" ajax="false"/>
 	<p:commandButton value="Voltar" action="#{racaBean.search}" update="appForm" styleClass="button" immediate="true"/>
 
 

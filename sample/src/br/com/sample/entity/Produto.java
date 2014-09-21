@@ -1,13 +1,32 @@
 package br.com.sample.entity;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
+import java.util.UUID;
 
+import javax.imageio.ImageIO;
+import javax.imageio.stream.ImageInputStream;
+import javax.imageio.stream.ImageOutputStream;
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.Type;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 
 @Entity
 public class Produto implements Serializable{
@@ -16,18 +35,43 @@ public class Produto implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="produto_id")
 	private long id;
-	
+
 	@NotNull(message="nome do produto é obrigatório")
 	private String nome;
-	
+
 	@NotNull(message="obrigatório informar a quantidade em estoque")
 	private Integer estoque;
-	
+
 	private Float precoCusto;
-	
+
+	@Lob
+	@Basic(fetch=FetchType.LAZY)
+	@Type(type="org.hibernate.type.BinaryType") 
+	private byte[] image;
+
 	@NotNull(message="preço de venda é obrigatório")
 	private Float precoVenda;
 
+	@Transient
+	private StreamedContent img;
+
+	public void setImg(StreamedContent img) {
+		this.img = img;
+	}
+
+	public StreamedContent getImg() throws IOException {
+
+		StreamedContent image = null;
+		if(this.image != null){
+
+			String namefile =  UUID.randomUUID().toString();
+			InputStream is = new ByteArrayInputStream(this.image);
+			image = new DefaultStreamedContent(is, "image/jpeg", namefile+".jpg");
+
+		}
+
+		return image;
+	}
 
 	public long getId() {
 		return id;
@@ -69,6 +113,14 @@ public class Produto implements Serializable{
 		this.precoVenda = precoVenda;
 	}
 
+	public byte[] getImage() {
+		return image;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -96,5 +148,5 @@ public class Produto implements Serializable{
 			return false;
 		return true;
 	}
-	
+
 }

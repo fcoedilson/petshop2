@@ -28,6 +28,11 @@
 					<f:facet name="header"><h:outputLabel value="Nome"/></f:facet>
 					<h:outputText value="#{usuario.nome}"/>
 				</p:column>
+
+				<p:column width="20%" sortBy="#{usuario.email}">
+					<f:facet name="header"><h:outputLabel value="Email"/></f:facet>
+					<h:outputText value="#{usuario.email}"/>
+				</p:column>
 	
 				<p:column width="20%" sortBy="#{usuario.login}">
 					<f:facet name="header"><h:outputLabel value="Login"/></f:facet>

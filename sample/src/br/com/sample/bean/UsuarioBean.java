@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.sample.entity.Cliente;
+import br.com.sample.entity.Endereco;
 import br.com.sample.entity.Perfil;
 import br.com.sample.entity.Pessoa;
 import br.com.sample.entity.Usuario;
@@ -59,6 +60,9 @@ public class UsuarioBean extends EntityBean<Long, Usuario>{
 	protected Usuario createNewEntity() {
 		Usuario user = new Usuario();
 		user.setRole(new Perfil());
+		Endereco endereco = new Endereco();
+		endereco.setPessoa(user);
+		user.setEndereco(endereco);
 		return user;
 	}
 
@@ -78,7 +82,7 @@ public class UsuarioBean extends EntityBean<Long, Usuario>{
 
 	public String prepareUpdate() {
 
-		this.confirmaSenha = this.entity.getSenha();
+		//this.confirmaSenha = this.entity.getSenha();
 		setCurrentBean(currentBeanName());
 		setCurrentState(UPDATE);
 		return SUCCESS;
@@ -115,7 +119,8 @@ public class UsuarioBean extends EntityBean<Long, Usuario>{
 		this.entities = new ArrayList<Usuario>();
 
 		if(BeanUtil.isAdmin(user)){
-			this.entities = service.findByStatus(StatusUsuario.ATIVO.toString());
+			//this.entities = service.findByStatus(StatusUsuario.ATIVO.toString());
+			this.entities = service.retrieveAll();
 
 		} else if(BeanUtil.isGerente(user)){
 

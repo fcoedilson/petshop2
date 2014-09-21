@@ -27,16 +27,23 @@
 				
 
 				<h:outputLabel value="Cor"/>
-				<h:inputText id="cor" value="#{animalBean.entity.cor}" required="true" maxlength="8" size="18">
-					<f:validateLength maximum="18" minimum="8"/>
+				<h:inputText id="cor" value="#{animalBean.entity.cor}" required="true" maxlength="120" size="18">
+					<f:validateLength maximum="180" minimum="4"/>
 				</h:inputText>
 				<p:message errorClass="error" for="cor"/>
 
 				<h:outputLabel value="Espécie"/>
-				<h:inputText id="especie" value="#{animalBean.entity.especie}" required="true" maxlength="8" size="18">
-					<f:validateLength maximum="18" minimum="8"/>
+				<h:inputText id="especie" value="#{animalBean.entity.especie}" required="true" maxlength="180" size="18">
+					<f:validateLength maximum="180" minimum="4"/>
 				</h:inputText>
 				<p:message errorClass="error" for="especie"/>
+
+				<h:outputLabel value="Raça"/>
+	    		<h:selectOneMenu id="raca" value="#{aninalBean.entity.raca}" required="true" requiredMessage="Informe a raça ..." converter="entityConverter">
+	    			<f:selectItem itemValue="" itemLabel="..."/>
+	    			<t:selectItems value="#{clienteBean.clientes}" var="cli" itemLabel="#{cli.nome}" itemValue="#{cli}"/>
+	    		</h:selectOneMenu>
+	    		<p:message errorClass="error" for="raca"  styleClass="message"/>
 
 				<h:outputLabel value="Características"/>
 				<h:inputTextarea id="caracte" value="#{animalBean.entity.caracteristicas}" cols="30" rows="2"/>

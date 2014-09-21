@@ -22,6 +22,15 @@
 				<ui:include src="cadastros/cliente/cliente.xhtml" />
 			</c:if>
 		</c:if>
+		
+		<c:if test="#{controlBean.usuarioBean}">
+			<c:if test="#{usuarioBean.searchState}">
+				<ui:include src="cadastros/usuario/usuarioList.xhtml"/>
+			</c:if>
+			<c:if test="#{usuarioBean.saveState || usuarioBean.updateState}">
+				<ui:include src="cadastros/usuario/usuario.xhtml"/>
+			</c:if>
+		</c:if>		
 
 		<c:if test="#{controlBean.animalBean}">
 			<c:if test="#{animalBean.searchState}">
@@ -38,6 +47,15 @@
 			</c:if>
 			<c:if test="#{racaBean.saveState || racaBean.updateState}">
 				<ui:include src="cadastros/raca/raca.xhtml"/>
+			</c:if>
+		</c:if>
+		
+		<c:if test="#{controlBean.produtoBean}">
+			<c:if test="#{produtoBean.searchState}">
+				<ui:include src="cadastros/produto/produtoList.xhtml"/>
+			</c:if>
+			<c:if test="#{produtoBean.saveState || produtoBean.updateState}">
+				<ui:include src="cadastros/produto/produto.xhtml"/>
 			</c:if>
 		</c:if>
 

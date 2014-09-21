@@ -33,14 +33,14 @@
 					<h:outputText value="#{animal.nome}"/>
 				</p:column>
 	
-				<p:column width="15%" sortBy="#{animal.caracteristicas}">
-					<f:facet name="header"><h:outputLabel value="Descricao"/></f:facet>
-					<h:outputText value="#{animal.caracteristicas}"/>
-				</p:column>
-	
-				<p:column sortBy="#{animal.cor}">
+				<p:column width="10%" sortBy="#{animal.cor}">
 					<f:facet name="header"><h:outputLabel value="Cor"/></f:facet>
 					<h:outputText value="#{animal.cor}"/>
+				</p:column>
+	
+				<p:column width="50%" sortBy="#{animal.caracteristicas}">
+					<f:facet name="header"><h:outputLabel value="Descricao"/></f:facet>
+					<h:outputText value="#{animal.caracteristicas}"/>
 				</p:column>
 	
 				<p:column width="4%" headerText="Editar">

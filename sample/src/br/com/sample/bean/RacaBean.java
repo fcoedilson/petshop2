@@ -17,12 +17,6 @@ public class RacaBean extends EntityBean<Long, Raca> {
 	private RacaService service;
 
 
-	@Autowired
-	private PessoaService pessoaService;
-
-	@Autowired
-	private EnderecoService enderecoService;
-
 	protected Long retrieveEntityId(Raca entity) {
 		return entity.getId();
 	}
