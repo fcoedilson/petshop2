@@ -14,10 +14,6 @@ import javax.faces.convert.Converter;
 
 import org.springframework.stereotype.Service;
 
-/**
- * Generic Entity Converter
- * 
- */
 @Service("entityConverter")
 public class EntityConverter implements Converter, Serializable {
 
@@ -37,7 +33,6 @@ public class EntityConverter implements Converter, Serializable {
 		if (value != null && !"".equals(value)) {
 
 			Object entity = (Object) value;
-
 			this.addAttribute(component, entity);
 			
 			if(loadIdentifier(entity).startsWith("0")){

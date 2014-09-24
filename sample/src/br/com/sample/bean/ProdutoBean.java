@@ -63,21 +63,26 @@ public class ProdutoBean extends EntityBean<Long, Produto> {
 				UploadedFile file = event.getFile();
 				String fileName = file.getFileName();
 				long fileSize = file.getSize();
+				
 				InputStream inputStream = file.getInputstream();
 
 				ByteArrayOutputStream bos = new ByteArrayOutputStream();
 
-				byte[] buf = new byte[1024];
-				try {
-					for (int readNum; (readNum = inputStream.read(buf)) != -1;) {
-						bos.write(buf, 0, readNum);      
-					}
-				} catch (IOException ex) {
-					ex.printStackTrace();
-				}
-				byte[] bytes = bos.toByteArray();
+				byte[] buffer = new byte[1024];
+				inputStream.read(buffer);
+				inputStream.close();
 
-				this.entity.setImage(bytes);
+//				try {
+//					for (int readNum; (readNum = inputStream.read(buf)) != -1;) {
+//						bos.write(buf, 0, readNum);      
+//					}
+//				} catch (IOException ex) {
+//					ex.printStackTrace();
+//				}
+//
+//				byte[] bytes = bos.toByteArray();
+
+				this.entity.setImage(buffer);
 			}
 
 		} catch (IOException e) {

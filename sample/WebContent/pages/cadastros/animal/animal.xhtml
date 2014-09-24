@@ -39,14 +39,14 @@
 				<p:message errorClass="error" for="especie"/>
 
 				<h:outputLabel value="Raça"/>
-	    		<h:selectOneMenu id="raca" value="#{aninalBean.entity.raca}" required="true" requiredMessage="Informe a raça ..." converter="entityConverter">
+	    		<h:selectOneMenu id="raca" value="#{animalBean.entity.raca}" required="true" converter="entityConverter"   requiredMessage="Informe a raça ...">
 	    			<f:selectItem itemValue="" itemLabel="..."/>
-	    			<t:selectItems value="#{clienteBean.clientes}" var="cli" itemLabel="#{cli.nome}" itemValue="#{cli}"/>
+	    			<f:selectItems value="#{animalBean.racas}" var="raca" itemLabel="#{raca.nome}" itemValue="#{raca}"/>
 	    		</h:selectOneMenu>
 	    		<p:message errorClass="error" for="raca"  styleClass="message"/>
 
 				<h:outputLabel value="Características"/>
-				<h:inputTextarea id="caracte" value="#{animalBean.entity.caracteristicas}" cols="30" rows="2"/>
+				<h:inputTextarea id="caracte" value="#{animalBean.entity.caracteristicas}" cols="40" rows="2"/>
 				<p:message errorClass="error" for="caracte"/>
 
 			</h:panelGrid>

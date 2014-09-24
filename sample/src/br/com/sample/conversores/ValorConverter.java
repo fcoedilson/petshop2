@@ -3,11 +3,7 @@ package br.com.sample.conversores;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
-/**
- * Conversor de valores double (exemplo: moeda)
- * 
- *
- */
+
 public class ValorConverter implements Converter {
 
 	@Override

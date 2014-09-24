@@ -180,6 +180,10 @@ public class ControlStateBean extends BaseStateBean implements Serializable {
 	public boolean isRacaBean(){
 		return RacaBean.class.getSimpleName().equals(getCurrentBean());
 	}	
+
+	public boolean isEspecieBean(){
+		return EspecieBean.class.getSimpleName().equals(getCurrentBean());
+	}
 	
 	public boolean isProdutoBean(){
 		return ProdutoBean.class.getSimpleName().equals(getCurrentBean());
