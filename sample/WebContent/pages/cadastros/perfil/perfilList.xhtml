@@ -50,14 +50,14 @@
 				<p:column width="2%">
 					<h:commandLink styleClass="editar" action="#{perfilBean.prepareUpdate}" value="">
 						<f:setPropertyActionListener target="#{perfilBean.entity}" value="#{role}"/>
-						<p:graphicImage value="../images/pencil.png"/>
+						<p:graphicImage value="/images/pencil.png"/>
 					</h:commandLink>
 				</p:column>
 
 				<p:column width="2%">
 					<h:commandLink styleClass="excluir"  action="#{perfilBean.delete}" value="" onclick="if(!confirm('Tem certeza que deseja excluir?')) { form.reset();return false;}">
 						<f:setPropertyActionListener target="#{perfilBean.entity}" value="#{role}"/>
-						<p:graphicImage value="../images/cross.png"/>
+						<p:graphicImage value="/images/cross.png"/>
 					</h:commandLink>
 				</p:column>
 

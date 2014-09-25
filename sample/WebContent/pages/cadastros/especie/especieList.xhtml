@@ -44,14 +44,14 @@
 				<p:column width="4%">
 					<h:commandLink icon="ui-icon-pencil" action="#{especieBean.prepareUpdate}" value="">
 						<f:setPropertyActionListener target="#{especieBean.entity}" value="#{especie}"/>
-						<p:graphicImage value="../images/pencil.png"/>
+						<p:graphicImage value="/images/pencil.png"/>
 					</h:commandLink>
 				</p:column>
 
 				<p:column width="4%">
 					<h:commandLink  icon="ui-icon-trash" action="#{especieBean.delete}" value="" onclick="if(!confirm('Confirmar')){document.getElementById('appForm').reset(); return false;}">
 						<f:setPropertyActionListener target="#{especieBean.entity}" value="#{especie}"/>
-						<p:graphicImage value="../images/cross.png"/>
+						<p:graphicImage value="/images/cross.png"/>
 					</h:commandLink>
 				</p:column>
 

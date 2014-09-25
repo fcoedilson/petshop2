@@ -59,7 +59,7 @@
 				<p:column width="3%">
 					<h:commandLink action="#{produtoBean.prepareUpdate}" value="">
 						<f:setPropertyActionListener target="#{produtoBean.entity}" value="#{produto}"/>
-						<p:graphicImage value="../images/pencil.png"/>
+						<p:graphicImage value="/images/pencil.png"/>
 					</h:commandLink>
 				</p:column>
 
@@ -67,7 +67,7 @@
 					<h:commandLink  action="#{produtoBean.delete}" value=""
 						onclick="if(!confirm('Tem certeza que deseja excluir?')) { form.reset();return false;}">
 						<f:setPropertyActionListener target="#{produtoBean.entity}" value="#{produto}"/>
-						<p:graphicImage value="../images/cross.png"/>
+						<p:graphicImage value="/images/cross.png"/>
 					</h:commandLink>
 				</p:column>
 
