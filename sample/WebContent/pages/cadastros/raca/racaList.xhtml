@@ -19,8 +19,14 @@
 			<p:commandButton value="Pesquisar" type="submit" action="#{racaBean.search}" update="dataTable" styleClass="button"/>
 			<p:commandButton value="Novo" action="#{racaBean.prepareSave}" update="appForm" icon="ui-icon-plus" styleClass="button" immediate="true"/>
 
-			<p:dataTable id="dataTable" rowClasses="even,odd" value="#{racaBean.entities}" var="raca" rows="10" rowIndexVar="index">
-
+ 			<p:dataTable id="dataTable" var="raca" value="#{racaBean.entities}" 
+ 						rows="10" rowClasses="even,odd"
+ 						paginatorAlwaysVisible="false"
+                        paginator="true" 
+                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} 
+                         					{PreviousPageLink} {PageLinks} 
+                         					{NextPageLink} {LastPageLink} 
+                         					{RowsPerPageDropdown}" rowIndexVar="k">
 
 				<p:column width="3%" style="text-align: center;" > 
 					<f:facet name="header"><h:outputText value="Nº" /></f:facet>
@@ -50,10 +56,6 @@
 						<p:graphicImage value="../images/cross.png"/>
 					</h:commandLink>
 				</p:column>
-
-	            <f:facet name="footer">
-					<p:dataScroller renderIfSinglePage="false" render="dataTable" />
-	            </f:facet>
 
 			</p:dataTable>
 	

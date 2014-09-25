@@ -50,6 +50,15 @@
 			</c:if>
 		</c:if>
 
+		<c:if test="#{controlBean.perfilBean}">
+			<c:if test="#{perfilBean.searchState}">
+				<ui:include src="cadastros/perfil/perfilList.xhtml"/>
+			</c:if>
+			<c:if test="#{perfilBean.saveState || perfilBean.updateState}">
+				<ui:include src="cadastros/perfil/perfil.xhtml"/>
+			</c:if>
+		</c:if>
+
 		<c:if test="#{controlBean.especieBean}">
 			<c:if test="#{especieBean.searchState}">
 				<ui:include src="cadastros/especie/especieList.xhtml"/>

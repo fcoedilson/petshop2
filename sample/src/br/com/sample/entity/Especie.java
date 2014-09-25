@@ -19,6 +19,9 @@ public class Especie implements Serializable{
 	private String nome;
 	
 	private String descricao;
+	
+	@Column(name="tipo_animal")
+	private String tipo;
 
 	public Long getId() {
 		return id;
@@ -42,6 +45,14 @@ public class Especie implements Serializable{
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+	
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
 	@Override

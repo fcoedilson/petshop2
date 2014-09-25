@@ -8,8 +8,6 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:c="http://java.sun.com/jstl/core"
-	xmlns:a4j="http://richfaces.org/a4j"
-	xmlns:rich="http://richfaces.org/rich"
 	xmlns:p="http://primefaces.org/ui">
 
 
@@ -21,7 +19,14 @@
 			<p:commandButton value="Pesquisar" type="submit" action="#{animalBean.search}" update="dataTable" styleClass="button"/>
 			<p:commandButton value="Novo" action="#{animalBean.prepareSave}" update="appForm" icon="ui-icon-plus" styleClass="button" immediate="true"/>
 	
-			<p:dataTable id="dataTable" rowClasses="even,odd" value="#{animalBean.entities}" var="animal" rows="10" rowIndexVar="index">
+ 			<p:dataTable id="dataTable" var="animal" value="#{animalBean.entities}" 
+ 						rows="10" rowClasses="even,odd"
+ 						paginatorAlwaysVisible="false"
+                        paginator="true" 
+                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} 
+                         					{PreviousPageLink} {PageLinks} 
+                         					{NextPageLink} {LastPageLink} 
+                         					{RowsPerPageDropdown}" rowIndexVar="k">
 	
 				<p:column width="3%" > 
 					<f:facet name="header"><h:outputText value="Nº" /></f:facet>
@@ -66,10 +71,6 @@
 						<p:graphicImage value="../images/cross.png"/>
 					</h:commandLink>
 				</p:column>
-	
-	            <f:facet name="footer">
-					<rich:dataScroller renderIfSinglePage="false" render="dataTable" />
-	            </f:facet>
 	
 			</p:dataTable>
 	

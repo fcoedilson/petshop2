@@ -22,9 +22,19 @@
 				</h:inputText>
 				<p:message errorClass="error" for="nome"/>
 
+				<h:outputLabel value="Tipo Animal"/>
+	    		<h:selectOneMenu id="tipo" value="#{especieBean.entity.tipo}" required="true">
+	    			<f:selectItem itemValue="" itemLabel="Informe o tipo do animal ..."/>
+	    			<f:selectItem itemValue="Gato" itemLabel="Gato"/>
+	    			<f:selectItem itemValue="Cachorro" itemLabel="Cachorro"/>
+	    			<f:selectItem itemValue="Ramister" itemLabel="Ramister"/>
+	    			<f:selectItem itemValue="Porco da Índia" itemLabel="Porco da Índia"/>
+	    			
+	    		</h:selectOneMenu>
+	    		<p:message errorClass="error" for="tipo"  styleClass="message"/>
 
 				<h:outputLabel value="Descrição"/>
-				<h:inputTextarea id="descricao" value="#{especieBean.entity.descricao}" cols="30" rows="2"/>
+				<h:inputTextarea id="descricao" value="#{especieBean.entity.descricao}" cols="50" rows="3"/>
 				<p:message errorClass="error" for="descricao"/>
 
 			</h:panelGrid>

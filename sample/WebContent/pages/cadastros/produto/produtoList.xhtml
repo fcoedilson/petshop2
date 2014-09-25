@@ -13,17 +13,20 @@
 	
 			<p:fieldset legend="Produtos">
 	
-	
-				<h:outputLabel  value="Busca"/>
-				<h:inputText value="#{produtoBean.filter}" size="80"/>
+			<h:outputLabel  value="Busca"/>
+			<h:inputText value="#{produtoBean.filter}" size="80"/>
 		
-				<p:commandButton value="Pesquisar" action="#{produtoBean.search}" styleClass="button" update="dataTable"/>
-				<p:commandButton value="Novo" action="#{produtoBean.prepareSave}" styleClass="button" update="appForm" ajax="false"/>
+			<p:commandButton value="Pesquisar" action="#{produtoBean.search}" styleClass="button" update="dataTable"/>
+			<p:commandButton value="Novo" action="#{produtoBean.prepareSave}" styleClass="button" update="appForm" ajax="false"/>
 
-		      	<p:dataTable id="dataTable"	value="#{produtoBean.entities}" var="produto" rows="50" rowIndexVar="k"
-					width="100%" rowClasses="even, odd" 
-					onRowMouseOver="jQuery(this).addClass('trHover')" 
-					onRowMouseOut="jQuery(this).removeClass('trHover')">
+ 			<p:dataTable id="dataTable" var="produto" value="#{produtoBean.entities}" 
+ 						rows="10" rowClasses="even,odd"
+ 						paginatorAlwaysVisible="false"
+                        paginator="true" 
+                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} 
+                         					{PreviousPageLink} {PageLinks} 
+                         					{NextPageLink} {LastPageLink} 
+                         					{RowsPerPageDropdown}" rowIndexVar="k">
 					
 					<p:column width="2%" style="text-align: center;" > 
 						<f:facet name="header"><h:outputLabel value="Nº"/></f:facet>
@@ -68,10 +71,6 @@
 							<p:graphicImage value="../images/cross.png"/>
 						</h:commandLink>
 					</p:column>
-	
-	            <f:facet name="footer">
-					<p:dataScroller renderIfSinglePage="false" render="dataTable" />
-	            </f:facet>
 	
 				</p:dataTable>
 	

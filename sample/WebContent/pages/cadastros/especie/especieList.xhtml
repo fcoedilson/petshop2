@@ -32,6 +32,11 @@
 					<h:outputText value="#{especie.nome}"/>
 				</p:column>
 
+				<p:column width="20%" sortBy="#{especie.tipo}">
+					<f:facet name="header"><h:outputLabel value="Tipo Animal"/></f:facet>
+					<h:outputText value="#{especie.tipo}"/>
+				</p:column>
+
 				<p:column width="40%" sortBy="#{especie.descricao}">
 					<f:facet name="header"><h:outputLabel value="Descricao"/></f:facet>
 					<h:outputText value="#{especie.descricao}"/>
@@ -50,10 +55,6 @@
 						<p:graphicImage value="../images/cross.png"/>
 					</h:commandLink>
 				</p:column>
-
-	            <f:facet name="footer">
-					<p:dataScroller renderIfSinglePage="false" render="dataTable" />
-	            </f:facet>
 
 			</p:dataTable>
 	

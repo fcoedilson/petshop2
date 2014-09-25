@@ -33,15 +33,16 @@
 				<p:message errorClass="error" for="cor"/>
 
 				<h:outputLabel value="Espécie"/>
-				<h:inputText id="especie" value="#{animalBean.entity.especie}" required="true" maxlength="180" size="18">
-					<f:validateLength maximum="180" minimum="4"/>
-				</h:inputText>
+				<h:selectOneMenu id="especie" value="#{animalBean.entity.especie}" required="true" converter="entityConverter"  requiredMessage="Informe a espécie ...">
+	    			<f:selectItem itemValue="" itemLabel="..."/>
+	    			<f:selectItems value="#{animalBean.especies}" var="e" itemLabel="#{e.nome}" itemValue="#{e}"/>
+	    		</h:selectOneMenu>
 				<p:message errorClass="error" for="especie"/>
 
 				<h:outputLabel value="Raça"/>
 	    		<h:selectOneMenu id="raca" value="#{animalBean.entity.raca}" required="true" converter="entityConverter"   requiredMessage="Informe a raça ...">
 	    			<f:selectItem itemValue="" itemLabel="..."/>
-	    			<f:selectItems value="#{animalBean.racas}" var="raca" itemLabel="#{raca.nome}" itemValue="#{raca}"/>
+	    			<f:selectItems value="#{animalBean.racas}" var="r" itemLabel="#{r.nome}" itemValue="#{r}"/>
 	    		</h:selectOneMenu>
 	    		<p:message errorClass="error" for="raca"  styleClass="message"/>
 
