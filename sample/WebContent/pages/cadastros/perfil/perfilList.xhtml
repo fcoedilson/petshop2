@@ -8,9 +8,9 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:c="http://java.sun.com/jstl/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui" template="/pages/templates/template.xhtml">
 
-	<div id="cadastro">
+	<ui:define name="pageContent">
 
 		<p:fieldset legend="Perfil">
 
@@ -64,7 +64,7 @@
 			</p:dataTable>
 
 		</p:fieldset>
-
-	</div>
+	
+	</ui:define>
 	
 </ui:composition>

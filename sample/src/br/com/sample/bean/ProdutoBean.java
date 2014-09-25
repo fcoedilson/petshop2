@@ -1,13 +1,8 @@
 package br.com.sample.bean;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.Random;
 
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
@@ -26,6 +21,9 @@ public class ProdutoBean extends EntityBean<Long, Produto> {
 	private ProdutoService service;
 
 	private UploadedFile file;
+	
+	public static final String list = "/pages/cadastros/produto/produtoList.xhtml";
+	public static final String single = "/pages/cadastros/produto/produto.xhtml";
 
 
 	protected Long retrieveEntityId(Produto entity) {
@@ -41,16 +39,39 @@ public class ProdutoBean extends EntityBean<Long, Produto> {
 		return produto;
 	}
 
+
+	@Override
+	public String search() {
+		super.search();
+		return list;
+	}
+
+	public String save(){
+		super.save();
+		return list;
+	}
+
+	public String update(){
+		super.update();
+		return list;
+	}
+	
+	public String prepareSave(){
+		super.prepareSave();
+		return single;
+	}
+	
+	public String prepareUpdate(){
+		super.prepareUpdate();
+		return single;
+	}
+	
 	public UploadedFile getFile() {
 		return file;
 	}
 
 	public void setFile(UploadedFile file) {
 		this.file = file;
-	}
-
-	public String save(){
-		return super.save();
 	}
 
 

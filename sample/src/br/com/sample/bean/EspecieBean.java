@@ -14,6 +14,8 @@ public class EspecieBean extends EntityBean<Long, Especie> {
 	@Autowired
 	private EspecieService service;
 
+	public static final String list = "/pages/cadastros/especie/especieList.xhtml";
+	public static final String single = "/pages/cadastros/especie/especie.xhtml";
 
 	protected Long retrieveEntityId(Especie entity) {
 		return entity.getId();
@@ -26,6 +28,32 @@ public class EspecieBean extends EntityBean<Long, Especie> {
 	protected Especie createNewEntity() {
 		Especie especie = new Especie();
 		return especie;
+	}
+
+	@Override
+	public String search() {
+		super.search();
+		return list;
+	}
+
+	public String save(){
+		super.save();
+		return list;
+	}
+
+	public String update(){
+		super.update();
+		return list;
+	}
+
+	public String prepareSave(){
+		super.prepareSave();
+		return single;
+	}
+
+	public String prepareUpdate(){
+		super.prepareUpdate();
+		return single;
 	}
 
 }

@@ -161,10 +161,6 @@ public class ControlStateBean extends BaseStateBean implements Serializable {
 		return ClienteBean.class.getSimpleName().equals(getCurrentBean());
 	}
 
-	public boolean isPermissaoBean(){
-		return PermissaoBean.class.getSimpleName().equals(getCurrentBean());
-	}
-
 	public boolean isPessoaBean(){
 		return PessoaBean.class.getSimpleName().equals(getCurrentBean());
 	}
@@ -181,17 +177,9 @@ public class ControlStateBean extends BaseStateBean implements Serializable {
 		return RacaBean.class.getSimpleName().equals(getCurrentBean());
 	}	
 
-	public boolean isEspecieBean(){
-		return EspecieBean.class.getSimpleName().equals(getCurrentBean());
-	}
-	
 	public boolean isProdutoBean(){
 		return ProdutoBean.class.getSimpleName().equals(getCurrentBean());
 	}	
-	
-	public boolean isPerfilBean(){
-		return PerfilBean.class.getSimpleName().equals(getCurrentBean());
-	}
 	
 	public String getUserMail() {
 		return userMail;

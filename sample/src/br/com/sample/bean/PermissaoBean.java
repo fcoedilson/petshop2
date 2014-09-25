@@ -17,8 +17,10 @@ import br.com.sample.service.PerfilService;
 public class PermissaoBean extends EntityBean<Long, Permissao> {
 
 	private List<Perfil> roles = new ArrayList<Perfil>();
-
 	private Perfil role;
+	
+	public static final String list = "/pages/cadastros/permissao/permissaoList.xhtml";
+	public static final String single = "/pages/cadastros/permissao/permissao.xhtml";
 
 	@Autowired
 	private PermissaoService service = new PermissaoService();
@@ -28,18 +30,28 @@ public class PermissaoBean extends EntityBean<Long, Permissao> {
 
 	@Override
 	public String search() {
-		this.roles = perfilService.retrieveAll();
-		return super.searchSort();
+		super.search();
+		return list;
 	}
 
 	public String save(){
 		super.save();
-		return searchSort();
+		return list;
 	}
 
 	public String update(){
 		super.update();
-		return searchSort();
+		return list;
+	}
+	
+	public String prepareSave(){
+		super.prepareSave();
+		return single;
+	}
+	
+	public String prepareUpdate(){
+		super.prepareUpdate();
+		return single;
 	}
 
 	protected Long retrieveEntityId(Permissao entity) {

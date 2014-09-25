@@ -28,6 +28,9 @@ public class PerfilBean extends EntityBean<Long, Perfil>{
 	private PermissaoService permissaoService;
 
 
+	public static final String list = "/pages/cadastros/perfil/perfilList.xhtml";
+	public static final String single = "/pages/cadastros/perfil/perfil.xhtml";
+
 	private Permissao permissao = new Permissao();
 	private List<Permissao> permissoes;
 
@@ -49,8 +52,30 @@ public class PerfilBean extends EntityBean<Long, Perfil>{
 		return this.service;
 	}
 
+	@Override
+	public String search() {
+		super.search();
+		return list;
+	}
+
+	public String save(){
+		super.save();
+		return list;
+	}
+
 	public String update(){
-		return super.update();
+		super.update();
+		return list;
+	}
+
+	public String prepareSave(){
+		super.prepareSave();
+		return single;
+	}
+
+	public String prepareUpdate(){
+		super.prepareUpdate();
+		return single;
 	}
 
 	public boolean isPermissaoStatus(){

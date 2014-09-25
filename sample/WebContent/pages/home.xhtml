@@ -10,9 +10,11 @@
     xmlns:ui="http://java.sun.com/jsf/facelets" 
     xmlns:c="http://java.sun.com/jsp/jstl/core">
 
-	<ui:define name="content">
+	<ui:define name="pageContent">
 
 		<h:messages styleClass="messages" globalOnly="true" />
+		
+		<div id="cadastro">
 	
 		<c:if test="#{controlBean.clienteBean}">
 			<c:if test="#{clienteBean.searchState}">
@@ -49,33 +51,8 @@
 				<ui:include src="cadastros/raca/raca.xhtml"/>
 			</c:if>
 		</c:if>
-
-		<c:if test="#{controlBean.perfilBean}">
-			<c:if test="#{perfilBean.searchState}">
-				<ui:include src="cadastros/perfil/perfilList.xhtml"/>
-			</c:if>
-			<c:if test="#{perfilBean.saveState || perfilBean.updateState}">
-				<ui:include src="cadastros/perfil/perfil.xhtml"/>
-			</c:if>
-		</c:if>
-
-		<c:if test="#{controlBean.especieBean}">
-			<c:if test="#{especieBean.searchState}">
-				<ui:include src="cadastros/especie/especieList.xhtml"/>
-			</c:if>
-			<c:if test="#{especieBean.saveState || especieBean.updateState}">
-				<ui:include src="cadastros/especie/especie.xhtml"/>
-			</c:if>
-		</c:if>
 		
-		<c:if test="#{controlBean.produtoBean}">
-			<c:if test="#{produtoBean.searchState}">
-				<ui:include src="cadastros/produto/produtoList.xhtml"/>
-			</c:if>
-			<c:if test="#{produtoBean.saveState || produtoBean.updateState}">
-				<ui:include src="cadastros/produto/produto.xhtml"/>
-			</c:if>
-		</c:if>
+		</div>
 
 	</ui:define>
 
