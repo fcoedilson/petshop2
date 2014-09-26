@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+<title>Padrão Visual dos Sistemas da SEFIN</title>
+
+<!-- Bootstrap core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="css/padrao-sistemas.css" rel="stylesheet">
+
+<!-- Font Awesom -->
+<link href="css/font-awesome.min.css" rel="stylesheet">
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+<!-- Just for debugging purposes. Don't actually copy this line! -->
+<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+</head>
+
+<body id="login">
+
+<div id="header_topo" class="page-header">
+
+	<img style="float: left" src="img/logo_sit.png" class="img-responsive" />
+
+	<img style="float: right" src="img/logo.png" class="img-responsive">
+
+	<div id="form_login" >
+
+		<form role="form" style="z-index: 9999" class="form-signin form-signin-body">
+			<div class="form-group">
+				<label for="exampleInputLogin1">LOGIN<span> *</span></label>
+				<input type="text" class="form-control" id="exampleInputLogin1" placeholder="Entre com login">
+			</div>
+			<div class="form-group">
+				<label for="exampleInputPassword1">PASSWORD<span> *</span></label>
+				<input type="password" size="10" class="form-control" id="exampleInputPassword1" placeholder="Entre com a senha">
+			</div>
+				<a href="inicial.html" class="btn btn-primary">Entrar</a>
+				<p>Esqueceu a senha? <a href="#">Clique aqui</a></p>
+
+
+		</form>
+		
+		
+	</div>
+	<a href="#" id="botao_login" class="btn btn-default"><span class="glyphicon glyphicon-user"></span> LOGIN</a>
+
+
+<script type="text/javascript">
+		
+		
+    $('#botao_login').click(function() {
+        $('#form_login').slideToggle('slow');
+        $('#') = $(':visible');
+        
+    });
+ // Fim do ready
+
+
+</script>
+
+
+	
+		
+</div>
+	<div id="slide-toggle" ></div>
+
+			<script>
+       			var aberto = true;
+          				$('#slide-toggle').click( function() {
+ 
+              		if(aberto){
+                		$('#header_topo').slideUp('fast').delay(500);
+                  			$('#slide-toggle').removeClass('hide')
+                  			$('#slide-toggle').addClass('show') 
+              		} else {
+                 		$('#header_topo').slideDown('fast').delay(500);
+                  			$('#slide-toggle').removeClass('show')  
+                		   }
+        		aberto =! aberto;
+          				});
+			</script>
+
+			
+
+
+<div class="container">
+
+
+   
+  </div>
+</div>
+<!-- /container --> 
+
+
+
+
+
+
+
+<div id="rodape">
+    <div class="container-fluid">
+        <div class="row">
+        	<center>
+            <div style="margin: 0 auto;" class="col-sm-9 small">
+                
+           		<b>Copyright © 2014 Secretaria Municipal de Finanças | Desenvolvido por CGETI | SIT</b>
+            </div>
+            </center>
+        </div>
+    </div>
+</div>
+
+
+<!-- Bootstrap core JavaScript
+    ================================================== --> 
+<!-- Placed at the end of the document so the pages load faster -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> --> 
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

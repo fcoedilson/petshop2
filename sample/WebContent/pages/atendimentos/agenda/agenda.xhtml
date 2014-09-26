@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition 	
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:p="http://primefaces.org/ui" template="/pages/templates/template.xhtml">
+
+	<ui:define name="pageContent">
+
+
+		<h:inputHidden value="#{agendaBean.entity.id}" rendered="#{agendaBean.updateState}"/>
+	
+		<p:fieldset legend="Agendamento">
+	
+	           <h:panelGrid columns="3" styleClass="crudd" columnClasses="label">
+	           
+					<h:outputLabel value="Data"/>
+					<p:calendar id="dataHora" value="#{agendaBean.entity.dataHora}" pattern="MM/dd/yyyy"/>
+					<p:message errorClass="error" for="dataHora"/>
+					
+					<h:outputLabel value="Horário"/>
+					<p:calendar id="dataHora" value="#{agendaBean.entity.dataHora}" pattern="MM/dd/yyyy"/>
+					<p:message errorClass="error" for="dataHora"/>
+	
+				</h:panelGrid>
+			
+		</p:fieldset>
+	
+	
+		<p:commandButton value="Salvar" type="submit" action="#{agendaBean.save}" styleClass="button" rendered="#{agendaBean.saveState}" update="appForm" ajax="false"/>
+		<p:commandButton value="Alterar" type="submit" action="#{agendaBean.update}" styleClass="button" rendered="#{agendaBean.updateState}" update="appForm" ajax="false"/>
+		<p:commandButton value="Voltar" action="#{agendaBean.search}" update="appForm" styleClass="button" immediate="true"/>
+
+	</ui:define>
+
+</ui:composition>
