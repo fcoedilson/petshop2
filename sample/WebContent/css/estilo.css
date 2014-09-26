@@ -63,22 +63,7 @@ body
 	float:right;
 }
 
-#login fieldset 
-{
 	
-}
-	
-#login fieldset dt 
-{
-	padding: 5px;
-	float:left;
-	width: 50px;
-}
-
-#login fieldset dd 
-{
-	padding: 5px;
-}
 
 input[disabled] {
  font: bold 0.8em Verdana, Geneva, sans-serif !important;
@@ -139,21 +124,6 @@ input[type=submit], input[type=reset], input[type=button]
 	color:#FFF;
 }
 
-#info dl, #info dt, #info dd 
-{
-	display:inline;
-}
-
-#info dt 
-{
-	font-weight:bold;
-}
-
-#info dd
-{
-	margin-left: 2px;
-	margin-right: 10px;
-}
 
 #menu 
 {

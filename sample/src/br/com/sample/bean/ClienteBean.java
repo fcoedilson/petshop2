@@ -24,12 +24,15 @@ public class ClienteBean extends EntityBean<Long, Cliente> {
 	private ClienteService service;
 
 	private Permissao permissao;
-	
+
 	@Autowired
 	private PessoaService pessoaService;
-	
+
 	@Autowired
 	private EnderecoService enderecoService;
+
+	public static final String list = "/pages/cadastros/cliente/clienteList.xhtml";
+	public static final String single = "/pages/cadastros/cliente/cliente.xhtml";	
 
 	protected Long retrieveEntityId(Cliente entity) {
 		return entity.getId();
@@ -38,7 +41,7 @@ public class ClienteBean extends EntityBean<Long, Cliente> {
 	protected ClienteService retrieveEntityService() {
 		return this.service;
 	}
-	
+
 	protected Cliente createNewEntity() {
 		Cliente cliente = new Cliente();
 		Endereco endereco = new Endereco();
@@ -46,7 +49,34 @@ public class ClienteBean extends EntityBean<Long, Cliente> {
 		cliente.setEndereco(endereco);
 		return cliente;
 	}
-	
+
+
+	@Override
+	public String search() {
+		super.search();
+		return list;
+	}
+
+	public String save(){
+		super.save();
+		return list;
+	}
+
+	public String update(){
+		super.update();
+		return list;
+	}
+
+	public String prepareSave(){
+		super.prepareSave();
+		return single;
+	}
+
+	public String prepareUpdate(){
+		super.prepareUpdate();
+		return single;
+	}
+
 	public Permissao getPermissao() {
 		if (permissao == null) {
 			permissao = new Permissao();

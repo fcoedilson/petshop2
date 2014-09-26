@@ -63,8 +63,8 @@ public class Pessoa implements Serializable {
 	@Past(message="Data de nascimento não poder data futura")
 	private Date dataNascimento;
 
-	@OneToOne(mappedBy="pessoa", cascade=CascadeType.ALL)
 	@NotNull(message="Endereço deve ser informado")
+	@OneToOne(mappedBy="pessoa", cascade=CascadeType.ALL)
 	private Endereco endereco;
 
 	public long getId() {

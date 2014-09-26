@@ -32,6 +32,9 @@ public class AnimalBean extends EntityBean<Long, Animal> {
 	private List<Raca> racas = new ArrayList<Raca>();
 	private List<Especie> especies = new ArrayList<Especie>();
 
+	public static final String list = "/pages/cadastros/animal/animalList.xhtml";
+	public static final String single = "/pages/cadastros/animal/animal.xhtml";	
+
 	@PostConstruct
 	public void init(){
 		racas = racaService.retrieveAll();
@@ -67,6 +70,32 @@ public class AnimalBean extends EntityBean<Long, Animal> {
 
 	public void setEspecies(List<Especie> especies) {
 		this.especies = especies;
+	}
+
+	@Override
+	public String search() {
+		super.search();
+		return list;
+	}
+
+	public String save(){
+		super.save();
+		return list;
+	}
+
+	public String update(){
+		super.update();
+		return list;
+	}
+
+	public String prepareSave(){
+		super.prepareSave();
+		return single;
+	}
+
+	public String prepareUpdate(){
+		super.prepareUpdate();
+		return single;
 	}
 
 }

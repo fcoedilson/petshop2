@@ -6,7 +6,9 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core" template="/pages/templates/template.xhtml">
+
+	<ui:define name="pageContent">
 
 
 		<h:outputLabel value="Busca"/>
@@ -60,6 +62,7 @@
 
 		</p:dataTable>
 
+	</ui:define>
 
 </ui:composition>
 

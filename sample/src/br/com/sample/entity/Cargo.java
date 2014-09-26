@@ -17,7 +17,7 @@ public class Cargo implements Serializable{
 	@Column(name="cargo_id")
 	private long id;
 	
-	@NotNull(message="nome do cargo é obrigatório")
+	@NotNull(message="nome é obrigatório")
 	private String nome;
 	
 	private String atribuicoes;

@@ -16,41 +16,6 @@
 		
 		<div id="cadastro">
 	
-		<c:if test="#{controlBean.clienteBean}">
-			<c:if test="#{clienteBean.searchState}">
-				<ui:include src="cadastros/cliente/clienteList.xhtml" />
-			</c:if>
-			<c:if test="#{clienteBean.saveState || clienteBean.updateState}">
-				<ui:include src="cadastros/cliente/cliente.xhtml" />
-			</c:if>
-		</c:if>
-		
-		<c:if test="#{controlBean.usuarioBean}">
-			<c:if test="#{usuarioBean.searchState}">
-				<ui:include src="cadastros/usuario/usuarioList.xhtml"/>
-			</c:if>
-			<c:if test="#{usuarioBean.saveState || usuarioBean.updateState}">
-				<ui:include src="cadastros/usuario/usuario.xhtml"/>
-			</c:if>
-		</c:if>		
-
-		<c:if test="#{controlBean.animalBean}">
-			<c:if test="#{animalBean.searchState}">
-				<ui:include src="cadastros/animal/animalList.xhtml"/>
-			</c:if>
-			<c:if test="#{animalBean.saveState || animalBean.updateState}">
-				<ui:include src="cadastros/animal/animal.xhtml"/>
-			</c:if>
-		</c:if>
-
-		<c:if test="#{controlBean.racaBean}">
-			<c:if test="#{racaBean.searchState}">
-				<ui:include src="cadastros/raca/racaList.xhtml"/>
-			</c:if>
-			<c:if test="#{racaBean.saveState || racaBean.updateState}">
-				<ui:include src="cadastros/raca/raca.xhtml"/>
-			</c:if>
-		</c:if>
 		
 		</div>
 

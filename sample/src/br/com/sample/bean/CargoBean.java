@@ -4,31 +4,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import br.com.sample.entity.Raca;
-import br.com.sample.service.RacaService;
+import br.com.sample.entity.Cargo;
+import br.com.sample.service.CargoService;
 
 @Scope("session")
-@Component("racaBean")
-public class RacaBean extends EntityBean<Long, Raca> {
+@Component("cargoBean")
+public class CargoBean extends EntityBean<Long, Cargo> {
 
 	@Autowired
-	private RacaService service;
+	private CargoService service;
 
 
-	public static final String list = "/pages/cadastros/raca/racaList.xhtml";
-	public static final String single = "/pages/cadastros/raca/raca.xhtml";
+	public static final String list = "/pages/cadastros/cargo/cargoList.xhtml";
+	public static final String single = "/pages/cadastros/cargo/cargo.xhtml";
 
-	protected Long retrieveEntityId(Raca entity) {
+	protected Long retrieveEntityId(Cargo entity) {
 		return entity.getId();
 	}
 
-	protected RacaService retrieveEntityService() {
+	protected CargoService retrieveEntityService() {
 		return this.service;
 	}
 
-	protected Raca createNewEntity() {
-		Raca raca = new Raca();
-		return raca;
+	protected Cargo createNewEntity() {
+		Cargo cargo = new Cargo();
+		return cargo;
 	}
 	
 	@Override
