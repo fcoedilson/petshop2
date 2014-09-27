@@ -17,6 +17,14 @@
 	
 	           <h:panelGrid columns="3" styleClass="crudd" columnClasses="label">
 	           
+				<h:outputLabel value="Cliente"/>
+				<h:selectOneMenu id="cliente" value="#{agendaBean.entity.cliente}" required="true" converter="entityConverter"  
+					requiredMessage="Informe a cliente ...">
+	    			<f:selectItem itemValue="" itemLabel="..."/>
+	    			<f:selectItems value="#{agendaBean.clientes}" var="e" itemLabel="#{e.nome}" itemValue="#{e}"/>
+	    		</h:selectOneMenu>
+				<p:message errorClass="error" for="cliente"/>	           		
+	           
 					<h:outputLabel value="Data"/>
 					<p:calendar id="dataHora" value="#{agendaBean.entity.dataHora}" pattern="MM/dd/yyyy"/>
 					<p:message errorClass="error" for="dataHora"/>

@@ -6,14 +6,14 @@
 	<session-factory name="">
 
 		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-		<property name="hibernate.connection.url">jdbc:postgresql://localhost:5433/sample</property>
+		<property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/teste1</property>
 		<property name="hibernate.connection.username">postgres</property>
 		<property name="hibernate.connection.password">postgres</property>
 		<!-- <property name="hibernate.dialect">org.hibernatespatial.postgis.PostgisDialect</property> -->
 		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
 		<property name="hibernate.format_sql">true</property>
 		<property name="hibernate.show_sql">true</property>
-<!-- 		<property name="hibernate.hbm2ddl.auto">create-drop</property> -->
+<!-- 		<property name="hibernate.hbm2ddl.auto">update</property> -->
 
 		<mapping class="br.com.sample.entity.Pessoa" />
 		<mapping class="br.com.sample.entity.Endereco" />
@@ -34,6 +34,8 @@
 		<mapping class="br.com.sample.entity.TipoConsulta" />
 		<mapping class="br.com.sample.entity.Caixa" />
 		<mapping class="br.com.sample.entity.Atendimento" />
+		<mapping class="br.com.sample.entity.Agenda" />
+		<mapping class="br.com.sample.entity.Especie" />
 
 	</session-factory>
 

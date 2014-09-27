@@ -17,7 +17,7 @@
 		<h:inputText value="#{agendaBean.filter}"/>
 
 		<p:commandButton value="Pesquisar" type="submit" action="#{agendaBean.search}" update="dataTable" styleClass="button"/>
-		<p:commandButton value="Novo" action="#{agendaBean.prepareSave}" update="appForm" icon="ui-icon-plus" styleClass="button" immediate="true"/>
+		<p:commandButton value="Novo" action="#{agendaBean.prepareSave}" update="appForm" icon="ui-icon-plus" styleClass="button" ajax="false"/>
 
 		<p:dataTable id="dataTable" var="agenda" value="#{agendaBean.entities}" 
 						rows="10" rowClasses="even,odd"
@@ -33,29 +33,29 @@
 				<h:outputText value="#{k+1}" style="color: black;"/>
 			</p:column>
 
-			<p:column width="40%" sortBy="#{agenda.nome}">
+			<p:column width="30%" sortBy="#{agenda.nome}">
 				<f:facet name="header"><h:outputLabel value="Nome cliente"/></f:facet>
 				<h:outputText value="#{agenda.cliente.nome}"/>
 			</p:column>
 
-			<p:column width="40%" sortBy="#{agenda.data}">
+			<p:column width="30%" sortBy="#{agenda.data}">
 				<f:facet name="header"><h:outputLabel value="Data"/></f:facet>
 				<h:outputText value="#{agenda.cliente.dataHora}"/>
 			</p:column>
 
-			<p:column width="40%" sortBy="#{agenda.status}">
+			<p:column width="30%" sortBy="#{agenda.status}">
 				<f:facet name="header"><h:outputLabel value="Status"/></f:facet>
 				<h:outputText value="#{agenda.status}"/>
 			</p:column>
 
-			<p:column width="4%">
+			<p:column width="3%">
 				<h:commandLink icon="ui-icon-pencil" action="#{agendaBean.prepareUpdate}" value="">
 					<f:setPropertyActionListener target="#{agendaBean.entity}" value="#{agenda}"/>
 					<p:graphicImage value="/images/pencil.png"/>
 				</h:commandLink>
 			</p:column>
 
-			<p:column width="4%">
+			<p:column width="3%">
 				<h:commandLink  icon="ui-icon-trash" action="#{agendaBean.delete}" value="" onclick="if(!confirm('Confirmar')){document.getElementById('appForm').reset(); return false;}">
 					<f:setPropertyActionListener target="#{agendaBean.entity}" value="#{agenda}"/>
 					<p:graphicImage value="/images/cross.png"/>

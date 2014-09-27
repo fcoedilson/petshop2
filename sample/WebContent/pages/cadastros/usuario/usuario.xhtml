@@ -54,14 +54,6 @@
 				</h:inputText>
 				<p:message errorClass="error" for="celular"/>
 	
-				<h:outputLabel value="Login"/>
-				<h:inputText id="login" value="#{usuarioBean.entity.login}" required="true"/>
-				<p:message errorClass="error" for="login"/>
-	
-				<h:outputLabel value="Senha"/>
-				<h:inputSecret id="senha" value="#{usuarioBean.entity.senha}" required="true"/>
-				<p:message errorClass="error" for="senha"/>
-	
 			</h:panelGrid>
 				
 		</p:fieldset>
@@ -108,6 +100,21 @@
 	
 			</h:panelGrid>
 				
+		</p:fieldset>
+		
+		
+		<p:fieldset legend="Segurança">
+		
+		
+				<h:outputLabel value="Login"/>
+				<h:inputText id="login" value="#{usuarioBean.entity.login}" required="true"/>
+				<p:message errorClass="error" for="login"/>
+	
+				<h:outputLabel value="Senha"/>
+				<h:inputSecret id="senha" value="#{usuarioBean.entity.senha}" required="true"/>
+				<p:message errorClass="error" for="senha"/>
+		
+		
 		</p:fieldset>
 
 

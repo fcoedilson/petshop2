@@ -26,6 +26,7 @@
 		<class>br.com.sample.entity.Cargo</class>
 		<class>br.com.sample.entity.Caixa</class>
 		<class>br.com.sample.entity.Atendimento</class>
+		<class>br.com.sample.entity.Agenda</class>
 
 		<properties>
 			<property name="hibernate.connection.datasource" value="java:/comp/env/jdbc/sample" />

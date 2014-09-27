@@ -43,7 +43,7 @@ public class Agenda implements Serializable{
 	private Usuario UsuarioConfirmacao;
 
 	@ManyToOne
-	@JoinColumn(name="usuario-atendimento")
+	@JoinColumn(name="usuario_atendimento")
 	private Usuario UsuarioAtendimento;
 	
 	

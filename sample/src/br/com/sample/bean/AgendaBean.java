@@ -1,11 +1,19 @@
 package br.com.sample.bean;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import br.com.sample.entity.Agenda;
+import br.com.sample.entity.Cliente;
+import br.com.sample.entity.Endereco;
 import br.com.sample.service.AgendaService;
+import br.com.sample.service.ClienteService;
 
 @Scope("session")
 @Component("agendaBean")
@@ -14,9 +22,19 @@ public class AgendaBean extends EntityBean<Long, Agenda> {
 	@Autowired
 	private AgendaService service;
 
+	@Autowired
+	private ClienteService clienteService;
 
-	public static final String list = "/pages/cadastros/agenda/agendaList.xhtml";
-	public static final String single = "/pages/cadastros/agenda/agenda.xhtml";
+	private List<Cliente> clientes = new ArrayList<Cliente>();
+
+
+	public static final String list = "/pages/atendimentos/agenda/agendaList.xhtml";
+	public static final String single = "/pages/atendimentos/agenda/agenda.xhtml";
+
+	@PostConstruct
+	public void init(){
+		clientes = clienteService.retrieveAll();
+	}
 
 	protected Long retrieveEntityId(Agenda entity) {
 		return entity.getId();
@@ -27,10 +45,15 @@ public class AgendaBean extends EntityBean<Long, Agenda> {
 	}
 
 	protected Agenda createNewEntity() {
-		Agenda cargo = new Agenda();
-		return cargo;
+		Agenda agenda = new Agenda();
+		Cliente cli = new Cliente();
+		agenda.setCliente(cli);
+		Endereco e = new Endereco();
+		e.setPessoa(cli);
+		cli.setEndereco(e);
+		return agenda;
 	}
-	
+
 	@Override
 	public String search() {
 		super.search();
@@ -56,5 +79,14 @@ public class AgendaBean extends EntityBean<Long, Agenda> {
 		super.prepareUpdate();
 		return single;
 	}
+
+	public List<Cliente> getClientes() {
+		return clientes;
+	}
+
+	public void setClientes(List<Cliente> clientes) {
+		this.clientes = clientes;
+	}
+
 
 }

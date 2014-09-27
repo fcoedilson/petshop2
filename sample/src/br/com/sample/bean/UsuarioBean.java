@@ -44,6 +44,9 @@ public class UsuarioBean extends EntityBean<Long, Usuario>{
 
 	@Autowired
 	private PerfilService roleService;
+	
+	public static final String list = "/pages/cadastros/usuario/usuarioList.xhtml";
+	public static final String single = "/pages/cadastros/usuario/usuario.xhtml";
 
 	private Boolean status = true;
 	private Boolean usuarioCadastrado;
@@ -74,47 +77,8 @@ public class UsuarioBean extends EntityBean<Long, Usuario>{
 		return this.service;
 	}
 
-	public String populate(){
-		this.status = null;
-		this.filter = "";
-		return super.populate();
-	}
-
-	public String prepareUpdate() {
-
-		//this.confirmaSenha = this.entity.getSenha();
-		setCurrentBean(currentBeanName());
-		setCurrentState(UPDATE);
-		return SUCCESS;
-	}
-
-	@Override
-	@Transactional(propagation=Propagation.REQUIRED)
-	public String save() {
-
-		if(validar()){
-			this.entity.setStatus(StatusUsuario.ATIVO);
-			this.entity.setSenha(BeanUtil.md5(this.entity.getSenha()));
-
-			boolean hasLogin = false;
-
-			if(hasLogin){
-				this.entity.setSenha(null);
-				this.confirmaSenha = null;
-				JsfUtil.getInstance().addErrorMessage("msg.error.login.existente");
-				return FAIL;
-			} else {
-				return super.save();
-			}
-		} else {
-			return FAIL;
-		}
-	}
-
-
 	@Override
 	public String search() {
-
 		Usuario user = BeanUtil.usuarioLogado();
 		this.entities = new ArrayList<Usuario>();
 
@@ -132,9 +96,52 @@ public class UsuarioBean extends EntityBean<Long, Usuario>{
 				return o1.getNome().compareTo(o2.getNome());
 			}
 		});
-		setCurrentBean(currentBeanName());
-		setCurrentState(SEARCH);
-		return SUCCESS;
+		//super.search();
+		return list;
+	}
+
+	public String save(){
+		
+		if(validar()){
+			this.entity.setStatus(StatusUsuario.ATIVO);
+			this.entity.setSenha(BeanUtil.md5(this.entity.getSenha()));
+
+			boolean hasLogin = false;
+
+			if(hasLogin){
+				this.entity.setSenha(null);
+				this.confirmaSenha = null;
+				JsfUtil.getInstance().addErrorMessage("msg.error.login.existente");
+				return FAIL;
+			} else {
+				super.save();
+				return list;
+			}
+		} else {
+			return FAIL;
+		}
+		
+	}
+
+	public String update(){
+		super.update();
+		return list;
+	}
+
+	public String prepareSave(){
+		super.prepareSave();
+		return single;
+	}
+
+	public String prepareUpdate(){
+		super.prepareUpdate();
+		return single;
+	}
+	
+	public String populate(){
+		this.status = null;
+		this.filter = "";
+		return super.populate();
 	}
 
 

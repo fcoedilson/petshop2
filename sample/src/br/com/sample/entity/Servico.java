@@ -19,7 +19,6 @@ public class Servico implements Serializable{
 	
 	@NotNull(message="nome não pode ser nulo")
 	private String nome;
-	
 	private String descricao;
 	
 	@NotNull(message="valor do serviço deve ser informado")

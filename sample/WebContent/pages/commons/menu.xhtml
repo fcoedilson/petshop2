@@ -25,6 +25,7 @@
 				<rich:menuItem label="Perfis" action="#{perfilBean.search}" immediate="true"/>
 				<rich:menuItem label="Permissões" action="#{permissaoBean.search}" immediate="true"/>
 				<rich:menuItem label="Produtos" action="#{produtoBean.search}" immediate="true" />
+				<rich:menuItem label="Serviços" action="#{servicoBean.search}" immediate="true" />
 			
 			</rich:dropDownMenu>
 
@@ -47,7 +48,7 @@
 			</rich:dropDownMenu>
 
 			<rich:dropDownMenu label="Serviços" rendered="#{controlBean.hasRole('MENU_SERVICO')}">
-				<rich:menuItem label="Agendamento"  immediate="true"/>
+				<rich:menuItem label="Agendamento" action="#{agendaBean.search}"  immediate="true"/>
 				<rich:menuItem label="Consultas"  immediate="true"/>
 				<rich:menuItem label="Atendimento"  immediate="true"/>
 			</rich:dropDownMenu>
