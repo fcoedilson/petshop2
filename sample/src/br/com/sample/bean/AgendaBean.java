@@ -14,6 +14,9 @@ import br.com.sample.entity.Cliente;
 import br.com.sample.entity.Endereco;
 import br.com.sample.service.AgendaService;
 import br.com.sample.service.ClienteService;
+import br.com.sample.type.StatusAgenda;
+import br.com.sample.util.BeanUtil;
+import br.com.sample.util.JsfUtil;
 
 @Scope("session")
 @Component("agendaBean")
@@ -26,15 +29,11 @@ public class AgendaBean extends EntityBean<Long, Agenda> {
 	private ClienteService clienteService;
 
 	private List<Cliente> clientes = new ArrayList<Cliente>();
+	private Cliente cliente;
 
 
 	public static final String list = "/pages/atendimentos/agenda/agendaList.xhtml";
 	public static final String single = "/pages/atendimentos/agenda/agenda.xhtml";
-
-	@PostConstruct
-	public void init(){
-		clientes = clienteService.retrieveAll();
-	}
 
 	protected Long retrieveEntityId(Agenda entity) {
 		return entity.getId();
@@ -46,11 +45,7 @@ public class AgendaBean extends EntityBean<Long, Agenda> {
 
 	protected Agenda createNewEntity() {
 		Agenda agenda = new Agenda();
-		Cliente cli = new Cliente();
-		agenda.setCliente(cli);
-		Endereco e = new Endereco();
-		e.setPessoa(cli);
-		cli.setEndereco(e);
+		this.cliente = new Cliente();
 		return agenda;
 	}
 
@@ -61,6 +56,8 @@ public class AgendaBean extends EntityBean<Long, Agenda> {
 	}
 
 	public String save(){
+		this.entity.setUsuarioCadastro(BeanUtil.usuarioLogado());
+		this.entity.setStatus(StatusAgenda.AGENDADA);
 		super.save();
 		return list;
 	}
@@ -80,6 +77,14 @@ public class AgendaBean extends EntityBean<Long, Agenda> {
 		return single;
 	}
 
+
+	public List<Cliente> buscaCliente(String query) {
+
+		List<Cliente> result = clienteService.buscaPorNome(query);
+		return result;
+	}
+
+
 	public List<Cliente> getClientes() {
 		return clientes;
 	}
@@ -88,5 +93,12 @@ public class AgendaBean extends EntityBean<Long, Agenda> {
 		this.clientes = clientes;
 	}
 
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
 
 }

@@ -33,29 +33,41 @@
 				<h:outputText value="#{k+1}" style="color: black;"/>
 			</p:column>
 
-			<p:column width="30%" sortBy="#{agenda.nome}">
-				<f:facet name="header"><h:outputLabel value="Nome cliente"/></f:facet>
+			<p:column width="20%" sortBy="#{agenda.cliente.nome}">
+				<f:facet name="header"><h:outputLabel value="Nome Cliente"/></f:facet>
 				<h:outputText value="#{agenda.cliente.nome}"/>
 			</p:column>
 
-			<p:column width="30%" sortBy="#{agenda.data}">
-				<f:facet name="header"><h:outputLabel value="Data"/></f:facet>
-				<h:outputText value="#{agenda.cliente.dataHora}"/>
+			<p:column width="20%" sortBy="#{agenda.paciente}">
+				<f:facet name="header"><h:outputLabel value="Paciente"/></f:facet>
+				<h:outputText value="#{agenda.paciente}"/>
 			</p:column>
 
-			<p:column width="30%" sortBy="#{agenda.status}">
+			<p:column width="15%" sortBy="#{agenda.data}">
+				<f:facet name="header"><h:outputLabel value="Data"/></f:facet>
+				<h:outputText value="#{agenda.data}">
+					<f:convertDateTime pattern="dd/MM/yyyy"/>
+				</h:outputText>
+			</p:column>
+
+			<p:column width="15%" sortBy="#{agenda.horario}">
+				<f:facet name="header"><h:outputLabel value="Horário"/></f:facet>
+				<h:outputText value="#{agenda.horario}"/>
+			</p:column>
+
+			<p:column width="12%" sortBy="#{agenda.status}">
 				<f:facet name="header"><h:outputLabel value="Status"/></f:facet>
 				<h:outputText value="#{agenda.status}"/>
 			</p:column>
 
-			<p:column width="3%">
+			<p:column width="4%">
 				<h:commandLink icon="ui-icon-pencil" action="#{agendaBean.prepareUpdate}" value="">
 					<f:setPropertyActionListener target="#{agendaBean.entity}" value="#{agenda}"/>
 					<p:graphicImage value="/images/pencil.png"/>
 				</h:commandLink>
 			</p:column>
 
-			<p:column width="3%">
+			<p:column width="4%">
 				<h:commandLink  icon="ui-icon-trash" action="#{agendaBean.delete}" value="" onclick="if(!confirm('Confirmar')){document.getElementById('appForm').reset(); return false;}">
 					<f:setPropertyActionListener target="#{agendaBean.entity}" value="#{agenda}"/>
 					<p:graphicImage value="/images/cross.png"/>

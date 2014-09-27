@@ -63,6 +63,11 @@
 		<servlet-name>Faces Servlet</servlet-name>
 	</filter-mapping>
 
+<context-param>
+    <param-name>org.primefaces.extensions.DELIVER_UNCOMPRESSED_RESOURCES</param-name>
+    <param-value>false</param-value>
+</context-param>
+
 	<filter>
 		<filter-name>openEntityManager</filter-name>
 		<filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>

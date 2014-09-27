@@ -62,5 +62,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/hibernate-core.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/hibernate-entitymanager.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/slf4j-api.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/primefaces-extensions-2.1.0.jar"/>
 	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
 </classpath>
