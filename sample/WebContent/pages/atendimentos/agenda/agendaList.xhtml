@@ -52,7 +52,9 @@
 
 			<p:column width="15%" sortBy="#{agenda.horario}">
 				<f:facet name="header"><h:outputLabel value="Horário"/></f:facet>
-				<h:outputText value="#{agenda.horario}"/>
+				<h:outputText value="#{agenda.horario}">
+					<f:convertDateTime pattern="HH:mm"/>
+				</h:outputText>
 			</p:column>
 
 			<p:column width="12%" sortBy="#{agenda.status}">

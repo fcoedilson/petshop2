@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition 	
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:p="http://primefaces.org/ui" template="/pages/templates/template.xhtml">
+
+	<ui:define name="pageContent">
+
+
+		<p:fieldset legend="Busca">
+		
+		
+				<h:outputLabel value="Busca pelo Nome "/>
+				<p:inputMask id="cpf" value="#{funcionarioBean.cpf}" mask="99999999999" />
+				<p:message for="cpf"/>
+		
+				<p:commandButton value="Buscar" type="submit" action="#{funcionarioBean.buscarFuncionario}" styleClass="button" 
+					 update="appForm" ajax="false"/>
+							
+							
+				<h:outputLabel value="Busca pelo Nome "/>
+				<p:autoComplete rendered="#{funcionarioBean.saveState}" id="nomeFuncionario" value="#{funcionarioBean.entity}" 
+					var="funcionario" itemLabel="#{funcionario.nome}" itemValue="#{funcionario}" 
+					completeMethod="#{funcionarioBean.buscaPorNome}" converter="funcionarioConverter">
+				</p:autoComplete>
+		
+		</p:fieldset>
+	
+ 
+ </ui:define>
+
+</ui:composition>
