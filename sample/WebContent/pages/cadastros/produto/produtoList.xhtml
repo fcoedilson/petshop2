@@ -15,8 +15,8 @@
 		<h:outputLabel  value="Busca"/>
 		<h:inputText value="#{produtoBean.filter}" size="80"/>
 	
-		<p:commandButton value="Pesquisar" action="#{produtoBean.search}" styleClass="button" update="dataTable"/>
-		<p:commandButton value="Novo" action="#{produtoBean.prepareSave}" styleClass="button" update="appForm" ajax="false"/>
+		<p:commandButton value="Pesquisar" action="#{produtoBean.search}" styleClass="btn" update="dataTable"/>
+		<p:commandButton value="Novo" action="#{produtoBean.prepareSave}" styleClass="btn" update="appForm" ajax="false"/>
 
 			<p:dataTable id="dataTable" var="produto" value="#{produtoBean.entities}" 
 						rows="10" rowClasses="even,odd"
